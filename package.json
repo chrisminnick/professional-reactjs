@@ -1,0 +1,43 @@
+{
+  "name": "professional-reactjs",
+  "version": "1.0.0",
+  "description": "Lab files for Professional ReactJS course",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --env=jsdom",
+    "lint": "eslint src",
+    "start": "webpack serve --open",
+    "bundle": "webpack",
+    "build": "npm run lint && npm run test && npm run bundle"
+  },  
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisminnick/professional-reactjs.git"
+  },
+  "author": "Chris Minnick",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chrisminnick/professional-reactjs/issues"
+  },
+  "homepage": "https://github.com/chrisminnick/professional-reactjs#readme",
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-react": "^7.14.5",
+    "@testing-library/react": "^12.1.0",
+    "babel-jest": "^27.2.1",
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.26.0",
+    "html-webpack-plugin": "^5.3.2",
+    "jest": "^27.2.1",
+    "react-test-renderer": "^17.0.2",
+    "webpack": "^5.54.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.2.1"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
