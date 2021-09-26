@@ -9,7 +9,6 @@ function App() {
       <Header />
       <Main />
       <Footer />
-      This is just for testing.
     </div>
   );
 }

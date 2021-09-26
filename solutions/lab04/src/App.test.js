@@ -3,6 +3,6 @@ import App from './App';
 
 test('renders testing text', () => {
   render(<App />);
-  const testText = screen.getByText(/This is just for testing./i);
+  const testText = screen.getByText(/Welcome to React Bookstore/i);
   expect(testText).toBeInTheDocument();
 });
