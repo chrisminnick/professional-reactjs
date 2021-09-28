@@ -5,7 +5,6 @@ import './App.css';
 import productsData from '../data/products';
 
 function App(props) {
-  const 
   return (
     <div className="container">
         <Header />

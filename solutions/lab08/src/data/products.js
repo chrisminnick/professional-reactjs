@@ -151,7 +151,7 @@ const data = [
         "country": "United Kingdom",
         "lang": "English",
         "pages": "342",
-        "image": "",
+        "image": "wuthering-heights.jpg",
         "url": "https://en.wikipedia.org/wiki/Wuthering_Heights",
         "price": "5"
     },
@@ -163,8 +163,8 @@ const data = [
         "country": "Algeria, French Empire",
         "lang": "French",
         "pages": "185",
-        "image": "",
-        "url": "https://en.wikipedia.org/wiki/The_Stranger_(novel)",
+        "image": "the-stranger.jpg",
+        "url": "https://en.wikipedia.org/wiki/The_Stranger_(Camus_novel)",
         "price": "5"
     },
     {
@@ -175,7 +175,7 @@ const data = [
         "country": "Romania, France",
         "lang": "German",
         "pages": "320",
-        "image": "",
+        "image": "poems-paul-celan.jpg",
         "url": "",
         "price": "5"
     },
@@ -187,7 +187,7 @@ const data = [
         "country": "France",
         "lang": "French",
         "pages": "505",
-        "image": "",
+        "image": "journey-to-the-end-of-the-night.jpg",
         "url": "https://en.wikipedia.org/wiki/Journey_to_the_End_of_the_Night",
         "price": "5"
     },
@@ -199,7 +199,7 @@ const data = [
         "country": "Spain",
         "lang": "Spanish",
         "pages": "1056",
-        "image": "",
+        "image": "don-quijote.jpg",
         "url": "https://en.wikipedia.org/wiki/Don_Quixote",
         "price": "5"
     },
@@ -211,7 +211,7 @@ const data = [
         "country": "England",
         "lang": "English",
         "pages": "544",
-        "image": "",
+        "image": "canterbury-tales.png",
         "url": "https://en.wikipedia.org/wiki/The_Canterbury_Tales",
         "price": "5"
     },
