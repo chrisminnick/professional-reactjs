@@ -3,7 +3,6 @@ import styles from './ProductList.module.css';
 
 function ProductList(props){
     const itemsInCart = props.itemsInCart;
-    
     return(
         <ul className={styles.productList}>
             {props.products.map(product => (
