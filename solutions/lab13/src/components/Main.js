@@ -28,11 +28,11 @@ Main.propTypes = {
 	addToCart: PropTypes.func.isRequired,
     removeFromCart: PropTypes.func.isRequired,
     products: PropTypes.array.isRequired,
-	inCart: PropTypes.array.isRequired
+	itemsInCart: PropTypes.array.isRequired
 };
 
 Main.defaultProps = {
     products: [],
-    inCart: []
+    itemsInCart: []
 }
 export default Main;

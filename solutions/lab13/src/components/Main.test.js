@@ -1,8 +1,17 @@
 import { render, screen } from '@testing-library/react';
 import Main from './Main';
+import {shallow} from 'enzyme';
 
 const mockAddToCart = jest.fn();
 const mockRemoveFromCart = jest.fn();
+
+test('Component renders with default props', ()=> {
+  const wrapper = shallow(
+  <Main addToCart={mockAddToCart}
+        removeFromCart={mockRemoveFromCart}/>
+        );
+  expect(wrapper).toMatchSnapshot();
+});
 
 test('Contains a test product', () => {
   render(<Main addToCart={mockAddToCart}
