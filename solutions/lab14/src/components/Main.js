@@ -17,7 +17,8 @@ function Main(props) {
                              removeFromCart = {props.removeFromCart} />
             </div>
             <div className="col-md-4">
-                <Cart cartItems = {cartItems} />
+                <Cart cartItems = {cartItems} 
+                      removeFromCart = {props.removeFromCart} />
             </div>
         </main>
     );

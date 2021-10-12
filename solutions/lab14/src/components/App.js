@@ -10,7 +10,9 @@ import './App.css';
 
 function App(props) {
 
-  const [isLoading, setIsLoading] = useState(false);  
+  const [isLoading, setIsLoading] = useState(false); 
+  const {products,itemsInCart,loadProducts,addToCart,removeFromCart} = props;
+
   useEffect(() => {
     async function fetchData() {
         try {
@@ -18,14 +20,14 @@ function App(props) {
             const response = await fetch('http://localhost:3000/data/products.json');
             const json = await response.json();
             shuffleArray(json)
-            props.loadProducts(json)
+            loadProducts(json)
             setIsLoading(false);
         } catch (e) {
             console.error(e);
         }
     };
     fetchData();
-  }, [props.loadProducts]);
+  }, [loadProducts]);
 
 
   function shuffleArray(array) {
@@ -44,10 +46,10 @@ function App(props) {
     <div className="container">
       <Header />
       {(isLoading)?"Loading":""}
-      <Main products = {props.products}
-            itemsInCart = {props.itemsInCart} 
-            addToCart = {props.addToCart}
-            removeFromCart = {props.removeFromCart}
+      <Main products = {products}
+            itemsInCart = {itemsInCart} 
+            addToCart = {addToCart}
+            removeFromCart = {removeFromCart}
             />
       <Footer />
     </div>
