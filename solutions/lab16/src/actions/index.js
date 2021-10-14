@@ -20,7 +20,9 @@ export function removeFromCart(productId) {
 export function loadProducts(products) {
     return {type: 'LOAD_PRODUCTS', products}
 }
-
+export function readCart() {
+    return {type: 'READ_CART'}
+}
 export function submitCart(data){
     return {type: 'SUBMIT_CART', payload: {data}}
 }

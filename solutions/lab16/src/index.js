@@ -35,7 +35,6 @@ let store = createStoreWithMiddleware(
 );
 
 sagaMiddleware.run(mySaga)
-store.dispatch({ type: "READ_CART" });
 
 ReactDOM.render(
   <React.StrictMode>
