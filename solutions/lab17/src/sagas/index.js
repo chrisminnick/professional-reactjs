@@ -15,7 +15,6 @@ function* checkout(action) {
 function* getProducts() {
    try {
       const products = yield call(Api.getProducts);
-      console.log(products.data);
       yield put({type: "LOAD_PRODUCTS", products: products.data});
       yield put({type: "READ_CART"});
    } catch (e) {

@@ -11,15 +11,13 @@ import './App.css';
 function App(props) {
 
   const [isLoading, setIsLoading] = useState(false); 
-  const {products,itemsInCart,getProducts,loadProducts,addToCart,removeFromCart,readCart,submitCart} = props;
+  const {products,itemsInCart,getProducts,addToCart,removeFromCart,submitCart} = props;
 
   useEffect(() => {
     function fetchData() {
         try {
             setIsLoading(true);
             getProducts();
-            //shuffleArray(json)
-            //loadProducts(json)
             setIsLoading(false);
 
         } catch (e) {
@@ -27,18 +25,10 @@ function App(props) {
         }
     };
     fetchData();
-  }, [loadProducts,getProducts,readCart]);
+  }, [setIsLoading,getProducts]);
 
 
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        let temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
-    return array;
-  }
+
 
 
 
