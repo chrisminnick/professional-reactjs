@@ -25,7 +25,7 @@ window.renderBookstore = (containerId, history) => {
 
 };
 
-window.unmountBrowse = containerId => {
+window.unmountBookstore = containerId => {
   ReactDOM.unmountComponentAtNode(document.getElementById(containerId));
 };
 
