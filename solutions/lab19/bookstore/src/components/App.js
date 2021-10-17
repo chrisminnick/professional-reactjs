@@ -5,6 +5,8 @@ import Footer from './Footer';
 import * as actionCreators from '../actions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 import './App.css';
 
@@ -28,14 +30,12 @@ function App(props) {
   }, [setIsLoading,getProducts]);
 
 
-
-
-
-
   return (
     <div className="container">
-      <Header />
-      {(isLoading)?"Loading":""}
+      <Header itemsInCart = {itemsInCart} />
+      
+
+      {(isLoading)?<FontAwesomeIcon icon={faSpinner} spin />:''}        
       <Main products = {products}
             itemsInCart = {itemsInCart} 
             addToCart = {addToCart}

@@ -3,13 +3,32 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import 'bootstrap/dist/css/bootstrap.css';
-import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import {createStore, applyMiddleware} from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import {rootReducer} from './reducers';
 import rootSaga from './sagas';
+import {BrowserRouter as Router} from 'react-router-dom';
+import { unregister } from './registerServiceWorker';
+
+window.renderBookstore = (containerId, history) => {
+  ReactDOM.render(
+    <Router>
+      <Provider store={store}>
+        <App history={history} />
+      </Provider>
+    </Router>,
+    document.getElementById(containerId),
+  );
+  unregister();
+
+};
+
+window.unmountBrowse = containerId => {
+  ReactDOM.unmountComponentAtNode(document.getElementById(containerId));
+};
+
 const sagaMiddleware = createSagaMiddleware();
 
 const initialState = {
@@ -26,17 +45,3 @@ let store = createStoreWithMiddleware(
 );
 
 sagaMiddleware.run(rootSaga)
-
-ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

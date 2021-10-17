@@ -1,6 +1,7 @@
 import ProductList from './ProductList';
 import Cart from './Cart';
 import PropTypes from 'prop-types';
+import {Switch,Link,Route} from 'react-router-dom';
 
 function Main(props) {
 
@@ -10,17 +11,22 @@ function Main(props) {
     let cartItems = props.itemsInCart.map(id => getProduct(props.products,id));
     return (
         <main className="row">
-            <div className="col-md-8">
-                <ProductList products = {props.products} 
-                             itemsInCart = {props.itemsInCart}
-                             addToCart = {props.addToCart} 
-                             removeFromCart = {props.removeFromCart} />
-            </div>
-            <div className="col-md-4">
-                <Cart cartItems = {cartItems} 
-                      removeFromCart = {props.removeFromCart} 
-                      submitCart = {props.submitCart} 
-                />
+            <div className="col-md-12">
+                <Switch>
+                    <Route exact path='/'>
+                        <ProductList products = {props.products} 
+                        itemsInCart = {props.itemsInCart}
+                        addToCart = {props.addToCart} 
+                        removeFromCart = {props.removeFromCart} />
+                    </Route>
+
+                    <Route exact path='/cart'>
+                        <Cart cartItems = {cartItems} 
+                        removeFromCart = {props.removeFromCart} 
+                        submitCart = {props.submitCart} 
+                        />
+                    </Route>
+                </Switch>
             </div>
         </main>
     );
