@@ -1,0 +1,17 @@
+{
+  "name": "content",
+  "version": "1.0.0",
+  "description": "Static content for a micro frontends demo",
+  "license": "MIT",
+  "scripts": {
+    "start": "serve --port 5000 --cors public"
+  },
+  "devDependencies": {
+    "prettier": "^1.13.7",
+    "serve": "^6.5.2"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
+  }
+}

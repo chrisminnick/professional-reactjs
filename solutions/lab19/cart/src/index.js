@@ -1,17 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-window.renderBookstore = (containerId, history) => {
+window.renderCart = (containerId) => {
   ReactDOM.render(
         <App />,
     document.getElementById(containerId),
   );
 };
 
-window.unmountBookstore = containerId => {
+window.unmountCart = containerId => {
   ReactDOM.unmountComponentAtNode(document.getElementById(containerId));
 };
 
