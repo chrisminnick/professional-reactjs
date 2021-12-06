@@ -1,7 +1,7 @@
 function Product(){
     return(
         <div>
-            <div>Image Here</div>
+            <img src="/images/default.jpg" />
             <div>
                 <h2>Title</h2>
                 <p>

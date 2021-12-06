@@ -14,18 +14,18 @@ function App(props) {
   const {products,itemsInCart,getProducts,addToCart,removeFromCart,submitCart} = props;
 
   useEffect(() => {
-    function fetchData() {
         try {
             setIsLoading(true);
-            getProducts();
+            fetchProducts();
             setIsLoading(false);
-
         } catch (e) {
             console.error(e);
         }
-    };
-    fetchData();
-  }, [setIsLoading,getProducts]);
+  }, [setIsLoading,fetchProducts]);
+
+  useEffect(()=>{
+    readCart();
+  },[products]);
 
 
 

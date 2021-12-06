@@ -12,9 +12,17 @@ function* checkout(action) {
    }
 }
 
+function* fetchProducts(action) {
+   try {
+      const response = yield call(Api.fetchProducts, action.payload);
+      yield put({type: "PRODUCTS_FETCHED", response: response});
+      console.log(response);
+   } catch (e) {
+      yield put({type: "PRODUCT_FETCH_FAILED", message: e.message});
+   }
+}
 /*
   Starts submitCart on each dispatched `SUBMIT_CART` action.
-  Allows concurrent fetches of user.
 */
 function* mySaga() {
   yield takeEvery("SUBMIT_CART", checkout);
