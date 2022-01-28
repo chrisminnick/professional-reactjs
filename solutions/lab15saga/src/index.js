@@ -9,7 +9,6 @@ import {cart, products} from './reducers';
 import createSagaMiddleware from 'redux-saga';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 
-
 import mySaga from './sagas';
 const sagaMiddleware = createSagaMiddleware();
 

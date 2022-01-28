@@ -13,7 +13,7 @@ function App() {
     async function fetchData() {
         try {
             setIsLoading(true);
-            const response = await fetch('http://localhost:3000/data/products.json');
+            const response = await fetch('/data/products.json');
             const json = await response.json();
             setProducts(json);
             setIsLoading(false);
@@ -22,7 +22,7 @@ function App() {
         }
     };
     fetchData();
-  }, [setProducts]);
+  }, []);
 
   useEffect(() => {
     shuffleArray(products);

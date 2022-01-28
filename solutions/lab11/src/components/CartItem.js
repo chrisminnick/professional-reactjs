@@ -1,4 +1,5 @@
 import styles from './CartItem.module.css';
+import PropTypes from 'prop-types';
 
 function CartItem(props){
     return(
@@ -8,4 +9,12 @@ function CartItem(props){
     );
 };
 
+CartItem.propTypes = {
+    title: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired
+}
+CartItem.defaultProps = {
+    title: '',
+    price: ''
+}
 export default CartItem;

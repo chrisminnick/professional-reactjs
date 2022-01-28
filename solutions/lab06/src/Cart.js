@@ -1,5 +1,5 @@
 import CartItem from './CartItem';
-import styles from './CartItem.module.css';
+import styles from './Cart.module.css';
 
 function Cart(){
     return(
