@@ -1,13 +1,8 @@
 import CartItem from './CartItem';
 import styles from './CartItem.module.css';
 import PropTypes from 'prop-types';
-import {useEffect} from 'react';
 
 function Cart(props){
-    
-    useEffect(()=>{
-        console.log('mounted');
-    },[]);
 
     function calculateTotal(items){
         let total = 0;
@@ -20,15 +15,10 @@ function Cart(props){
     return(
         <div className={styles.cart}>
             <h2>Cart</h2>
-            {
-                props.cartItems.map(item=>(
-                <CartItem key={item.id} 
-                          removeFromCart = {props.removeFromCart} 
-                          {...item} />
+            {props.cartItems.map(item=>(
+                <CartItem key={item.id} {...item} />
             ))}
             Total: ${calculateTotal(props.cartItems)} USD
-            <div><button onClick={()=>{props.submitCart(props.cartItems)}}>Check Out</button></div>
-
         </div>
     );
 }
