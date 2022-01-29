@@ -1,8 +1,9 @@
 import Product from './Product';
 import styles from './ProductList.module.css';
 import PropTypes from 'prop-types';
+import React from 'react';
 
-function ProductList(props){
+const ProductList = React.memo((props)=>{
     const itemsInCart = props.itemsInCart;
     return(
         <ul className={styles.productList}>
@@ -18,7 +19,7 @@ function ProductList(props){
             ))}
         </ul>
     ); 
-}
+});
 
 ProductList.propTypes = {
 	addToCart: PropTypes.func.isRequired,

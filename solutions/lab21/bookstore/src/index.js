@@ -33,11 +33,11 @@ let store = createStoreWithMiddleware(
 
 sagaMiddleware.run(rootSaga)
 
-window.renderBookstore = (containerId, history) => {
+window.renderBookstore = (containerId, history,cartItems) => {
   ReactDOM.render(
     <Router>
       <Provider store={store}>
-        <App contentHost = {contentHost} />
+        <App contentHost = {contentHost} cartItems={cartItems} />
       </Provider>
     </Router>,
     document.getElementById(containerId),

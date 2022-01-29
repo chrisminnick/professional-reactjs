@@ -20,7 +20,7 @@ function App() {
     <Header />
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Bookstore} />
+        <Route exact path="/" render={()=>{<Bookstore cartItems={[1,2]}/>}} />
         <Route exact path="/cart" component={Cart} />
       </Switch>
     </BrowserRouter>
