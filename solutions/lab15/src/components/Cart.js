@@ -21,8 +21,6 @@ function Cart(props){
                           {...item} />
             ))}
             Total: ${calculateTotal(props.cartItems)} USD
-            <div><button onClick={()=>{props.submitCart(props.cartItems)}}>Check Out</button></div>
-
         </div>
     );
 }

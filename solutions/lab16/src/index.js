@@ -6,13 +6,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
 import {cart, products} from './reducers';
-import createSagaMiddleware from 'redux-saga';
+import ReduxThunk from 'redux-thunk';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
 
 
-import mySaga from './sagas';
-const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
 	cart: cart,
@@ -27,14 +24,14 @@ const initialState = {
 
 
 const createStoreWithMiddleware =
-  composeWithDevTools( applyMiddleware(sagaMiddleware) )(createStore);
+    compose( applyMiddleware(ReduxThunk) )(createStore);
 
 let store = createStoreWithMiddleware(
     rootReducer,
-    initialState
+    initialState,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && 
+    window.__REDUX_DEVTOOLS_EXTENSION__()
 );
-
-sagaMiddleware.run(mySaga)
 
 ReactDOM.render(
   <React.StrictMode>

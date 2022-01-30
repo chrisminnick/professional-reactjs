@@ -8,6 +8,7 @@ function Main(props) {
         return products.find(product => item === product.id);
     }
     let cartItems = props.itemsInCart.map(id => getProduct(props.products,id));
+
     return (
         <main className="row">
             <div className="col-md-8">
@@ -17,8 +18,7 @@ function Main(props) {
                              removeFromCart = {props.removeFromCart} />
             </div>
             <div className="col-md-4">
-                <Cart cartItems = {cartItems} 
-                      removeFromCart = {props.removeFromCart}/>
+                <Cart cartItems = {cartItems} />
             </div>
         </main>
     );
@@ -28,11 +28,11 @@ Main.propTypes = {
 	addToCart: PropTypes.func.isRequired,
     removeFromCart: PropTypes.func.isRequired,
     products: PropTypes.array.isRequired,
-	itemsInCart: PropTypes.array.isRequired
+	inCart: PropTypes.array.isRequired
 };
 
 Main.defaultProps = {
     products: [],
-    itemsInCart: []
+    inCart: []
 }
 export default Main;

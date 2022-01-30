@@ -12,20 +12,21 @@ function Main(props) {
     return (
         <main className="row">
             <div className="col-md-12">
-                
+                <Switch>
+                    <Route exact path='/'>
                         <ProductList products = {props.products} 
                         itemsInCart = {props.itemsInCart}
                         addToCart = {props.addToCart} 
                         removeFromCart = {props.removeFromCart} />
-                    
+                    </Route>
 
-                    {/* <Route exact path='/cart'>
+                    <Route exact path='/cart'>
                         <Cart cartItems = {cartItems} 
                         removeFromCart = {props.removeFromCart} 
                         submitCart = {props.submitCart} 
                         />
-                    </Route> */}
-                
+                    </Route>
+                </Switch>
             </div>
         </main>
     );

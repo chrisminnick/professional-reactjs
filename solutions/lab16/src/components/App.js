@@ -11,7 +11,7 @@ import './App.css';
 function App(props) {
 
   const [isLoading, setIsLoading] = useState(false); 
-  const {products,itemsInCart,loadProducts,addToCart,removeFromCart,readCart,submitCart} = props;
+  const {products,itemsInCart,loadProducts,addToCart,removeFromCart,submitCart} = props;
 
   useEffect(() => {
     async function fetchData() {
@@ -22,8 +22,6 @@ function App(props) {
             shuffleArray(json)
             loadProducts(json)
             setIsLoading(false);
-            readCart();
-
         } catch (e) {
             console.error(e);
         }

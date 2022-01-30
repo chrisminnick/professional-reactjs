@@ -11,7 +11,7 @@ import './App.css';
 function App(props) {
 
   const [isLoading, setIsLoading] = useState(false); 
-  const {products,itemsInCart,loadProducts,addToCart,removeFromCart,submitCart} = props;
+  const {products,itemsInCart,loadProducts,addToCart,removeFromCart} = props;
 
   useEffect(() => {
     async function fetchData() {
@@ -50,7 +50,6 @@ function App(props) {
             itemsInCart = {itemsInCart} 
             addToCart = {addToCart}
             removeFromCart = {removeFromCart}
-            submitCart = {submitCart}
             />
       <Footer />
     </div>

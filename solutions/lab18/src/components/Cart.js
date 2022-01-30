@@ -1,13 +1,8 @@
 import CartItem from './CartItem';
 import styles from './CartItem.module.css';
 import PropTypes from 'prop-types';
-import {useEffect} from 'react';
 
 function Cart(props){
-    
-    useEffect(()=>{
-        console.log('mounted');
-    },[]);
 
     function calculateTotal(items){
         let total = 0;

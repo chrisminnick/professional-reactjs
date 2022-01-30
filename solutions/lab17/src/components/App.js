@@ -11,24 +11,36 @@ import './App.css';
 function App(props) {
 
   const [isLoading, setIsLoading] = useState(false); 
-  const {products,itemsInCart,getProducts,addToCart,removeFromCart,submitCart} = props;
+  const {products,itemsInCart,loadProducts,addToCart,removeFromCart,readCart,submitCart} = props;
 
   useEffect(() => {
+    async function fetchData() {
         try {
             setIsLoading(true);
-            fetchProducts();
+            const response = await fetch('http://localhost:3000/data/products.json');
+            const json = await response.json();
+            shuffleArray(json)
+            loadProducts(json)
             setIsLoading(false);
+            readCart();
+
         } catch (e) {
             console.error(e);
         }
-  }, [setIsLoading,fetchProducts]);
-
-  useEffect(()=>{
-    readCart();
-  },[products]);
+    };
+    fetchData();
+  }, [loadProducts]);
 
 
-
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        let temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+  }
 
 
 

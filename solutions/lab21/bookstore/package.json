@@ -47,9 +47,9 @@
     ]
   },
   "devDependencies": {
-    "react-app-rewire-micro-frontends": "^0.0.1",
-    "react-app-rewired": "^2.1.8",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
-    "enzyme": "^3.11.0"
+    "enzyme": "^3.11.0",
+    "react-app-rewire-micro-frontends": "^0.0.1",
+    "react-app-rewired": "^2.1.8"
   }
 }

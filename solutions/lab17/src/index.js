@@ -5,17 +5,26 @@ import App from './components/App';
 import 'bootstrap/dist/css/bootstrap.css';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
+import {cart, products} from './reducers';
 import createSagaMiddleware from 'redux-saga';
-import {createStore, applyMiddleware} from 'redux';
+import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import {rootReducer} from './reducers';
-import rootSaga from './sagas';
+
+
+import mySaga from './sagas';
 const sagaMiddleware = createSagaMiddleware();
+
+const rootReducer = combineReducers({
+	cart: cart,
+	products: products
+});
+
 
 const initialState = {
   cart: {items:[]},
   products: {products:[]}
 };
+
 
 const createStoreWithMiddleware =
   composeWithDevTools( applyMiddleware(sagaMiddleware) )(createStore);
@@ -25,7 +34,7 @@ let store = createStoreWithMiddleware(
     initialState
 );
 
-sagaMiddleware.run(rootSaga)
+sagaMiddleware.run(mySaga)
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,10 +1,8 @@
-import Cart from './Cart';
-
 function App() {
   return (
-    <>This is CART
-      <Cart />
-    </>
+    <div>
+      <h1>cart</h1>
+    </div>
   );
 }
 

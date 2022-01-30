@@ -9,18 +9,11 @@ export function cart(state = {}, action = {}) {
 			return {
                 ...state,
                 items: state.items.filter(id => id !== action.payload.productId)
-            };   
-        case 'CHECKOUT':
-            return {
-                ...state,
-                items: []
-            };
+            };            
 		default:
 			return state; //no relevant action type
 	}
 }
-
-
 
 export function products(state = {}, action = {}) {
     switch (action.type) {

@@ -4,12 +4,9 @@ import './index.css';
 import App from './components/App';
 import 'bootstrap/dist/css/bootstrap.css';
 import reportWebVitals from './reportWebVitals';
+import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import {cart, products} from './reducers';
-import ReduxThunk from 'redux-thunk';
-import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
-
-
 
 const rootReducer = combineReducers({
 	cart: cart,
@@ -22,15 +19,9 @@ const initialState = {
   products: {products:[]}
 };
 
-
-const createStoreWithMiddleware =
-    compose( applyMiddleware(ReduxThunk) )(createStore);
-
-let store = createStoreWithMiddleware(
-    rootReducer,
-    initialState,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && 
-    window.__REDUX_DEVTOOLS_EXTENSION__()
+let store = createStore(
+	rootReducer,
+	initialState
 );
 
 ReactDOM.render(

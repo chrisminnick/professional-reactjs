@@ -19,8 +19,7 @@ function Main(props) {
             <div className="col-md-4">
                 <Cart cartItems = {cartItems} 
                       removeFromCart = {props.removeFromCart} 
-                      submitCart = {props.submitCart} 
-                />
+                      submitCart = {props.submitCart} />
             </div>
         </main>
     );

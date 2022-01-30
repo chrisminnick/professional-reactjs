@@ -2,16 +2,12 @@ import {useState,useEffect} from 'react';
 import Header from './Header'
 import Main from './Main'
 import Footer from './Footer';
-import * as actionCreators from '../actions';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-
 import './App.css';
 
-function App(props) {
-
-  const [isLoading, setIsLoading] = useState(false); 
-  const {products,itemsInCart,loadProducts,addToCart,removeFromCart} = props;
+function App() {
+  const [itemsInCart, setItemsInCart] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);  
 
   useEffect(() => {
     async function fetchData() {
@@ -19,16 +15,19 @@ function App(props) {
             setIsLoading(true);
             const response = await fetch('http://localhost:3000/data/products.json');
             const json = await response.json();
-            shuffleArray(json)
-            loadProducts(json)
+            setProducts(json);
             setIsLoading(false);
         } catch (e) {
             console.error(e);
         }
     };
     fetchData();
-  }, [loadProducts]);
+  }, [setProducts]);
 
+  useEffect(() => {
+    shuffleArray(products);
+  }
+  , [products]);
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -40,7 +39,16 @@ function App(props) {
     return array;
   }
 
+  function addToCart(id) {
+    let newItems = [...itemsInCart, id];
+    setItemsInCart(newItems)
+  }
 
+  function removeFromCart(idToRemove) {
+    let newItems = itemsInCart.filter(
+          id => id !== idToRemove);
+    setItemsInCart(newItems);
+  }  
 
   return (
     <div className="container">
@@ -56,16 +64,4 @@ function App(props) {
   );
   }
 
-const mapStateToProps = (state, props) => {
-  return {
-      itemsInCart: state.cart.items,
-      products: state.products.products
-
-  }
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(actionCreators, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
