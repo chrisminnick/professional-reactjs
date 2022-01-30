@@ -4,32 +4,30 @@ import './index.css';
 import App from './components/App';
 import 'bootstrap/dist/css/bootstrap.css';
 import reportWebVitals from './reportWebVitals';
-import {createStore, combineReducers} from 'redux';
-import {Provider} from 'react-redux';
-import {cart, products} from './reducers';
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import { cart, products } from './reducers';
 
 const rootReducer = combineReducers({
-	cart: cart,
-	products: products
+  cart: cart,
+  products: products,
 });
 
-
 const initialState = {
-  cart: {items:[]},
-  products: {products:[]}
+  cart: { items: [] },
+  products: { products: [] },
 };
 
 let store = createStore(
-	rootReducer,
-	initialState
+  rootReducer,
+  initialState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
 
