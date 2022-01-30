@@ -60,18 +60,6 @@ const Product: React.FC<Props> = (props) => {
   );
 };
 
-Product.propTypes = {
-  title: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  published: PropTypes.string,
-  country: PropTypes.string,
-  lang: PropTypes.string,
-  pages: PropTypes.string,
-  image: PropTypes.string,
-  url: PropTypes.string,
-  price: PropTypes.string.isRequired,
-};
-
 Product.defaultProps = {
   title: '',
   price: '',
