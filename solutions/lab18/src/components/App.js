@@ -15,6 +15,7 @@ function App(props) {
     itemsInCart,
     getProducts,
     addToCart,
+    readCart,
     removeFromCart,
     submitCart,
   } = props;

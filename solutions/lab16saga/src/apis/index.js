@@ -1,1 +1,1 @@
-export {default as submitCart} from './submitCart';
+export { default as submitCart } from './submitCart';
