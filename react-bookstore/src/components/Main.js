@@ -11,6 +11,7 @@ function Main({
   removeFromCart,
   filterText,
   setFilter,
+  submitCart,
 }) {
   function getProduct(products, item) {
     return products.find((product) => item === product.id);
@@ -29,7 +30,11 @@ function Main({
         />
       </div>
       <div className="col-md-4">
-        <Cart cartItems={cartItems} />
+        <Cart
+          cartItems={cartItems}
+          removeFromCart={removeFromCart}
+          submitCart={submitCart}
+        />
       </div>
     </main>
   );

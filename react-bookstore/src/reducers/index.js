@@ -1,5 +1,10 @@
 export function cart(state = {}, action = {}) {
   switch (action.type) {
+    case 'CHECKOUT':
+      return {
+        ...state,
+        items: [],
+      };
     case 'CART_ADD':
       return {
         ...state,

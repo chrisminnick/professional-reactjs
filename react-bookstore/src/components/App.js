@@ -54,13 +54,14 @@ function App(props) {
         removeFromCart={props.removeFromCart}
         setFilter={setFilterText}
         filterText={filterText}
+        submitCart={props.submitCart}
       />
       <Footer />
     </div>
   );
 }
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state) => {
   return {
     itemsInCart: state.cart.items,
     products: state.products.products,

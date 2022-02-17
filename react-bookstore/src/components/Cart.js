@@ -1,7 +1,7 @@
 import CartItem from './CartItem';
 import PropTypes from 'prop-types';
 
-function Cart({ cartItems = [] }) {
+function Cart({ cartItems = [], removeFromCart, submitCart }) {
   function calculateTotal(items) {
     let total = 0;
     for (let i = 0; i < items.length; i++) {
@@ -16,6 +16,9 @@ function Cart({ cartItems = [] }) {
         <CartItem key={item.id} {...item} />
       ))}
       Total: ${calculateTotal(cartItems)} USD
+      <div>
+        <button onClick={() => submitCart(cartItems)}>Check Out</button>
+      </div>
     </div>
   );
 }

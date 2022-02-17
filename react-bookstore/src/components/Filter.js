@@ -11,8 +11,9 @@ function Filter(props) {
         name="filterInput"
         type="text"
         value={props.filterText}
-        onChange={(e) => props.setFilter(e.target.value)}
+        onChange={(e) => props.setFilter(e.target.value.toLowerCase())}
       />
+      current filter: {props.filterText}
     </>
   );
 }
