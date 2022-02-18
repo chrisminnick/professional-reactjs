@@ -1,6 +1,7 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MicroFrontend from './MicroFrontend';
 import Header from './Header';
+import { useState } from 'react';
 
 const { REACT_APP_BOOKSTORE_HOST: bookstoreHost } = process.env;
 const { REACT_APP_CART_HOST: cartHost } = process.env;
@@ -11,20 +12,17 @@ const Cart = ({ history }) => (
   <MicroFrontend history={history} host={cartHost} name="Cart" />
 );
 function App() {
+  const [itemsInCart, setItemsInCart] = useState(['1', '2']);
+  const cartItems = [{ title: 'Great Book' }];
+
   return (
     <>
-      <Header />
       <BrowserRouter>
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => {
-              <Bookstore cartItems={[1, 2]} />;
-            }}
-          />
-          <Route exact path="/cart" component={Cart} />
-        </Switch>
+        <Header itemsInCart={itemsInCart} />
+        <Routes>
+          <Route path="/" element={<Bookstore />} />
+          <Route path="cart" element={<Cart cartItems={cartItems} />} />
+        </Routes>
       </BrowserRouter>
     </>
   );
