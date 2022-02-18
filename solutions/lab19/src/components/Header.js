@@ -1,8 +1,8 @@
-import CartLink from "./CartLink";
-import {Link} from 'react-router-dom';
+import CartLink from './CartLink';
+import { Link } from 'react-router-dom';
 import React from 'react';
 
-const Header= React.memo((props)=>{
+const Header = React.memo((props) => {
   return (
     <header className="container">
       <div className="row p-4">
@@ -11,12 +11,12 @@ const Header= React.memo((props)=>{
           <Link to="/">Home</Link>
         </div>
         <div className="col-md-3">
-            <Link to="/cart">Shopping Cart</Link>
+          <Link to="/cart/">Shopping Cart</Link>
           <CartLink itemsInCart={props.itemsInCart} />
         </div>
       </div>
     </header>
   );
-})
+});
 
 export default Header;

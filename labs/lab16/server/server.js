@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'www')));
 
 app.get('/'),
   function (req, res) {
-    const initialState = ReactDOM.renderToString();
+    const initialState = ReactDOM.renderToString(<App />);
     res.send(initialState);
   };
 app.post('/checkout/', function (req, res) {

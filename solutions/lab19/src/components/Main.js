@@ -1,8 +1,8 @@
-import ProductList from "./ProductList";
-import Cart from "./Cart";
-import PropTypes from "prop-types";
-import { Switch, Link, Route } from "react-router-dom";
-import ContactUs from "./ContactUs";
+import ProductList from './ProductList';
+import Cart from './Cart';
+import PropTypes from 'prop-types';
+import { Routes, Route } from 'react-router-dom';
+import ContactUs from './ContactUs';
 
 function Main(props) {
   function getProduct(products, item) {
@@ -12,27 +12,41 @@ function Main(props) {
   return (
     <main className="row">
       <div className="col-md-12">
-        <Switch>
-          <Route exact path="/">
-            <ProductList
-              products={props.products}
-              itemsInCart={props.itemsInCart}
-              addToCart={props.addToCart}
-              removeFromCart={props.removeFromCart}
-            />
-          </Route>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ProductList
+                products={props.products}
+                itemsInCart={props.itemsInCart}
+                addToCart={props.addToCart}
+                removeFromCart={props.removeFromCart}
+              />
+            }
+          />
 
-          <Route exact path="/cart">
-            <Cart
-              cartItems={cartItems}
-              removeFromCart={props.removeFromCart}
-              submitCart={props.submitCart}
+          <Route
+            path="cart"
+            element={
+              <Cart
+                cartItems={cartItems}
+                removeFromCart={props.removeFromCart}
+                submitCart={props.submitCart}
+              />
+            }
+          >
+            <Route
+              path=":cartNumber"
+              element={
+                <Cart
+                  cartItems={cartItems}
+                  removeFromCart={props.removeFromCart}
+                  submitCart={props.submitCart}
+                />
+              }
             />
           </Route>
-          <Route path="/">
-            <ContactUs />
-          </Route>
-        </Switch>
+        </Routes>
       </div>
     </main>
   );
