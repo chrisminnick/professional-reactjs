@@ -9,4 +9,4 @@
 
 ## Changes to make
 
-1. Move JavaScript review to after buiding static vesion lab
+1. Move JavaScript review to after building static version lab
