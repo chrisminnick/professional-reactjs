@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 function CartItem(props) {
   return (
     <div className={styles.cartItem}>
-      {props.title} - {props.price}
+      {props.title} - {props.price}{' '}
+      <button onClick={() => props.removeFromCart(props.id)}>x</button>
     </div>
   );
 }
