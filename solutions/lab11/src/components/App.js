@@ -47,11 +47,12 @@ function App() {
     let newItems = itemsInCart.filter((id) => id !== idToRemove);
     setItemsInCart(newItems);
   }
-
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
   return (
     <div className="container">
       <Header />
-      {isLoading ? 'Loading' : ''}
       <Main
         products={products}
         itemsInCart={itemsInCart}
