@@ -1,5 +1,4 @@
 import styles from './CartItem.module.css';
-import PropTypes from 'prop-types';
 
 function CartItem(props) {
   return (
