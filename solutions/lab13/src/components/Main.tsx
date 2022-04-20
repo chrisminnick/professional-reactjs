@@ -1,6 +1,5 @@
 import ProductList from './ProductList';
 import Cart from './Cart';
-import PropTypes from 'prop-types';
 
 interface Book {
   id: string;
@@ -24,7 +23,7 @@ interface Props {
 
 function Main(props: Props) {
   function getProduct(products: Book[], item: string) {
-    return products.find((product) => item === product.id);
+    return products.find((product: Book) => item === product.id);
   }
   let cartItems = props.itemsInCart.map((id) => getProduct(props.products, id));
 

@@ -1,7 +1,22 @@
 import styles from './Product.module.css';
-import PropTypes from 'prop-types';
 
-function Product(props) {
+interface Props {
+  id: string;
+  title: string;
+  author: string;
+  published?: string;
+  country?: string;
+  lang?: string;
+  pages?: string;
+  image?: string;
+  url?: string;
+  price?: string;
+  inCart: boolean;
+  removeFromCart: (idToRemove: string) => void;
+  addToCart: (id: string) => void;
+}
+
+function Product(props: Props) {
   const { title, author, published, country, lang, pages, image, url, price } =
     props;
 
@@ -44,17 +59,5 @@ function Product(props) {
     </div>
   );
 }
-
-Product.propTypes = {
-  title: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  published: PropTypes.string.isRequired,
-  country: PropTypes.string.isRequired,
-  lang: PropTypes.string.isRequired,
-  pages: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
-};
 
 export default Product;
