@@ -10,5 +10,5 @@ it('renders testing text', () => {
       removeFromCart={jest.fn}
     />
   );
-  expect(screen.getByText(/React is Awesome/).toBeInTheDocument());
+  expect(screen.getByText(/React is Awesome/)).toBeInTheDocument();
 });

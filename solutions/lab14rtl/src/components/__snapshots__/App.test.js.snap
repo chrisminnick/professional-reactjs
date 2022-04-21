@@ -19,7 +19,12 @@ exports[`<App /> renders as expected 1`] = `
       >
         <ul
           class="productList"
-        />
+          data-testid="product-list"
+        >
+          <p>
+            something
+          </p>
+        </ul>
       </div>
       <div
         class="col-md-4"

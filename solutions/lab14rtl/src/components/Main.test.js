@@ -1,8 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { shallow } from 'enzyme';
 import Main from './Main';
 test('renders testing text', () => {
-  const component = shallow(
+  render(
     <Main
       products={[{ title: 'React is Awesome' }]}
       itemsInCart={[]}
@@ -10,5 +9,5 @@ test('renders testing text', () => {
       removeFromCart={jest.fn}
     />
   );
-  expect(component.text()).toEqual('<ProductList /><Cart />');
+  expect(screen.getByText(/React is Awesome/)).toBeInTheDocument();
 });
