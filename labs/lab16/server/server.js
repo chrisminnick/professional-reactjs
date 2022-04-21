@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const ReactDOM = require('react-dom');
 
 let app = express();
 app.use(bodyParser.json());
@@ -32,11 +31,7 @@ app.use(function (req, res, next) {
 });
 app.use(express.static(path.join(__dirname, 'www')));
 
-app.get('/'),
-  function (req, res) {
-    const initialState = ReactDOM.renderToString(<App />);
-    res.send(initialState);
-  };
+app.get('/'), function (req, res) {};
 app.post('/checkout/', function (req, res) {
   res.setHeader('Content-Type', 'application/json');
 
