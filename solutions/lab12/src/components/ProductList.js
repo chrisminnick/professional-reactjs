@@ -1,6 +1,7 @@
 import Product from './Product';
 import styles from './ProductList.module.css';
 import PropTypes from 'prop-types';
+import { productsType } from '../types';
 
 function ProductList(props) {
   const itemsInCart = props.itemsInCart;
@@ -24,19 +25,7 @@ ProductList.propTypes = {
   itemsInCart: PropTypes.array.isRequired,
   addToCart: PropTypes.func.isRequired,
   removeFromCart: PropTypes.func.isRequired,
-  products: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      author: PropTypes.string.isRequired,
-      published: PropTypes.string.isRequired,
-      country: PropTypes.string.isRequired,
-      lang: PropTypes.string.isRequired,
-      pages: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-    }).isRequired
-  ),
+  products: productsType,
 };
 
 ProductList.defaultProps = {

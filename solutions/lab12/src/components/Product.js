@@ -1,5 +1,5 @@
 import styles from './Product.module.css';
-import PropTypes from 'prop-types';
+import { productType } from '../types';
 
 function Product(props) {
   const { title, author, published, country, lang, pages, image, url, price } =
@@ -45,16 +45,6 @@ function Product(props) {
   );
 }
 
-Product.propTypes = {
-  title: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  published: PropTypes.string.isRequired,
-  country: PropTypes.string.isRequired,
-  lang: PropTypes.string.isRequired,
-  pages: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
-};
+Product.propTypes = productType;
 
 export default Product;

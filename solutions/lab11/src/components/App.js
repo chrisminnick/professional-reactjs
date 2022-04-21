@@ -47,6 +47,7 @@ function App() {
     let newItems = itemsInCart.filter((id) => id !== idToRemove);
     setItemsInCart(newItems);
   }
+
   if (isLoading) {
     return <p>Loading...</p>;
   }
