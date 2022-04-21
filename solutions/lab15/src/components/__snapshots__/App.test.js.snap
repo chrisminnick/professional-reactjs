@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> renders as expected 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <header>
+      <h1>
+        Welcome to React Bookstore
+      </h1>
+    </header>
+    Loading
+    <main
+      class="row"
+    >
+      <div
+        class="col-md-8"
+      >
+        <ul
+          class="productList"
+          data-testid="product-list"
+        />
+      </div>
+      <div
+        class="col-md-4"
+      >
+        <div
+          class="cart"
+        >
+          <h2>
+            Cart
+          </h2>
+          Total: $
+          0
+           USD
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>
+        This is the footer.
+      </p>
+    </footer>
+  </div>
+</div>
+`;

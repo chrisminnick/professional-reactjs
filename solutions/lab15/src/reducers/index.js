@@ -5,7 +5,6 @@ export function cart(state = {}, action = {}) {
         ...state,
         items: [...state.items, action.payload.productId],
       };
-
     case 'CART_REMOVE':
       return {
         ...state,
@@ -13,10 +12,9 @@ export function cart(state = {}, action = {}) {
       };
 
     default:
-      return state; //no relevant action type
+      return state;
   }
 }
-
 export function products(state = {}, action = {}) {
   switch (action.type) {
     case 'LOAD_PRODUCTS':

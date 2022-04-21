@@ -9,24 +9,30 @@ import { connect } from 'react-redux';
 
 function App(props) {
   const [isLoading, setIsLoading] = useState(false);
+  const { loadProducts } = props;
 
   useEffect(() => {
     async function fetchData() {
       try {
         setIsLoading(true);
+
         const response = await fetch(
           'http://localhost:3000/data/products.json'
         );
         const json = await response.json();
+        loadProducts(json);
         shuffleArray(json);
-        props.loadProducts(json);
         setIsLoading(false);
       } catch (e) {
         console.error(e);
       }
     }
     fetchData();
-  }, [props.loadProducts]);
+  }, [loadProducts]);
+
+  /* useEffect(() => {
+    shuffleArray(products);
+  }, [products]);*/
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -52,7 +58,6 @@ function App(props) {
     </div>
   );
 }
-
 const mapStateToProps = (state, props) => {
   return {
     itemsInCart: state.cart.items,
