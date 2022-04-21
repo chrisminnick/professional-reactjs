@@ -1,4 +1,4 @@
-const data = [
+[
     {
         "id": "1",
         "title": "Things Fall Apart",
@@ -1199,6 +1199,4 @@ const data = [
         "url": "https://en.wikipedia.org/wiki/Memoirs_of_Hadrian",
         "price": "5"
     }
-];
-
-export default data;
+]
