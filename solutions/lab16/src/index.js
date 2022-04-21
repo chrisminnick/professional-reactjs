@@ -1,45 +1,41 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/App';
 import 'bootstrap/dist/css/bootstrap.css';
 import reportWebVitals from './reportWebVitals';
-import {Provider} from 'react-redux';
-import {cart, products} from './reducers';
+import { Provider } from 'react-redux';
+import { cart, products } from './reducers';
 import ReduxThunk from 'redux-thunk';
-import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
-
-
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
 const rootReducer = combineReducers({
-	cart: cart,
-	products: products
+  cart: cart,
+  products: products,
 });
 
-
 const initialState = {
-  cart: {items:[]},
-  products: {products:[]}
+  cart: { items: [] },
+  products: { products: [] },
 };
 
-
-const createStoreWithMiddleware =
-    compose( applyMiddleware(ReduxThunk) )(createStore);
-
-let store = createStoreWithMiddleware(
-    rootReducer,
-    initialState,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && 
-    window.__REDUX_DEVTOOLS_EXTENSION__()
+const createStoreWithMiddleware = compose(applyMiddleware(ReduxThunk))(
+  createStore
 );
 
-ReactDOM.render(
+let store = createStoreWithMiddleware(
+  rootReducer,
+  initialState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
   <React.StrictMode>
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

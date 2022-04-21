@@ -35,11 +35,13 @@ function Product(props) {
           <br />
           price: ${price}
           <br />
-          (url):
-          <>
-            more info? <a href={url}>click here</a>
-          </>
-          :''
+          {url ? (
+            <>
+              more info? <a href={url}>click here</a>
+            </>
+          ) : (
+            ''
+          )}
         </p>
         <button onClick={handleClick}>
           {props.inCart ? 'In Cart' : 'Add to Cart'}
