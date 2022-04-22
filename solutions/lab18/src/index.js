@@ -2,39 +2,34 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
-import 'bootstrap/dist/css/bootstrap.css';
 import reportWebVitals from './reportWebVitals';
-import {Provider} from 'react-redux';
-import {cart, products} from './reducers';
+import { Provider } from 'react-redux';
+import { cart, products } from './reducers';
 import createSagaMiddleware from 'redux-saga';
-import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-
+import 'bootstrap/dist/css/bootstrap.css';
 
 import mySaga from './sagas';
 const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
-	cart: cart,
-	products: products
+  cart: cart,
+  products: products,
 });
 
-
 const initialState = {
-  cart: {items:[]},
-  products: {products:[]}
+  cart: { items: [] },
+  products: { products: [] },
 };
 
+const createStoreWithMiddleware = composeWithDevTools(
+  applyMiddleware(sagaMiddleware)
+)(createStore);
 
-const createStoreWithMiddleware =
-  composeWithDevTools( applyMiddleware(sagaMiddleware) )(createStore);
+let store = createStoreWithMiddleware(rootReducer, initialState);
 
-let store = createStoreWithMiddleware(
-    rootReducer,
-    initialState
-);
-
-sagaMiddleware.run(mySaga)
+sagaMiddleware.run(mySaga);
 
 ReactDOM.render(
   <React.StrictMode>
