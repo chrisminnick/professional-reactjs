@@ -1,48 +1,35 @@
 export function cart(state = {}, action = {}) {
-    let newCart;
-	switch(action.type) {
-		case 'CART_ADD':
-            newCart = [...state.items, action.payload.productId];
-            localStorage.setItem("cart", JSON.stringify(newCart));
-            console.log(newCart);
-            return {
-                ...state,
-                items: newCart
-            };   
-		case 'CART_REMOVE':
-            newCart = state.items.filter(id => id !== action.payload.productId);
-            localStorage.setItem("cart", JSON.stringify(newCart));
-			return {
-                ...state,
-                items: newCart
-            };
-        case 'READ_CART':
-            let cart = localStorage.getItem("cart");
-            cart = JSON.parse(cart);
-            return {
-                ...state,
-                items: cart || []             
-            }
-        case 'CHECKOUT_SUCCEEDED':
-            return {
-                ...state,
-                items: []
-            };
-		default:
-			return state; //no relevant action type
-	}
+  switch (action.type) {
+    case 'CART_ADD':
+      return {
+        ...state,
+        items: [...state.items, action.payload.productId],
+      };
+    case 'CART_REMOVE':
+      return {
+        ...state,
+        items: state.items.filter((id) => id !== action.payload.productId),
+      };
+    case 'CHECKOUT_SUCCEEDED':
+      return {
+        ...state,
+        items: [],
+      };
+    case 'CHECKOUT_FAILED':
+      return state;
+    default:
+      return state; //no relevant action type
+  }
 }
 
-
-
 export function products(state = {}, action = {}) {
-    switch (action.type) {
-        case 'LOAD_PRODUCTS':
-            return {
-                ...state,
-                products: action.products
-            };
-        default:
-            return state; //no relevant action type
-    }
+  switch (action.type) {
+    case 'LOAD_PRODUCTS':
+      return {
+        ...state,
+        products: action.products,
+      };
+    default:
+      return state; //no relevant action type
+  }
 }

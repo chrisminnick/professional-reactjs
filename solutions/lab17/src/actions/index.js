@@ -1,28 +1,25 @@
-
 export function addToCart(productId) {
-    return {
-        type: 'CART_ADD',
-        payload: {
-            productId
-        }
-    }
+  return {
+    type: 'CART_ADD',
+    payload: {
+      productId,
+    },
+  };
 }
 
 export function removeFromCart(productId) {
-    return {
-        type: 'CART_REMOVE',
-        payload: {
-            productId
-        }
-    }
+  return {
+    type: 'CART_REMOVE',
+    payload: {
+      productId,
+    },
+  };
 }
 
 export function loadProducts(products) {
-    return {type: 'LOAD_PRODUCTS', products}
+  return { type: 'LOAD_PRODUCTS', products };
 }
-export function readCart() {
-    return {type: 'READ_CART'}
-}
-export function submitCart(data){
-    return {type: 'SUBMIT_CART', payload: {data}}
+
+export function submitCart(data) {
+  return { type: 'SUBMIT_CART', payload: { data } };
 }

@@ -1,45 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './components/App';
-import 'bootstrap/dist/css/bootstrap.css';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {Provider} from 'react-redux';
-import createSagaMiddleware from 'redux-saga';
-import {createStore, applyMiddleware} from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import {rootReducer} from './reducers';
-import rootSaga from './sagas';
-import {BrowserRouter as Router} from 'react-router-dom';
-
-const {
-  REACT_APP_CONTENT_HOST: contentHost,
-} = process.env;
-
-const sagaMiddleware = createSagaMiddleware();
-
-const initialState = {
-  cart: {items:[]},
-  products: {products:[]}
-};
-
-const createStoreWithMiddleware =
-  composeWithDevTools( applyMiddleware(sagaMiddleware) )(createStore);
-
-let store = createStoreWithMiddleware(
-    rootReducer,
-    initialState
-);
-
-sagaMiddleware.run(rootSaga)
 
 window.renderBookstore = (containerId, history) => {
   ReactDOM.render(
-    <Router>
-      <Provider store={store}>
-        <App contentHost = {contentHost} />
-      </Provider>
-    </Router>,
+        <App />,
     document.getElementById(containerId),
   );
 };

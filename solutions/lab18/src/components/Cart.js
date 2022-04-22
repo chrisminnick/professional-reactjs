@@ -15,8 +15,7 @@ function Cart(props){
     return(
         <div className={styles.cart}>
             <h2>Cart</h2>
-            {
-                props.cartItems.map(item=>(
+            {props.cartItems.map(item=>(
                 <CartItem key={item.id} 
                           removeFromCart = {props.removeFromCart} 
                           {...item} />
