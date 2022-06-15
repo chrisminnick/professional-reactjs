@@ -17,7 +17,7 @@ function App() {
           'http://localhost:3000/data/products.json'
         );
         const json = await response.json();
-        setProducts(json);
+        setProducts(shuffleArray(json));
         setIsLoading(false);
       } catch (e) {
         console.error(e);
@@ -25,10 +25,6 @@ function App() {
     }
     fetchData();
   }, [setProducts]);
-
-  useEffect(() => {
-    shuffleArray(products);
-  }, [products]);
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
