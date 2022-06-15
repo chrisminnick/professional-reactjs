@@ -3,25 +3,11 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import './App.css';
-
-interface Book {
-  id: string;
-  title: string;
-  author: string;
-  published?: string;
-  country?: string;
-  lang?: string;
-  pages?: string;
-  image?: string;
-  url?: string;
-  price?: string;
-}
+import { Book } from '../types/';
 
 function App() {
   const [itemsInCart, setItemsInCart] = useState<Array<string>>([]);
-  const [products, setProducts] = useState<Array<Book>>([
-    { id: '', title: '', author: '' },
-  ]);
+  const [products, setProducts] = useState<Array<Book>>([]);
   const [isLoading, setIsLoading] = useState<Boolean>(false);
 
   useEffect(() => {
@@ -32,7 +18,7 @@ function App() {
           'http://localhost:3000/data/products.json'
         );
         const json = await response.json();
-        setProducts(json);
+        setProducts(shuffleArray(json));
         setIsLoading(false);
       } catch (e) {
         console.error(e);
@@ -41,11 +27,7 @@ function App() {
     fetchData();
   }, [setProducts]);
 
-  useEffect(() => {
-    shuffleArray(products);
-  }, [products]);
-
-  function shuffleArray(array: Book[]) {
+  function shuffleArray(array: any[]) {
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       let temp = array[i];
@@ -60,7 +42,7 @@ function App() {
     setItemsInCart(newItems);
   }
 
-  function removeFromCart(idToRemove: string) {
+  function removeFromCart(idToRemove: any) {
     let newItems = itemsInCart.filter((id) => id !== idToRemove);
     setItemsInCart(newItems);
   }

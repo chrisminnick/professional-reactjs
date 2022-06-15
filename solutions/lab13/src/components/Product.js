@@ -1,22 +1,7 @@
 import styles from './Product.module.css';
+import { productType } from '../types';
 
-interface Props {
-  id: string;
-  title: string;
-  author: string;
-  published?: string;
-  country?: string;
-  lang?: string;
-  pages?: string;
-  image?: string;
-  url?: string;
-  price?: string;
-  inCart: boolean;
-  removeFromCart: (idToRemove: string) => void;
-  addToCart: (id: string) => void;
-}
-
-function Product(props: Props) {
+function Product(props) {
   const { title, author, published, country, lang, pages, image, url, price } =
     props;
 
@@ -59,5 +44,7 @@ function Product(props: Props) {
     </div>
   );
 }
+
+Product.propTypes = productType;
 
 export default Product;
