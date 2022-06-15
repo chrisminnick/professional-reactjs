@@ -4,7 +4,7 @@ function Product() {
   return (
     <div className={styles.product}>
       <img
-        className={styles.coverImage}
+        className="img-fluid img-thumbnail"
         src="/images/default.jpg"
         alt="cover"
       />
