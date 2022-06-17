@@ -65,4 +65,6 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(actionCreators, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+const wrappedApp = connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default wrappedApp;

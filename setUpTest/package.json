@@ -4,7 +4,7 @@
   "description": "Lab files for Professional ReactJS course",
   "main": "index.js",
   "engines": {
-    "node": "15.14.0"
+    "node": "14.16.0"
   },
   "scripts": {
     "version": "node version-check.js",

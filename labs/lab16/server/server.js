@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const react = require('react');
 
 let app = express();
 app.use(bodyParser.json());

@@ -13,9 +13,9 @@ function Main(props: Props) {
   function getProduct(products: Book[], item: string) {
     return products.find((product: Book) => item === product.id);
   }
-  let cartItems: (Book | undefined)[] = props.itemsInCart.map((id) =>
-    getProduct(props.products, id)
-  );
+  let cartItems: (Book | undefined)[] = props.itemsInCart.map((id) => {
+    return getProduct(props.products, id);
+  });
 
   return (
     <main className="row">
