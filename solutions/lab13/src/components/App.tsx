@@ -3,7 +3,7 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import './App.css';
-import { Book } from '../types/';
+import Book from './Book';
 
 function App() {
   const [itemsInCart, setItemsInCart] = useState<Array<string>>([]);
@@ -27,7 +27,7 @@ function App() {
     fetchData();
   }, [setProducts]);
 
-  function shuffleArray(array: any[]) {
+  function shuffleArray(array : any[]) {
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       let temp = array[i];
@@ -37,12 +37,12 @@ function App() {
     return array;
   }
 
-  function addToCart(id: string) {
+  function addToCart(id : string) {
     let newItems = [...itemsInCart, id];
     setItemsInCart(newItems);
   }
 
-  function removeFromCart(idToRemove: any) {
+  function removeFromCart(idToRemove : string) {
     let newItems = itemsInCart.filter((id) => id !== idToRemove);
     setItemsInCart(newItems);
   }

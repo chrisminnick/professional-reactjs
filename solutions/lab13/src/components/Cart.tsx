@@ -1,17 +1,18 @@
 import CartItem from './CartItem';
 import styles from './CartItem.module.css';
-import { Book } from '../types';
+// import PropTypes from 'prop-types';
+import Book from './Book';
 
-interface Props {
-  cartItems: (Book | undefined)[];
-  removeFromCart: (id: string) => void;
+interface Props { 
+  cartItems: Book[] | []; 
+  removeFromCart: (id: string) => void; 
 }
 
 function Cart(props: Props) {
-  function calculateTotal(items: (Book | undefined)[]): number {
+  function calculateTotal(items : Book[] | []) {
     let total = 0;
     for (let i = 0; i < items.length; i++) {
-      total += parseFloat(items[i].price);
+      total += Number(items[i].price);
     }
     return total;
   }
@@ -19,16 +20,24 @@ function Cart(props: Props) {
   return (
     <div className={styles.cart}>
       <h2>Cart</h2>
-      {props.cartItems.map((item) => (
+      {props.cartItems.length&&props.cartItems.map((item) => (
         <CartItem
-          key={item.id}
-          {...item}
+          key={item&&item.id}
+          product = {item&&item}
           removeFromCart={props.removeFromCart}
         />
       ))}
-      Total: ${calculateTotal(props.cartItems)} USD
+      Total: ${props.cartItems?calculateTotal(props.cartItems):"0"} USD
     </div>
   );
 }
+
+// Cart.propTypes = {
+//   cartItems: PropTypes.array.isRequired,
+// };
+
+// Cart.defaultProps = {
+//   cartItems: [],
+// };
 
 export default Cart;

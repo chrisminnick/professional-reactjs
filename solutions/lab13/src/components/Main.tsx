@@ -1,21 +1,28 @@
 import ProductList from './ProductList';
 import Cart from './Cart';
-import { Book } from '../types';
+// import PropTypes from 'prop-types';
+// import { productsType } from '../types';
+import Book from './Book';
 
 interface Props {
-  products: Book[];
+  products:Book[] | [];
   itemsInCart: string[];
   addToCart: (id: string) => void;
   removeFromCart: (id: string) => void;
 }
 
-function Main(props: Props) {
-  function getProduct(products: Book[], item: string) {
-    return products.find((product: Book) => item === product.id);
-  }
-  let cartItems: (Book | undefined)[] = props.itemsInCart.map((id) => {
-    return getProduct(props.products, id);
-  });
+function Main(props : Props) {
+  
+  let cartItems:Book[]|[] = [];
+  
+    props.itemsInCart.map((id)=>{
+
+    let value:Book|undefined= props.products.find((product : Book) => id === product.id);
+      if (value){
+        cartItems = [...cartItems,value];
+      }
+    })
+
 
   return (
     <main className="row">
@@ -28,10 +35,22 @@ function Main(props: Props) {
         />
       </div>
       <div className="col-md-4">
-        <Cart cartItems={cartItems} removeFromCart={props.removeFromCart} />
+        <Cart cartItems={cartItems?cartItems:[]} removeFromCart={props.removeFromCart} />
       </div>
     </main>
   );
 }
+
+// Main.propTypes = {
+//   addToCart: PropTypes.func.isRequired,
+//   removeFromCart: PropTypes.func.isRequired,
+//   inCart: PropTypes.array.isRequired,
+//   products: productsType,
+// };
+
+// Main.defaultProps = {
+//   products: [],
+//   inCart: [],
+// };
 
 export default Main;
