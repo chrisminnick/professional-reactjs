@@ -23,9 +23,13 @@ function Product(props) {
           <br />
           pages: {pages}
           <br />
-          price: ${price}
+          price:{' '}
+          {new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          }).format(Number(price))}
           <br />
-          link: ${url}
+          <a href={url}>link</a>
         </p>
         <button>Add to Cart</button>
       </div>
