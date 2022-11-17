@@ -2,6 +2,12 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 
 describe('<App />', () => {
+  it('makes the api call', () => {
+    jest.mock('../api/products');
+    render(<App />);
+    expect(screen.getByText('Loading')).toBeInTheDocument();
+  });
+
   it('renders testing text', () => {
     render(<App />);
     const testText = screen.getByText(/Welcome to React Bookstore/i);
