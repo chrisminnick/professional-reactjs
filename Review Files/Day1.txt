@@ -1,0 +1,76 @@
+Create React App - npx create-react-app app-name
+
+Virtual DOM
+ReactDOM.render (React 17)
+ReactDOM.createNode().render() (React 18)
+
+JavaScript
+-- const and let
+-- arrow function ()=>{}
+-- rest and spread operators (...)
+
+Function(…arg){}
+
+let props = {prop1:'test',prop2:'test2'}
+myFunc(...props)
+
+-- template literals ` ${props.prop1}`
+-- method notation
+
+{
+doSomething() {
+   ...
+}
+}
+-- array and object destructuring
+
+const [a,b] = [1,2,3]
+const {name,address} = myObject;
+
+-- Class definition
+
+class MyClass extends React.Component{
+  constructor(params){
+    super(params);
+  }
+...
+}
+
+-- understanding 'this'
+  -- explicit binding
+  -- implicit binding
+    -- call (invokes a function with a context, pass args invididually)
+    -- apply (invokes a function with a context, pass arg in array)
+    -- bind (returns a function with a context)
+-- new binding
+-- window binding
+
+-- array.map - runs a function for each element, returns array
+-- array.filter - runs a test for each element, returns array
+-- array.reduce - runs a reducer function, returns a single value
+
+-- JavaScript modules
+import, export
+
+HTML DOM
+
+JSX - template syntax using XML to write JavaScript
+
+{} - treat contents as literal JavaScript
+
+React Development Process
+1.	Break a mockup into components
+2.	Build a static version
+<App>
+<Header>
+<Footer>
+<Main>
+<ProductList>
+<Product>
+<Cart>
+<CartItems>
+
+Conditional rendering
+  * if / else statement outside of the return
+  * &&
+  * ternary (conditional operator)

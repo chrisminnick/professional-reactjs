@@ -1,0 +1,27 @@
+One-way data flow
+React Props
+props.children
+React State
+Setting Initial State
+Updating State
+--setState - merges objects
+--useState - replaces the old state
+
+Setting state that depends on previous state
+
+What to put in state
+Where to put state
+
+Shallow copy of arrays and objects
+
+class components
+
+Event
+SyntheticEvent
+Event listener attributes 
+onClick
+onMouseOver
+onSelect
+onChange = { }
+
+Event handler functions
