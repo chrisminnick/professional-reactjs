@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import Product from './Product';
 import styles from './ProductList.module.css';
 import PropTypes from 'prop-types';
