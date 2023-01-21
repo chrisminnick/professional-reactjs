@@ -1,13 +1,12 @@
-import styles from './Product.module.css';
-
 function Product() {
   return (
-    <div className={styles.product}>
-      <img
-        className="img-fluid img-thumbnail"
+    <div>
+      {/* <img
         src="/images/default.jpg"
-        alt="cover"
-      />
+        style={{ width: '200px' }}
+        alt="book cover"
+      /> */}
+      Image Goes Here
       <div>
         <h2>Title</h2>
         <p>
@@ -21,6 +20,7 @@ function Product() {
           <br />
           price: $x
           <br />
+          link:
         </p>
         <button>Add to Cart</button>
       </div>

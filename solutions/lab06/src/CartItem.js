@@ -1,7 +1,5 @@
-import styles from './CartItem.module.css';
-
 function CartItem(){
-    return(<p className={styles.cartItem}>Item</p>);
+    return(<p>Item</p>);
 };
 
 export default CartItem;

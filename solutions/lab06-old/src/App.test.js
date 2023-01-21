@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import Main from './Main';
+import App from './App';
 
 test('renders testing text', () => {
-  render(<Main />);
-  const testText = screen.getByText(/best books in the world./i);
+  render(<App />);
+  const testText = screen.getByText(/Welcome to React Bookstore/i);
   expect(testText).toBeInTheDocument();
 });
