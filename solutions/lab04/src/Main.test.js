@@ -3,6 +3,6 @@ import Main from './Main';
 
 test('renders testing text', () => {
   render(<Main />);
-  const testText = screen.getByText(/We have several books./i);
+  const testText = screen.getByText(/best books in the world./i);
   expect(testText).toBeInTheDocument();
 });
