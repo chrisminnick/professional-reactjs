@@ -15,6 +15,7 @@ function App() {
         setIsLoading(true);
         const response = await fetch('/data/products.json');
         const json = await response.json();
+        shuffleArray(json);
         setProducts(json);
         setIsLoading(false);
       } catch (e) {
@@ -23,10 +24,6 @@ function App() {
     }
     fetchData();
   }, []);
-
-  useEffect(() => {
-    shuffleArray(products);
-  }, [products]);
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {

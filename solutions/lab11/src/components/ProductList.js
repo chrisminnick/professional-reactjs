@@ -1,6 +1,5 @@
 import Product from './Product';
 import styles from './ProductList.module.css';
-import PropTypes from 'prop-types';
 
 function ProductList(props) {
   const itemsInCart = props.itemsInCart;
