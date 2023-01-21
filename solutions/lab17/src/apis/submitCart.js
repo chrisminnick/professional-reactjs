@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-function submitCart(data) {
+async function submitCart(data) {
   return axios
     .post('http://localhost:8080/checkout', {
       data,

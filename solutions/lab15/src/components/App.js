@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 
 function App(props) {
   const [isLoading, setIsLoading] = useState(false);
+  const [shuffledProductList, setShuffledProductList] = useState([]);
   const { loadProducts } = props;
 
   useEffect(() => {
@@ -19,9 +20,10 @@ function App(props) {
         const response = await fetch(
           'http://localhost:3000/data/products.json'
         );
-        const json = await response.json();
+        let json = await response.json();
+        json = await shuffleArray(json);
         loadProducts(json);
-        shuffleArray(json);
+
         setIsLoading(false);
       } catch (e) {
         console.error(e);
@@ -29,6 +31,11 @@ function App(props) {
     }
     fetchData();
   }, [loadProducts]);
+
+  useEffect(() => {
+    let shuffled = shuffleArray(props.products);
+    setShuffledProductList(shuffled);
+  }, [props.products]);
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -45,7 +52,7 @@ function App(props) {
       <Header />
       {isLoading ? 'Loading' : ''}
       <Main
-        products={props.products}
+        products={shuffledProductList}
         itemsInCart={props.itemsInCart}
         addToCart={props.addToCart}
         removeFromCart={props.removeFromCart}

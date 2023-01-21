@@ -1,10 +1,12 @@
 export function cart(state = {}, action = {}) {
   switch (action.type) {
     case 'CART_ADD':
-      return {
+      const newState = {
         ...state,
         items: [...state.items, action.payload.productId],
       };
+      console.log(newState);
+      return newState;
     case 'CART_REMOVE':
       return {
         ...state,
@@ -23,6 +25,7 @@ export function products(state = {}, action = {}) {
         products: action.products,
       };
     default:
+      console.log(state);
       return state; //no relevant action type
   }
 }
