@@ -28,7 +28,6 @@ class Asteroid {
       const asteroids = data.near_earth_objects[today];
       console.log(asteroids);
       asteroids.map(function (element) {
-        //console.log(element);
         let approach = element.close_approach_data[0];
         let distance = approach.miss_distance.kilometers;
         let speed = approach.relative_velocity.kilometers_per_hour;
