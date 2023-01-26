@@ -1,12 +1,6 @@
-//Choose a date
 const today = new Date().toISOString().slice(0, 10);
-// const today = '2017-09-01';
-
-//Get an API key from https://api.nasa.gov/index.html#apply-for-an-api-key
-const API_KEY = 'yAyH8cJEzor6tU5Kl6iLxnNnqLunMUq9jpy9rES4';
-
-//URL for NASA's API
-const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${today}&api_key=${API_KEY}`;
+const key = '66XxLATG5cxQiXmDdDeuAJyVsqIoPqnXv0Vg90dk';
+const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${today}&api_key=${key}`;
 
 class Asteroid {
   constructor(isHazardous, distance, speed, size) {
@@ -38,41 +32,40 @@ class Asteroid {
         Distance: ${distance} km
         Speed: ${speed} km/h
         Size: ${size} m
-        `);
-
+  `);
         let asteroid = new Asteroid(hazardous, distance, speed, size);
-
-        asteroid.#placeAsteroid();
+        asteroid.placeAsteroid();
       });
     } catch (error) {
       console.log(error);
     }
   }
-
-  #placeAsteroid() {
+  placeAsteroid() {
     let asteroidElement = document.createElement('a');
     asteroidElement.textContent = '*';
     asteroidElement.className += 'asteroid';
 
-    this.#setSpeed(asteroidElement);
     this.#setSize(asteroidElement);
     this.#setDistance(asteroidElement);
+    this.#setSpeed(asteroidElement);
     this.#setHazard(asteroidElement);
 
     let solarSystem = document.getElementById('solar-system');
     this.#append(solarSystem, asteroidElement);
     this.#targetAsteroid(asteroidElement);
   }
+
+  #append(parent, el) {
+    parent.appendChild(el);
+  }
   #setDistance(asteroidElement) {
     asteroidElement.style.marginLeft = this.distance / 100000 + 'px';
-    return asteroidElement;
   }
   #setSize(asteroidElement) {
     if (this.size > 100) {
       this.size = this.size / 10;
     }
     asteroidElement.style.fontSize = this.size + 'px';
-    return asteroidElement;
   }
   #setSpeed(asteroidElement) {
     if (this.speed > 50000) {
@@ -82,21 +75,16 @@ class Asteroid {
     } else {
       asteroidElement.className += ' speed-low';
     }
-    return asteroidElement;
   }
-
   #setHazard(asteroidElement) {
-    if (this.isHazardous) {
+    if (this.isHazardous === true) {
       asteroidElement.className += ' hazardous';
     }
-    return asteroidElement;
-  }
-  #append(parent, el) {
-    parent.appendChild(el);
   }
   #targetAsteroid(asteroidElement) {
     asteroidElement.addEventListener('click', this.#boom);
   }
+
   #boom() {
     this.innerHTML = '<span class="boom">BOOM!!!</span>';
   }
