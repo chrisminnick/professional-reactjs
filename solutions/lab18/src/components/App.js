@@ -51,7 +51,7 @@ function App(props) {
 
   return (
     <div className="container">
-      <Header />
+      <Header itemsInCart={itemsInCart} />
       {isLoading ? 'Loading' : ''}
       <Main
         products={products}
