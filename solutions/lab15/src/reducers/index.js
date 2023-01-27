@@ -1,4 +1,4 @@
-export function cart(state = {}, action = {}) {
+export function cart(state = { items: [] }, action = {}) {
   switch (action.type) {
     case 'CART_ADD':
       const newState = {
@@ -17,7 +17,7 @@ export function cart(state = {}, action = {}) {
       return state;
   }
 }
-export function products(state = {}, action = {}) {
+export function products(state = { products: [] }, action = {}) {
   switch (action.type) {
     case 'LOAD_PRODUCTS':
       return {

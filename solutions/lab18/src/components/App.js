@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import Footer from './Footer';
 import Header from './Header';
 import Main from './Main';
+import Footer from './Footer';
 import * as actionCreators from '../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -11,13 +11,13 @@ import './App.css';
 function App(props) {
   const [isLoading, setIsLoading] = useState(false);
   const {
-    addToCart,
+    products,
     itemsInCart,
     loadProducts,
-    products,
-    readCart,
+    addToCart,
     removeFromCart,
     submitCart,
+    readCart,
   } = props;
 
   useEffect(() => {
@@ -30,14 +30,14 @@ function App(props) {
         const json = await response.json();
         shuffleArray(json);
         loadProducts(json);
-        setIsLoading(false);
         readCart();
+        setIsLoading(false);
       } catch (e) {
         console.error(e);
       }
     }
     fetchData();
-  }, [loadProducts]);
+  }, [loadProducts, readCart]);
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export function addToCart(productId) {
   return {
@@ -22,24 +23,10 @@ export function loadProducts(products) {
   return { type: 'LOAD_PRODUCTS', products };
 }
 
-export function submitCart(data) {
-  return function (dispatch) {
-    axios
-      .post('http://localhost:8080/checkout', {
-        data,
-      })
-      .then((response) => {
-        console.log(response.data);
-        dispatch(checkOut(response.data));
-      })
-      .catch((error) =>
-        dispatch({
-          type: 'FETCH_FAILED',
-          error,
-        })
-      );
-  };
-}
+export const submitCart = createAsyncThunk('CHECKOUT', async (data) => {
+  const res = await axios.post('http://localhost:8080/checkout', data);
+  return res.data;
+});
 
 export function checkOut(data) {
   return { type: 'CHECKOUT', payload: { data } };

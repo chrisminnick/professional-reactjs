@@ -1,6 +1,5 @@
-import PropTypes from 'prop-types';
-
 import styles from './Product.module.css';
+import PropTypes from 'prop-types';
 
 function Product(props) {
   const { title, author, published, country, lang, pages, image, url, price } =
@@ -35,6 +34,8 @@ function Product(props) {
           pages: {pages}
           <br />
           price: ${price}
+          <br />
+          <a href={url}>link</a>
           <br />
         </p>
         <button onClick={handleClick}>

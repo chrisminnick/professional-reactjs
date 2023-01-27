@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/App';
 import 'bootstrap/dist/css/bootstrap.css';
-import { createStore, combineReducers } from 'redux';
+import { combineReducers } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import { cart, products } from './reducers';
 
@@ -12,16 +13,7 @@ const rootReducer = combineReducers({
   products,
 });
 
-const initialState = {
-  cart: { items: [] },
-  products: { products: [] },
-};
-
-let store = createStore(
-  rootReducer,
-  initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const store = configureStore({ reducer: rootReducer });
 
 // import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
