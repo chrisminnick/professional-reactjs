@@ -1,12 +1,11 @@
 function Product() {
   return (
     <div>
-      {/* <img
-        src="/images/default.jpg"
+      <img
+        src="images/default.jpg"
         style={{ width: '200px' }}
         alt="book cover"
-      /> */}
-      Image Goes Here
+      />
       <div>
         <h2>Title</h2>
         <p>
