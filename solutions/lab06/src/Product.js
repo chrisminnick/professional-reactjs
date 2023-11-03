@@ -1,11 +1,13 @@
-function Product() {
+import styles from './Product.module.css';
+function Product(props) {
   return (
     <div>
-      {/* <img
+      <h1>{props.product}</h1>
+      <img
         src="/images/default.jpg"
-        style={{ width: '200px' }}
         alt="book cover"
-      /> */}
+        className={styles.coverImage}
+      />
       Image Goes Here
       <div>
         <h2>Title</h2>

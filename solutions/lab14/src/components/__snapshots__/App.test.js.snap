@@ -2,9 +2,7 @@
 
 exports[`<App /> renders as expected 1`] = `
 <div>
-  <div
-    class="container"
-  >
+  <div>
     <header>
       <h1>
         Welcome to React Bookstore

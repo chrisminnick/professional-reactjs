@@ -3,7 +3,7 @@ import styles from './Cart.module.css';
 
 function Cart() {
   return (
-    <div className={styles.cart}>
+    <div className={styles.cartContainer}>
       <h2>Cart</h2>
       <CartItem />
       <CartItem />

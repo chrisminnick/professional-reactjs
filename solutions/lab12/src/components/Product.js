@@ -1,9 +1,19 @@
+import { memo } from 'react';
 import styles from './Product.module.css';
 import { productType } from '../types';
 
 function Product(props) {
-  const { title, author, published, country, lang, pages, image, url, price } =
-    props;
+  const {
+    title,
+    author,
+    published,
+    country,
+    lang,
+    pages,
+    image,
+    url,
+    price = 5,
+  } = props;
 
   function handleClick() {
     if (props.inCart) {
@@ -47,4 +57,4 @@ function Product(props) {
 
 Product.propTypes = productType;
 
-export default Product;
+export default memo(Product);

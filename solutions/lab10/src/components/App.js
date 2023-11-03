@@ -54,6 +54,7 @@ class App extends Component {
     return (
       <div className="container">
         <Header />
+        {this.state.loading ? <div>Loading...</div> : null}
         <Main
           products={this.state.products}
           itemsInCart={this.state.itemsInCart}

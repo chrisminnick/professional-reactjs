@@ -8,7 +8,6 @@ function App() {
   const [itemsInCart, setItemsInCart] = useState([]);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
   useEffect(() => {
     async function fetchData() {
       try {

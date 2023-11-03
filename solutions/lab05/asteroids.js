@@ -2,6 +2,8 @@ const today = new Date().toISOString().slice(0, 10);
 const key = '66XxLATG5cxQiXmDdDeuAJyVsqIoPqnXv0Vg90dk';
 const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${today}&api_key=${key}`;
 
+let asteroids = [];
+
 class Asteroid {
   constructor(isHazardous, distance, speed, size) {
     this.isHazardous = isHazardous;
@@ -34,6 +36,7 @@ class Asteroid {
         Size: ${size} m
   `);
         let asteroid = new Asteroid(hazardous, distance, speed, size);
+        asteroids.push(asteroid);
         asteroid.placeAsteroid();
       });
     } catch (error) {

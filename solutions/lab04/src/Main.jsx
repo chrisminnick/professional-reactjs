@@ -3,10 +3,10 @@ import Cart from './Cart';
 
 function Main() {
   return (
-    <main>
+    <div data-testid="main-component">
       <ProductList />
       <Cart />
-    </main>
+    </div>
   );
 }
 

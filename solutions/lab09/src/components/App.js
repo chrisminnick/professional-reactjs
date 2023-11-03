@@ -11,23 +11,18 @@ class App extends Component {
     this.state = {
       itemsInCart: [],
     };
-
-    this.addToCart = this.addToCart.bind(this);
-    this.removeFromCart = this.removeFromCart.bind(this);
   }
 
-  addToCart(id) {
+  removeFromCart = (idToRemove) => {
+    let newItems = this.state.itemsInCart.filter((id) => id !== idToRemove);
+    this.setState({ itemsInCart: newItems });
+  };
+  addToCart = (id) => {
     let newItems = [...this.state.itemsInCart, id];
     this.setState({
       itemsInCart: newItems,
     });
-  }
-
-  removeFromCart(idToRemove) {
-    let newItems = this.state.itemsInCart.filter((id) => id !== idToRemove);
-    this.setState({ itemsInCart: newItems });
-  }
-
+  };
   render() {
     return (
       <div className="container">

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Product from './Product';
 import styles from './ProductList.module.css';
 import PropTypes from 'prop-types';
@@ -29,8 +30,7 @@ ProductList.propTypes = {
 };
 
 ProductList.defaultProps = {
-  itemsInCart: [],
   products: [],
 };
 
-export default ProductList;
+export default memo(ProductList);

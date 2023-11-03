@@ -1,20 +1,44 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import App from './App';
 
+fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () =>
+      Promise.resolve([
+        {
+          id: '1',
+          title: 'Things Fall Apart',
+          author: 'Chinua Achebe',
+          published: '1958',
+          country: 'Nigeria',
+          lang: 'English',
+          pages: '209',
+          image: 'things-fall-apart.jpg',
+          url: 'https://en.wikipedia.org/wiki/Things_Fall_Apart',
+          price: '5',
+        },
+      ]),
+  })
+);
+
 describe('<App />', () => {
-  it('makes the api call', () => {
-    jest.mock('../api/products');
+  test('makes the api call', async () => {
     render(<App />);
-    expect(screen.getByText('Loading')).toBeInTheDocument();
+    await waitFor(
+      () => expect(screen.getByText('Chinua Achebe')).toBeInTheDocument(),
+      {
+        timeout: 2000,
+      }
+    );
   });
 
-  it('renders testing text', () => {
+  test('renders testing text', () => {
     render(<App />);
     const testText = screen.getByText(/Welcome to React Bookstore/i);
     expect(testText).toBeInTheDocument();
   });
 
-  it('renders as expected', () => {
+  test('renders as expected', () => {
     const { container } = render(<App />);
     expect(container).toMatchSnapshot();
   });

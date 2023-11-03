@@ -9,6 +9,7 @@ function ProductList(props) {
           <Product {...product} />
         </li>
       ))}
+      <button onClick={props.setOptions}>do the thing</button>
     </ul>
   );
 }

@@ -9,7 +9,17 @@ function Product(props) {
     if (props.inCart) {
       props.removeFromCart(props.id);
     } else {
-      props.addToCart(props.id);
+      props.addToCart({
+        title,
+        author,
+        published,
+        country,
+        lang,
+        pages,
+        image,
+        url,
+        price,
+      });
     }
   }
 

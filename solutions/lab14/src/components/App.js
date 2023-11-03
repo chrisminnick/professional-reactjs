@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
-import { fetchProducts } from '../api/products';
 
 import './App.css';
 
@@ -15,7 +14,9 @@ function App() {
     async function fetchData() {
       try {
         setIsLoading(true);
-        const response = await fetchProducts();
+        const response = await fetch(
+          'http://localhost:3000/data/products.json'
+        );
         const json = await response.json();
         setProducts(json);
         setIsLoading(false);
@@ -51,7 +52,7 @@ function App() {
   }
 
   return (
-    <div className="container">
+    <div>
       <Header />
       {isLoading ? 'Loading' : ''}
       <Main

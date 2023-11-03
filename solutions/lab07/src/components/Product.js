@@ -1,14 +1,22 @@
 import styles from './Product.module.css';
 
-function Product(props) {
-  const { title, author, published, country, lang, pages, image, url, price } =
-    props;
+function Product({
+  title,
+  author,
+  published,
+  country,
+  lang,
+  pages,
+  image = 'default.jpg',
+  url = '',
+  price = '5',
+}) {
   return (
     <div className={styles.product}>
       <div>
         <img
           className={styles.thumbnail}
-          src={image ? 'images/' + image : 'images/default.jpg'}
+          src={'images/' + image}
           alt="{title}"
         />
       </div>

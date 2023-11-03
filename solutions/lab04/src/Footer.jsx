@@ -1,3 +1,4 @@
+import './App.css';
 function Footer() {
   const footerStyle = {
     backgroundColor: 'black',
@@ -7,7 +8,11 @@ function Footer() {
     position: 'fixed',
     width: '100%',
   };
-  return <p style={footerStyle}>This is the footer.</p>;
+  return (
+    <p className="text-color" style={footerStyle}>
+      This is the footer.
+    </p>
+  );
 }
 
 export default Footer;

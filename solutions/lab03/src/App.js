@@ -1,12 +1,17 @@
 import Footer from './Footer';
-import Header from './Header';
+import BigOlHeader from './Header';
 import Main from './Main';
+import ListItems from './ListItems';
+
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <Header />
+      <BigOlHeader />
+      <ul>
+        <ListItems />
+      </ul>
       <Main />
       <Footer />
     </div>
