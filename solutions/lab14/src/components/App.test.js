@@ -1,35 +1,56 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+  act,
+} from '@testing-library/react';
 import App from './App';
 
-fetch = jest.fn(() =>
-  Promise.resolve({
-    json: () =>
-      Promise.resolve([
-        {
-          id: '1',
-          title: 'Things Fall Apart',
-          author: 'Chinua Achebe',
-          published: '1958',
-          country: 'Nigeria',
-          lang: 'English',
-          pages: '209',
-          image: 'things-fall-apart.jpg',
-          url: 'https://en.wikipedia.org/wiki/Things_Fall_Apart',
-          price: '5',
-        },
-      ]),
-  })
-);
+const mockResponse = [
+  {
+    id: '1',
+    title: 'Buy This Book Now',
+    author: 'Chris Minnick',
+    published: '2023',
+    country: 'USA',
+    lang: 'English',
+    pages: '1000',
+    image: 'defult.jpg',
+    url: '',
+    price: '5',
+  },
+];
+
+beforeEach(() => {
+  jest.spyOn(global, 'fetch').mockResolvedValue({
+    json: jest.fn().mockResolvedValue(mockResponse),
+  });
+});
+
+afterEach(() => {
+  jest.restoreAllMocks();
+});
+
+it('displays loading message before api request returns', () => {
+  render(<App />);
+  expect(screen.getByText('Loading')).toBeInTheDocument();
+  screen.debug();
+});
+
+it('returns data from the api', async () => {
+  render(<App />);
+  await waitFor(() => {
+    expect(screen.getByText(/buy this book now/i)).toBeInTheDocument();
+  });
+  screen.debug();
+});
 
 describe('<App />', () => {
-  test('makes the api call', async () => {
+  test('renders', () => {
     render(<App />);
-    await waitFor(
-      () => expect(screen.getByText('Chinua Achebe')).toBeInTheDocument(),
-      {
-        timeout: 2000,
-      }
-    );
+    const container = screen.getByTestId('app');
+    expect(container).toBeInTheDocument();
   });
 
   test('renders testing text', () => {
@@ -49,11 +70,15 @@ describe('<App />', () => {
 
     setTimeout(() => {
       const buttons = screen.getAllByText(/Add to Cart/i);
-      fireEvent.click(buttons[0]);
+      act(() => {
+        fireEvent.click(buttons[0]);
+      });
       buttonText = buttons[0].getByText(/In Cart/i);
       expect(buttonText).toBeInDocument();
 
-      fireEvent.click(buttons[0]);
+      act(() => {
+        fireEvent.click(buttons[0]);
+      });
       buttonText = buttons[0].getByText(/Add to Cart/i);
       expect(buttonText).toBeInDocument();
     }, 2000);
