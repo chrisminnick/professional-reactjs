@@ -2,22 +2,22 @@ import styles from './Product.module.css';
 // import { productType } from '../types';
 
 interface Props {
-  id : string
-  title : string; 
-  author : string; 
-  published : string; 
-  country : string; 
-  lang : string; 
-  pages : string; 
-  image : string; 
-  url : string; 
-  price : string; 
-  addToCart: (id : string) => void;
-  removeFromCart: (id : string) => void;
-  inCart : string;
+  id: string;
+  title: string;
+  author: string;
+  published: string;
+  country: string;
+  lang: string;
+  pages: string;
+  image: string;
+  url: string;
+  price: string;
+  addToCart: (id: string) => void;
+  removeFromCart: (id: string) => void;
+  inCart: string;
 }
 
-function Product(props : Props) {
+function Product(props: Props) {
   // const { title, author, published, country, lang, pages, image, url, price } =
   //   props;
 
