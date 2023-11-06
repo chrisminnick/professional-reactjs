@@ -8,7 +8,6 @@ function Product(props) {
         alt="book cover"
         className={styles.coverImage}
       />
-      Image Goes Here
       <div>
         <h2>Title</h2>
         <p>
