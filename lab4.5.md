@@ -20,4 +20,8 @@
 
 7. Delete the App.tsx file that was created by Vite
 
-8. Enter `npm run dev` to start the development server.
+8. Rename Main.jsx to MainContainer.tsx and fix import in App.js
+
+9. Rename your custom components to have .tsx extensions.
+
+10. Enter `npm run dev` to start the development server.
