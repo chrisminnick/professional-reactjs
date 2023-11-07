@@ -1,3 +1,7 @@
+import { CSSProperties } from 'react';
+
+import React from 'react';
+
 import './App.css';
 function Footer() {
   const footerStyle = {

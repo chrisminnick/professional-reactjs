@@ -24,6 +24,10 @@
 
 9. Rename your all of your custom components to have the .tsx extensions.
 
+10. Import React into each of your custom components so that TypeScript will be able to properly identify React code. Use the following statement at the beginning of each file:
+
+`import React from 'react';`
+
 10. Enter `npm run dev` to start the development server.
 
-11. Look for files in VS Code that are now red. These have Typescript errors. See if you can fix them (by searching Google or otherwise.)
+11. Look for files in VS Code that are now red (there should be only one). These have Typescript errors. See if you can fix them (by searching Google or otherwise.)
