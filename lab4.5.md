@@ -16,12 +16,14 @@
 
 `npm install`
 
-6. Copy the App, Header, Main, ProductList, Product, Cart, CartItem, and Footer components, plus your tests, from react-bookstore to react-bookstore-typescript
+6. Copy the App, Header, Main, ProductList, Product, Cart, CartItem, and Footer components, plus your tests, from react-bookstore/src to react-bookstore-typescript/src
 
 7. Delete the App.tsx file that was created by Vite
 
-8. Rename Main.jsx to MainContainer.tsx and fix import in App.js
+8. Rename Main.jsx to MainContainer.tsx and fix the import statement in App.js
 
-9. Rename your custom components to have .tsx extensions.
+9. Rename your all of your custom components to have the .tsx extensions.
 
 10. Enter `npm run dev` to start the development server.
+
+11. Look for files in VS Code that are now red. These have Typescript errors. See if you can fix them (by searching Google or otherwise.)
