@@ -1,6 +1,6 @@
 import Product from './Product';
 import styles from './ProductList.module.css';
-import { Book } from './types';
+import { Book } from '../types';
 function ProductList(props: { products: Book[]; itemsInCart: string[] }) {
   return (
     <ul className={styles.productList}>

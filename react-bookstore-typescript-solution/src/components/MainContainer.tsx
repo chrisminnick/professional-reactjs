@@ -1,6 +1,6 @@
 import ProductList from './ProductList';
 import Cart from './Cart';
-import { Book } from './types';
+import { Book } from '../types';
 
 function MainContainer(props: { products: Book[]; itemsInCart: string[] }) {
   function getProduct(products: Book[], item: string): any {
