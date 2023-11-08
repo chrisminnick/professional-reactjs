@@ -1,19 +1,37 @@
 import Footer from './Footer.tsx';
 import Header from './Header.tsx';
 import MainContainer from './MainContainer.tsx';
-import { useState } from 'react';
+import { Component } from 'react';
 import { products } from '../data/products.ts';
 
-function App() {
-  const [itemsInCart, setItemsInCart] = useState(['1', '2', '3']);
+interface IState {
+  itemsInCart: string[];
+}
 
-  return (
-    <div className="container">
-      <Header />
-      <MainContainer products={products} itemsInCart={itemsInCart} />
-      <Footer />
-    </div>
-  );
+interface IProps {}
+
+class App extends Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
+    this.state = {
+      itemsInCart: ['1', '2', '3'],
+    };
+  }
+  render() {
+    return (
+      <div className="container">
+        <Header />
+        <button onClick={() => this.setState({ itemsInCart: ['5'] })}>
+          change to 5
+        </button>
+        <MainContainer
+          products={products}
+          itemsInCart={this.state.itemsInCart}
+        />
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default App;
