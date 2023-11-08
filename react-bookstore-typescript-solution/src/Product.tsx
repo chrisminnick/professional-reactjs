@@ -1,6 +1,19 @@
 import { Book } from './types';
 
-function Product(props: Book) {
+type ProductProps = {
+  id: string;
+  title: string;
+  author: string;
+  published: string;
+  country: string;
+  lang: string;
+  pages: string;
+  image: string;
+  url: string;
+  price: string;
+  inCart: boolean;
+};
+function Product(props: ProductProps) {
   return (
     <div>
       <img
@@ -23,7 +36,7 @@ function Product(props: Book) {
           <br />
           <a href="{props.url}">Link</a>
         </p>
-        <button>Add to Cart</button>
+        <button>{props.inCart ? 'Remove from Cart' : 'Add to Cart'}</button>
       </div>
     </div>
   );

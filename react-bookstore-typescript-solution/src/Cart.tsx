@@ -1,13 +1,13 @@
 import styles from './Cart.module.css';
 import CartItem from './CartItem';
 
-function Cart() {
+function Cart(props: { cartItems: any[] }) {
   return (
     <div className={styles.cartStyle}>
       <h2>Cart</h2>
-      <CartItem />
-      <CartItem />
-      <CartItem />
+      {props.cartItems.map((item) => (
+        <CartItem key={item.id} {...item} />
+      ))}
       Total: $x USD
     </div>
   );
