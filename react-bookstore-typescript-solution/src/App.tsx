@@ -1,6 +1,6 @@
-import Footer from './Footer';
-import Header from './Header';
-import MainContainer from './MainContainer';
+import Footer from './Footer.tsx';
+import Header from './Header.tsx';
+import MainContainer from './MainContainer.tsx';
 import './App.css';
 import { products } from './data/products.ts';
 
