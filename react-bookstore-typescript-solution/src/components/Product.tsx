@@ -1,40 +1,33 @@
 import styles from './Product.module.css';
-
+import { Book } from '../types';
 type ProductProps = {
-  id: string;
-  title: string;
-  author: string;
-  published: string;
-  country: string;
-  lang: string;
-  pages: string;
-  image: string;
-  url: string;
-  price: string;
+  product: Book;
   inCart: boolean;
 };
 function Product(props: ProductProps) {
+  const { title, image, author, published, country, lang, pages, price, url } =
+    props.product;
   return (
     <div className={styles.productStyle}>
       <img
-        src={props.image ? `images/${props.image}` : 'images/default.jpg'}
+        src={image ? `images/${image}` : 'images/default.jpg'}
         className={styles.productImage}
         alt="book cover"
       />
       <div>
-        <h2 className={styles.productTitle}>{props.title}</h2>
+        <h2 className={styles.productTitle}>{title}</h2>
         <p>
-          by: {props.author}
+          by: {author}
           <br />
-          published: {props.published}, {props.country}
+          published: {published}, {country}
           <br />
-          language: {props.lang}
+          language: {lang}
           <br />
-          pages: {props.pages}
+          pages: {pages}
           <br />
-          price: ${props.price}
+          price: ${price}
           <br />
-          <a href="{props.url}">Link</a>
+          <a href={url}>Link</a>
         </p>
         <button>{props.inCart ? 'Remove from Cart' : 'Add to Cart'}</button>
       </div>

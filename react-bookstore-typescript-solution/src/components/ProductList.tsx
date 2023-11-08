@@ -7,7 +7,7 @@ function ProductList(props: { products: Book[]; itemsInCart: string[] }) {
       {props.products.map((product: Book) => (
         <li key={product.id} className={styles.productListItem}>
           <Product
-            {...product}
+            product={product}
             inCart={props.itemsInCart.includes(product.id) ? true : false}
           />
         </li>
