@@ -14,9 +14,22 @@ class App extends Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
-      itemsInCart: ['1', '2', '3'],
+      itemsInCart: [],
     };
+    this.addToCart = this.addToCart.bind(this);
+    this.removeFromCart = this.removeFromCart.bind(this);
   }
+
+  addToCart(id: string) {
+    this.setState({ itemsInCart: [...this.state.itemsInCart, id] });
+  }
+
+  removeFromCart(id: string) {
+    this.setState({
+      itemsInCart: this.state.itemsInCart.filter((item) => item !== id),
+    });
+  }
+
   render() {
     return (
       <div className="container">
@@ -27,6 +40,8 @@ class App extends Component<IProps, IState> {
         <MainContainer
           products={products}
           itemsInCart={this.state.itemsInCart}
+          addToCart={this.addToCart}
+          removeFromCart={this.removeFromCart}
         />
         <Footer />
       </div>

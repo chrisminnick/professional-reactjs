@@ -3,10 +3,21 @@ import { Book } from '../types';
 type ProductProps = {
   product: Book;
   inCart: boolean;
+  addToCart: (id: string) => void;
+  removeFromCart: (id: string) => void;
 };
 function Product(props: ProductProps) {
   const { title, image, author, published, country, lang, pages, price, url } =
     props.product;
+
+  function handleClick() {
+    if (props.inCart) {
+      props.removeFromCart(props.product.id);
+    } else {
+      props.addToCart(props.product.id);
+    }
+  }
+
   return (
     <div className={styles.productStyle}>
       <img
@@ -29,7 +40,9 @@ function Product(props: ProductProps) {
           <br />
           <a href={url}>Link</a>
         </p>
-        <button>{props.inCart ? 'Remove from Cart' : 'Add to Cart'}</button>
+        <button onClick={handleClick}>
+          {props.inCart ? 'Remove from Cart' : 'Add to Cart'}
+        </button>
       </div>
     </div>
   );

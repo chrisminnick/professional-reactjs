@@ -9,6 +9,8 @@ function ProductList(props: { products: Book[]; itemsInCart: string[] }) {
           <Product
             product={product}
             inCart={props.itemsInCart.includes(product.id) ? true : false}
+            addToCart={props.addToCart}
+            removeFromCart={props.removeFromCart}
           />
         </li>
       ))}
