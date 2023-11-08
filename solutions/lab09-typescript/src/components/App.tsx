@@ -34,9 +34,7 @@ class App extends Component<IProps, IState> {
     return (
       <div className="container">
         <Header />
-        <button onClick={() => this.setState({ itemsInCart: ['5'] })}>
-          change to 5
-        </button>
+
         <MainContainer
           products={products}
           itemsInCart={this.state.itemsInCart}
