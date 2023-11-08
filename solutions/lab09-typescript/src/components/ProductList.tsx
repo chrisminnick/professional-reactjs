@@ -1,7 +1,12 @@
 import Product from './Product';
 import styles from './ProductList.module.css';
 import { Book } from '../types';
-function ProductList(props: { products: Book[]; itemsInCart: string[] }) {
+function ProductList(props: {
+  products: Book[];
+  itemsInCart: string[];
+  addToCart: (id: string) => void;
+  removeFromCart: (id: string) => void;
+}) {
   return (
     <ul className={styles.productList}>
       {props.products.map((product: Book) => (
