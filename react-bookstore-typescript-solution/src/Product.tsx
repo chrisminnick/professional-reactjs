@@ -1,4 +1,4 @@
-import { Book } from './types';
+import styles from './Product.module.css';
 
 type ProductProps = {
   id: string;
@@ -15,14 +15,14 @@ type ProductProps = {
 };
 function Product(props: ProductProps) {
   return (
-    <div>
+    <div className={styles.productStyle}>
       <img
         src={props.image ? `images/${props.image}` : 'images/default.jpg'}
-        style={{ width: '200px' }}
+        className={styles.productImage}
         alt="book cover"
       />
       <div>
-        <h2>{props.title}</h2>
+        <h2 className={styles.productTitle}>{props.title}</h2>
         <p>
           by: {props.author}
           <br />
