@@ -1,8 +1,8 @@
 function CartItem(props: { title: string; price: string }) {
   return (
-    <div>
+    <span>
       {props.title} - {props.price}
-    </div>
+    </span>
   );
 }
 

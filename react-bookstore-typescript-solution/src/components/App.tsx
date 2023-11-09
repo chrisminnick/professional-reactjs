@@ -2,7 +2,7 @@ import Footer from './Footer.tsx';
 import Header from './Header.tsx';
 import MainContainer from './MainContainer.tsx';
 import { useState, useEffect } from 'react';
-import { Book } from '../types';
+import { Book } from '../types.ts';
 
 function App() {
   const [itemsInCart, setItemsInCart] = useState<string[]>([]);
