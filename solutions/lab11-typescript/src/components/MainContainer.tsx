@@ -24,7 +24,7 @@ function MainContainer(props: {
         />
       </div>
       <div className="col-md-4">
-        <Cart cartItems={cartItems} />
+        <Cart cartItems={cartItems} removeFromCart={props.removeFromCart} />
       </div>
     </div>
   );
