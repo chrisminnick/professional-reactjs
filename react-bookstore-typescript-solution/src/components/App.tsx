@@ -2,10 +2,12 @@ import Footer from './Footer.tsx';
 import Header from './Header.tsx';
 import MainContainer from './MainContainer.tsx';
 import { Component } from 'react';
-import { products } from '../data/products.ts';
+import { Book } from '../types';
 
 interface IState {
   itemsInCart: string[];
+  products: Book[];
+  loading: boolean;
 }
 
 interface IProps {}
@@ -15,9 +17,31 @@ class App extends Component<IProps, IState> {
     super(props);
     this.state = {
       itemsInCart: [],
+      products: [],
+      loading: false,
     };
     this.addToCart = this.addToCart.bind(this);
     this.removeFromCart = this.removeFromCart.bind(this);
+  }
+  shuffleArray(array: Book[]) {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      let temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    return array;
+  }
+
+  componentDidMount() {
+    this.setState({ loading: true });
+
+    fetch('//localhost:5173/data/products.json')
+      .then((response) => response.json())
+      .then((products) => this.shuffleArray(products))
+      .then((products) => {
+        this.setState({ products: products, loading: false });
+      });
   }
 
   addToCart(id: string) {
@@ -35,7 +59,7 @@ class App extends Component<IProps, IState> {
       <div className="container">
         <Header />
         <MainContainer
-          products={products}
+          products={this.state.products}
           itemsInCart={this.state.itemsInCart}
           addToCart={this.addToCart}
           removeFromCart={this.removeFromCart}
