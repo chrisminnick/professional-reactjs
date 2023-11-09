@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { products } from '../data/products.ts';
 
 function App() {
-  const [itemsInCart, setItemsInCart] = useState(['1', '2', '3']);
+  const [itemsInCart] = useState(['1', '2', '3']);
 
   return (
     <div className="container">
