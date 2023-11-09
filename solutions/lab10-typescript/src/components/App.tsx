@@ -58,6 +58,7 @@ class App extends Component<IProps, IState> {
     return (
       <div className="container">
         <Header />
+        {this.state.loading ? <p>Loading...</p> : null}
         <MainContainer
           products={this.state.products}
           itemsInCart={this.state.itemsInCart}
