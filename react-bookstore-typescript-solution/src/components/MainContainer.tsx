@@ -1,3 +1,5 @@
+import React from 'react';
+
 import ProductList from './ProductList';
 import Cart from './Cart';
 import { Book } from '../types';

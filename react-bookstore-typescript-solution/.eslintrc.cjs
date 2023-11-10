@@ -3,6 +3,7 @@ module.exports = {
   env: { browser: true, es2020: true },
   extends: [
     'eslint:recommended',
+    'react-app/jest',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
   ],
@@ -15,4 +16,4 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
-}
+};
