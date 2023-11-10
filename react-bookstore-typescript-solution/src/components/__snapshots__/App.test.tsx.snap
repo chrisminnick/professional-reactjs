@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders as expected 1`] = `
+exports[`App renders as expected 1`] = `
 <div>
   <div
     class="container"
@@ -8,6 +8,9 @@ exports[`renders as expected 1`] = `
     <h1>
       Welcome to React Bookstore.
     </h1>
+    <p>
+      Loading...
+    </p>
     <div
       class="row"
     >

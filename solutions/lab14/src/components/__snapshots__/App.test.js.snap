@@ -2,7 +2,10 @@
 
 exports[`<App /> renders as expected 1`] = `
 <div>
-  <div>
+  <div
+    class="container"
+    data-testid="app"
+  >
     <header>
       <h1>
         Welcome to React Bookstore

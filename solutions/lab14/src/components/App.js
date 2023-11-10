@@ -52,7 +52,7 @@ function App() {
   }
 
   return (
-    <div className="container">
+    <div className="container" data-testid="app">
       <Header />
       {isLoading ? 'Loading' : ''}
       <Main

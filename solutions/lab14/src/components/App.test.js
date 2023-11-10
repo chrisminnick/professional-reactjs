@@ -38,13 +38,15 @@ it('displays loading message before api request returns', () => {
   screen.debug();
 });
 
-it('returns data from the api', async () => {
-  render(<App />);
-  await waitFor(() => {
-    expect(screen.getByText(/buy this book now/i)).toBeInTheDocument();
-  });
-  screen.debug();
-});
+act(() =>
+  it('returns data from the api', async () => {
+    render(<App />);
+    await waitFor(() => {
+      expect(screen.getByText(/buy this book now/i)).toBeInTheDocument();
+    });
+    screen.debug();
+  })
+)a;
 
 describe('<App />', () => {
   test('renders', () => {

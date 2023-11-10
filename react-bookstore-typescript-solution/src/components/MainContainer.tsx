@@ -1,4 +1,4 @@
-import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 
 import ProductList from './ProductList';
 import Cart from './Cart';
@@ -17,17 +17,31 @@ function MainContainer(props: {
 
   return (
     <div className="row">
-      <div className="col-md-8">
-        <ProductList
-          products={props.products}
-          itemsInCart={props.itemsInCart}
-          addToCart={props.addToCart}
-          removeFromCart={props.removeFromCart}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <ProductList
+              products={props.products}
+              itemsInCart={props.itemsInCart}
+              addToCart={props.addToCart}
+              removeFromCart={props.removeFromCart}
+            />
+          }
         />
-      </div>
-      <div className="col-md-4">
-        <Cart cartItems={cartItems} removeFromCart={props.removeFromCart} />
-      </div>
+        <Route
+          path="/cart/"
+          element={
+            <Cart cartItems={cartItems} removeFromCart={props.removeFromCart} />
+          }
+        />
+        <Route
+          path="/cart/:id"
+          element={
+            <Cart cartItems={cartItems} removeFromCart={props.removeFromCart} />
+          }
+        />
+      </Routes>
     </div>
   );
 }
