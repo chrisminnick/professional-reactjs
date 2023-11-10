@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders as expected 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <h1>
+      Welcome to React Bookstore.
+    </h1>
+    <div
+      class="row"
+    >
+      <div
+        class="col-md-8"
+      >
+        <ul
+          class="productList"
+        />
+      </div>
+      <div
+        class="col-md-4"
+      >
+        <div
+          class="cartStyle"
+        >
+          <h2>
+            Cart
+          </h2>
+          Total: $
+          0
+        </div>
+      </div>
+    </div>
+    <p
+      class="text-color"
+      style="background-color: black; color: white; padding: 10px; bottom: 0px; left: 0px; position: fixed; width: 100%;"
+    >
+      This is the footer.
+    </p>
+  </div>
+</div>
+`;
