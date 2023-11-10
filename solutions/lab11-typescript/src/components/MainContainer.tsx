@@ -11,7 +11,9 @@ function MainContainer(props: {
   function getProduct(products: Book[], item: string): any {
     return products.find((product) => item === product.id);
   }
-  let cartItems = props.itemsInCart.map((id) => getProduct(props.products, id));
+  const cartItems = props.itemsInCart.map((id) =>
+    getProduct(props.products, id)
+  );
 
   return (
     <div className="row">

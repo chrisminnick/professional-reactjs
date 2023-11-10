@@ -8,7 +8,7 @@ function Cart(props: {
 }) {
   function calculateTotal() {
     const total = props.cartItems.reduce((total, item): number => {
-      return total + Number(item.price);
+      return total + parseFloat(item.price);
     }, 0);
     return total;
   }

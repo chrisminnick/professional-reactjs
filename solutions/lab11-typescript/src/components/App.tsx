@@ -14,11 +14,15 @@ function App() {
       setLoading(true);
 
       try {
-        const response = await fetch('//localhost:5173/data/products.json');
+        const response = await fetch('//localhost:5174/data/products.json');
         const products = await response.json();
+        localStorage.setItem('products', JSON.stringify(products));
+
         shuffleArray(products);
         setProducts(products);
       } catch (error) {
+        localStorage.getItem('products') &&
+          setProducts(JSON.parse(localStorage.getItem('products')!));
         console.log(error);
       }
       setLoading(false);
@@ -38,17 +42,19 @@ function App() {
 
   function addToCart(id: string) {
     setItemsInCart([...itemsInCart, id]);
+    localStorage.setItem('cart', JSON.stringify(itemsInCart));
   }
 
   function removeFromCart(id: string) {
     const newItemsInCart = itemsInCart.filter((item) => item !== id);
     setItemsInCart(newItemsInCart);
+    localStorage.setItem('cart', JSON.stringify(newItemsInCart));
   }
 
   return (
     <div className="container">
       <Header />
-      {loading && <p>Loading...</p>}
+      {loading && <h1>Loading...</h1>}
       <MainContainer
         products={products}
         itemsInCart={itemsInCart}
