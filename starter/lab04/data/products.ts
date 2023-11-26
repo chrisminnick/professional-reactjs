@@ -1,4 +1,17 @@
-const products = [
+export interface Book {
+  id: string;
+  title: string;
+  author: string;
+  published: string;
+  country: string;
+  lang: string;
+  pages: string;
+  image: string;
+  url: string;
+  price: string;
+}
+
+const products: Book[] = [
   {
     id: '1',
     title: 'Things Fall Apart',
@@ -1212,3 +1225,5 @@ const products = [
     price: '32.99',
   },
 ];
+
+export default products;
