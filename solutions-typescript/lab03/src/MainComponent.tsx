@@ -1,4 +1,4 @@
-function Main() {
+function MainComponent() {
   return (
     <p>
       Here you can find the best books in the world. Click the Add to Cart
@@ -7,4 +7,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default MainComponent;
