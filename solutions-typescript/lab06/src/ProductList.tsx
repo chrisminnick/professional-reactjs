@@ -9,6 +9,15 @@ function ProductList() {
       <li className={styles.productListItem}>
         <Product />
       </li>
+      <li className={styles.productListItem}>
+        <Product />
+      </li>
+      <li className={styles.productListItem}>
+        <Product />
+      </li>
+      <li className={styles.productListItem}>
+        <Product />
+      </li>
     </ul>
   );
 }

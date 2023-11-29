@@ -38,7 +38,7 @@ function Product(props: ProductProps) {
           {new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'USD',
-          }).format(Number(price))}
+          }).format(parseFloat(price))}
           <br />
           <a href={url}>link</a>
         </p>

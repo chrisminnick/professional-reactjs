@@ -9,7 +9,11 @@ function Cart(props: { cartItems: Book[] }) {
       {props.cartItems.map((item) => (
         <CartItem key={item.id} title={item.title} price={item.price} />
       ))}
-      Total: $x USD
+      Total: $
+      {props.cartItems.reduce(
+        (total: number, current) => total + parseFloat(current.price),
+        0
+      )}
     </div>
   );
 }
