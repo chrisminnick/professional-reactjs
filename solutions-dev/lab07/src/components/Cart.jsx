@@ -1,6 +1,6 @@
 import CartItem from './CartItem.jsx';
 
-function Cart() {
+function Cart(props) {
   return (
     <div>
       <h2>Cart</h2>
