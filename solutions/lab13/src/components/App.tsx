@@ -3,7 +3,7 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import './App.css';
-import Book from './Book';
+import Book from './types/Book';
 
 function App() {
   const [itemsInCart, setItemsInCart] = useState<Array<string>>([]);

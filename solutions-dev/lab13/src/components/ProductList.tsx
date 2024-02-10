@@ -1,9 +1,15 @@
-import PropTypes from 'prop-types';
 import Product from './Product.jsx';
 import styles from './ProductList.module.css';
-import { productsType } from '../types';
+import Book from './Book';
 
-function ProductList(props) {
+interface Props {
+  itemsInCart: Book[] | [];
+  addToCart: (product: Book) => void;
+  removeFromCart: (idToRemove: string) => void;
+  products: Book[] | [];
+}
+
+function ProductList(props: Props) {
   let itemIds = props.itemsInCart.map((item) => item.id);
 
   return (
@@ -21,16 +27,5 @@ function ProductList(props) {
     </ul>
   );
 }
-ProductList.propTypes = {
-  addToCart: PropTypes.func.isRequired,
-  removeFromCart: PropTypes.func.isRequired,
-  itemsInCart: PropTypes.array.isRequired,
-  products: productsType,
-};
-
-ProductList.defaultProps = {
-  products: [],
-  itemsInCart: [],
-};
 
 export default ProductList;

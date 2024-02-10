@@ -1,18 +1,23 @@
 import styles from './CartItem.module.css';
 // import PropTypes from 'prop-types';
-import Book from './Book';
+import Book from './types/Book';
 
 interface Props {
-  key: string|undefined;
+  key: string | undefined;
   product: Book;
-  removeFromCart: (id : string) => void;
+  removeFromCart: (id: string) => void;
 }
 
-function CartItem(props : Props) {
+function CartItem(props: Props) {
   return (
     <div className={styles.cartItem}>
-      {props.product&&props.product.title} - {props.product&&props.product.price}{' '}
-      <button onClick={() => props.product&&props.removeFromCart(props.product.id)}>x</button>
+      {props.product && props.product.title} -{' '}
+      {props.product && props.product.price}{' '}
+      <button
+        onClick={() => props.product && props.removeFromCart(props.product.id)}
+      >
+        x
+      </button>
     </div>
   );
 }

@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
 import Header from './Header.jsx';
-import ProductList from './ProductList.jsx';
+import ProductList from './ProductList.tsx';
 import Cart from './Cart.jsx';
 import Footer from './Footer.jsx';
 import './App.css';
+import Book from './Book';
 
 function App() {
-  const [itemsInCart, setItemsInCart] = useState([]);
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [itemsInCart, setItemsInCart] = useState<Array<Book>>([]);
+  const [products, setProducts] = useState<Array<Book>>([]);
+  const [isLoading, setIsLoading] = useState<Boolean>(false);
   useEffect(() => {
     async function fetchData() {
       try {
@@ -27,15 +28,15 @@ function App() {
     fetchData();
   }, []);
 
-  function addToCart(product) {
+  function addToCart(product: Book) {
     let newItems = [...itemsInCart, product];
     setItemsInCart(newItems);
   }
-  function removeFromCart(idToRemove) {
+  function removeFromCart(idToRemove: string) {
     let newItems = itemsInCart.filter((item) => item.id !== idToRemove);
     setItemsInCart(newItems);
   }
-  function shuffleArray(array) {
+  function shuffleArray(array: Book[]) {
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       let temp = array[i];

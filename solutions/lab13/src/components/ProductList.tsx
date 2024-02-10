@@ -2,16 +2,16 @@ import Product from './Product';
 import styles from './ProductList.module.css';
 // import PropTypes from 'prop-types';
 // import { productsType } from '../types';
-import Book from './Book';
+import Book from './types/Book';
 
 interface Props {
   itemsInCart: string[];
-  addToCart: (id : string) => void;
-  removeFromCart: (id : string) => void;
+  addToCart: (id: string) => void;
+  removeFromCart: (id: string) => void;
   products: Book[] | [];
-};
+}
 
-function ProductList(props : Props) {
+function ProductList(props: Props) {
   const itemsInCart = props.itemsInCart;
   return (
     <ul className={styles.productList}>

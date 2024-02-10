@@ -2,27 +2,26 @@ import ProductList from './ProductList';
 import Cart from './Cart';
 // import PropTypes from 'prop-types';
 // import { productsType } from '../types';
-import Book from './Book';
+import Book from './types/Book';
 
 interface Props {
-  products:Book[] | [];
+  products: Book[] | [];
   itemsInCart: string[];
   addToCart: (id: string) => void;
   removeFromCart: (id: string) => void;
 }
 
-function Main(props : Props) {
-  
-  let cartItems:Book[]|[] = [];
-  
-    props.itemsInCart.map((id)=>{
+function Main(props: Props) {
+  let cartItems: Book[] | [] = [];
 
-    let value:Book|undefined= props.products.find((product : Book) => id === product.id);
-      if (value){
-        cartItems = [...cartItems,value];
-      }
-    })
-
+  props.itemsInCart.map((id) => {
+    let value: Book | undefined = props.products.find(
+      (product: Book) => id === product.id
+    );
+    if (value) {
+      cartItems = [...cartItems, value];
+    }
+  });
 
   return (
     <main className="row">
@@ -35,7 +34,10 @@ function Main(props : Props) {
         />
       </div>
       <div className="col-md-4">
-        <Cart cartItems={cartItems?cartItems:[]} removeFromCart={props.removeFromCart} />
+        <Cart
+          cartItems={cartItems ? cartItems : []}
+          removeFromCart={props.removeFromCart}
+        />
       </div>
     </main>
   );
