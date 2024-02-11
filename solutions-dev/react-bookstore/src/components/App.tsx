@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Header from './Header.jsx';
+import Header from './Header.tsx';
 import ProductList from './ProductList.tsx';
 import Cart from './Cart.jsx';
 import Footer from './Footer.jsx';

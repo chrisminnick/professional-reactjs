@@ -7,7 +7,7 @@
     "dev": "tsc && vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "test": "vitest --environment jsdom --ui --coverage.enabled=true --reporter=html --coverage.src='./html'",
+    "test": "vitest  --ui",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -31,6 +31,7 @@
     "typescript": "^5.3.3",
     "typescript-plugin-css-modules": "^5.0.2",
     "vite": "^5.1.0",
+    "vite-tsconfig-paths": "^4.3.1",
     "vitest": "^1.2.2"
   }
 }
