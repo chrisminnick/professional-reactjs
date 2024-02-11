@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
-import Cart from './Cart.js';
+import Footer from './Footer.jsx';
 
-describe('Cart Component', () => {
+describe('Footer Component', () => {
   it('Renders', () => {
-    render(<Cart submitCart={() => {}} itemsInCart={[]} />);
-    let element = screen.getByText(/cart/i);
+    render(<Footer />);
+    let element = screen.getByText(/footer/i);
     expect(element).toBeInTheDocument();
   });
 });

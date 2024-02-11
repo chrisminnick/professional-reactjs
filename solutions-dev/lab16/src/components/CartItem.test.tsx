@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
-import Cart from './Cart.js';
+import CartItem from './CartItem.js';
 
-describe('Cart Component', () => {
+describe('CartItem Component', () => {
   it('Renders', () => {
-    render(<Cart submitCart={() => {}} itemsInCart={[]} />);
-    let element = screen.getByText(/cart/i);
+    render(<CartItem title="The Selfish Gene" price="15" />);
+    let element = screen.getByText(/\$/i);
     expect(element).toBeInTheDocument();
   });
 });
