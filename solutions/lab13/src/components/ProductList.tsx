@@ -1,25 +1,24 @@
-import Product from './Product';
+import Product from './Product.jsx';
 import styles from './ProductList.module.css';
-// import PropTypes from 'prop-types';
-// import { productsType } from '../types';
-import Book from './types/Book';
+import Book from './Book';
 
 interface Props {
-  itemsInCart: string[];
-  addToCart: (id: string) => void;
-  removeFromCart: (id: string) => void;
+  itemsInCart: Book[] | [];
+  addToCart: (product: Book) => void;
+  removeFromCart: (idToRemove: string) => void;
   products: Book[] | [];
 }
 
 function ProductList(props: Props) {
-  const itemsInCart = props.itemsInCart;
+  let itemIds = props.itemsInCart.map((item) => item.id);
+
   return (
     <ul className={styles.productList}>
       {props.products.map((product) => (
         <li key={product.id} className={styles.productListItem}>
           <Product
             {...product}
-            inCart={itemsInCart.includes(product.id) ? '1' : ''}
+            inCart={itemIds.includes(product.id) ? true : false}
             addToCart={props.addToCart}
             removeFromCart={props.removeFromCart}
           />
@@ -28,17 +27,5 @@ function ProductList(props: Props) {
     </ul>
   );
 }
-
-// ProductList.propTypes = {
-//   itemsInCart: PropTypes.array.isRequired,
-//   addToCart: PropTypes.func.isRequired,
-//   removeFromCart: PropTypes.func.isRequired,
-//   products: productsType,
-// };
-
-// ProductList.defaultProps = {
-//   itemsInCart: [],
-//   products: [],
-// };
 
 export default ProductList;

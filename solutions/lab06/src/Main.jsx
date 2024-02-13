@@ -1,23 +1,11 @@
-import ProductList from './ProductList';
-import { Component } from 'react';
-import Cart from './Cart';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.jsx';
+import './index.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
-class Main extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <main className="row">
-        <div className="col-sm-6 col-md-8 col-lg-10">
-          <ProductList />
-        </div>
-        <div className="col-sm-6 col-md-4 col-lg-2">
-          <Cart />
-        </div>
-      </main>
-    );
-  }
-}
-export default Main;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);

@@ -1,10 +1,10 @@
-function Main() {
-  return (
-    <p>
-      Here you can find the best books in the world. Click the Add to Cart
-      button to add a book to your shopping cart.
-    </p>
-  );
-}
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
 
-export default Main;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)

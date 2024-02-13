@@ -3,8 +3,9 @@ function Footer() {
     backgroundColor: 'black',
     color: 'white',
     padding: '10px',
-    bottom: '0',
     position: 'fixed',
+    left: '0',
+    bottom: '0',
     width: '100%',
   };
   return <p style={footerStyle}>This is the footer.</p>;

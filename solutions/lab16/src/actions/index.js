@@ -1,11 +1,20 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export function addToCart(productId) {
+export function checkOut(data) {
+  return { type: 'CHECKOUT', payload: { data } };
+}
+
+export const submitCart = createAsyncThunk('CHECKOUT', async (data) => {
+  const res = await axios.post('http://localhost:8080/checkout', data);
+  return res.data;
+});
+
+export function addToCart(product) {
   return {
     type: 'CART_ADD',
     payload: {
-      productId,
+      product,
     },
   };
 }
@@ -21,13 +30,4 @@ export function removeFromCart(productId) {
 
 export function loadProducts(products) {
   return { type: 'LOAD_PRODUCTS', products };
-}
-
-export const submitCart = createAsyncThunk('CHECKOUT', async (data) => {
-  const res = await axios.post('http://localhost:8080/checkout', data);
-  return res.data;
-});
-
-export function checkOut(data) {
-  return { type: 'CHECKOUT', payload: { data } };
 }

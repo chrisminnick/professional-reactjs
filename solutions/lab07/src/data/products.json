@@ -42,7 +42,10 @@
     "published": "18th - 17th century BCE",
     "country": "Sumer and Akkadian Empire",
     "lang": "Akkadian",
-    "pages": "160"
+    "pages": "160",
+    "image": "the-epic-of-gilgamesh.jpg",
+    "url": "https://en.wikipedia.org/wiki/Epic_of_Gilgamesh",
+    "price": "5"
   },
   {
     "id": "5",
@@ -419,7 +422,7 @@
   {
     "id": "36",
     "title": "One Hundred Years of Solitude",
-    "author": "Gabriel Garc�a M�rquez",
+    "author": "Gabriel García Márquez",
     "published": "1967",
     "country": "Colombia",
     "lang": "Spanish",

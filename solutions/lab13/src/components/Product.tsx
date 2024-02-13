@@ -1,31 +1,30 @@
 import styles from './Product.module.css';
-// import { productType } from '../types';
+import Book from './Book';
 
-interface Props {
-  id: string;
-  title: string;
-  author: string;
-  published: string;
-  country: string;
-  lang: string;
-  pages: string;
-  image: string;
-  url: string;
-  price: string;
-  addToCart: (id: string) => void;
+type ProductProps = Book & {
+  inCart: boolean;
+  addToCart: (product: Book) => void;
   removeFromCart: (id: string) => void;
-  inCart: string;
-}
-
-function Product(props: Props) {
-  // const { title, author, published, country, lang, pages, image, url, price } =
-  //   props;
-
+};
+function Product(props: ProductProps) {
+  const {
+    id,
+    title,
+    author,
+    published,
+    country,
+    lang,
+    pages,
+    image,
+    url,
+    price,
+    inCart,
+  } = props;
   function handleClick() {
-    if (props.inCart) {
-      props.removeFromCart(props.id);
+    if (inCart) {
+      props.removeFromCart(id);
     } else {
-      props.addToCart(props.id);
+      props.addToCart({ id: id, title: title, price: price });
     }
   }
 
@@ -34,33 +33,35 @@ function Product(props: Props) {
       <div>
         <img
           className={styles.thumbnail}
-          src={props.image ? 'images/' + props.image : 'images/default.jpg'}
-          alt="{title}"
+          src={image ? 'images/' + image : 'images/default.jpg'}
+          alt={title}
         />
       </div>
       <div>
-        <h2>{props.title}</h2>
+        <h2>{title}</h2>
         <p>
-          by: {props.author}
+          by: {author}
           <br />
-          published: {props.published}, {props.country}
+          published: {published}, {country}
           <br />
-          language: {props.lang}
+          language: {lang}
           <br />
-          pages: {props.pages}
+          pages: {pages}
           <br />
-          price: ${props.price}
+          price:{' '}
+          {new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          }).format(Number(price))}
           <br />
-          <a href={props.url}>More info</a>
+          <a href={url}>link</a>
         </p>
         <button onClick={handleClick}>
-          {props.inCart ? 'In Cart' : 'Add to Cart'}
+          {inCart ? 'Remove from Cart' : 'Add to Cart'}
         </button>
       </div>
     </div>
   );
 }
-
-// Product.propTypes = productType;
 
 export default Product;

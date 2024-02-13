@@ -1,8 +1,8 @@
-export function addToCart(productId) {
+export function addToCart(product) {
   return {
     type: 'CART_ADD',
     payload: {
-      productId,
+      product,
     },
   };
 }

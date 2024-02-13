@@ -422,7 +422,7 @@
   {
     "id": "36",
     "title": "One Hundred Years of Solitude",
-    "author": "Gabriel Garc�a M�rquez",
+    "author": "Gabriel García Márquez",
     "published": "1967",
     "country": "Colombia",
     "lang": "Spanish",
@@ -1198,5 +1198,17 @@
     "image": "",
     "url": "https://en.wikipedia.org/wiki/Memoirs_of_Hadrian",
     "price": "5"
+  },
+  {
+    "id": "101",
+    "title": "Beginning ReactJS Foundations",
+    "author": "Chris Minnick",
+    "published": "2022",
+    "country": "United States",
+    "lang": "English",
+    "pages": "512",
+    "image": "reactjs-foundations.jpg",
+    "url": "https://www.reactjsfoundations.com/",
+    "price": "32.99"
   }
 ]

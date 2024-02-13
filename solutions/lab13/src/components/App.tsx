@@ -1,33 +1,42 @@
 import { useState, useEffect } from 'react';
-import Header from './Header';
-import Main from './Main';
-import Footer from './Footer';
+import Header from './Header.tsx';
+import ProductList from './ProductList.tsx';
+import Cart from './Cart.jsx';
+import Footer from './Footer.jsx';
 import './App.css';
-import Book from './types/Book';
+import Book from './Book';
 
 function App() {
-  const [itemsInCart, setItemsInCart] = useState<Array<string>>([]);
+  const [itemsInCart, setItemsInCart] = useState<Array<Book>>([]);
   const [products, setProducts] = useState<Array<Book>>([]);
   const [isLoading, setIsLoading] = useState<Boolean>(false);
-
   useEffect(() => {
     async function fetchData() {
       try {
         setIsLoading(true);
         const response = await fetch(
-          'http://localhost:3000/data/products.json'
+          'http://localhost:5173/data/products.json'
         );
         const json = await response.json();
-        setProducts(shuffleArray(json));
+        const shuffledArray = shuffleArray(json);
+        setProducts(shuffledArray);
         setIsLoading(false);
       } catch (e) {
         console.error(e);
       }
     }
     fetchData();
-  }, [setProducts]);
+  }, []);
 
-  function shuffleArray(array: any[]) {
+  function addToCart(product: Book) {
+    let newItems = [...itemsInCart, product];
+    setItemsInCart(newItems);
+  }
+  function removeFromCart(idToRemove: string) {
+    let newItems = itemsInCart.filter((item) => item.id !== idToRemove);
+    setItemsInCart(newItems);
+  }
+  function shuffleArray(array: Book[]) {
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       let temp = array[i];
@@ -37,29 +46,29 @@ function App() {
     return array;
   }
 
-  function addToCart(id: string) {
-    let newItems = [...itemsInCart, id];
-    setItemsInCart(newItems);
+  if (isLoading) {
+    return 'Loading...';
+  } else {
+    return (
+      <div className="container">
+        <Header />
+        <div className="row">
+          <div className="col-md-8">
+            <ProductList
+              addToCart={addToCart}
+              removeFromCart={removeFromCart}
+              itemsInCart={itemsInCart}
+              products={products}
+            />
+          </div>
+          <div className="col-md-4">
+            <Cart itemsInCart={itemsInCart} />
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
   }
-
-  function removeFromCart(idToRemove: string) {
-    let newItems = itemsInCart.filter((id) => id !== idToRemove);
-    setItemsInCart(newItems);
-  }
-
-  return (
-    <div className="container">
-      <Header />
-      {isLoading ? 'Loading' : ''}
-      <Main
-        products={products}
-        itemsInCart={itemsInCart}
-        addToCart={addToCart}
-        removeFromCart={removeFromCart}
-      />
-      <Footer />
-    </div>
-  );
 }
 
 export default App;
