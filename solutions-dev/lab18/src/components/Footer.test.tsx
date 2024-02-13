@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
-import Header from './Header.js';
+import Footer from './Footer.jsx';
 
-describe('Header Component', () => {
+describe('Footer Component', () => {
   it('Renders', () => {
-    render(<Header itemsInCart={[{ id: '1', title: 'test', price: '15' }]} />);
-    let element = screen.getByText(/Bookstore/i);
+    render(<Footer />);
+    let element = screen.getByText(/footer/i);
     expect(element).toBeInTheDocument();
   });
 });

@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["src/**/*.ts", "src/actions/index.js", "src/reducers/index.js"],
+  "exclude": ["node_modules"]
+}
