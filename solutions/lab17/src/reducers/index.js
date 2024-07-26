@@ -12,6 +12,7 @@ export function cart(state = { items: [] }, action = {}) {
         items: action.payload || [],
       };
     case 'CHECKOUT/fulfilled':
+      localStorage.clear();
       return {
         ...state,
         items: [],
