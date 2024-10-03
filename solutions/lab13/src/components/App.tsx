@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import Header from './Header.tsx';
-import ProductList from './ProductList.tsx';
-import Cart from './Cart.jsx';
-import Footer from './Footer.jsx';
+import { useState } from 'react';
+import Header from './Header';
+import ProductList from './ProductList';
+import Cart from './Cart';
+import Footer from './Footer';
 import './App.css';
 import Book from './Book';
 import { useBooks } from '../hooks/useBooks.js';
