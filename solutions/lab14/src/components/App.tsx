@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './Header.tsx';
 import ProductList from './ProductList.tsx';
 import Cart from './Cart.jsx';
@@ -47,7 +47,7 @@ function App() {
   }
 
   if (isLoading) {
-    return 'Loading...';
+    return 'Loading....';
   } else {
     return (
       <div className="container">

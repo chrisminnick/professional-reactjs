@@ -1,3 +1,4 @@
+import React from 'react';
 import { describe, expect, beforeEach, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
@@ -32,7 +33,7 @@ beforeEach(() => {
           price: '5',
         },
       ]}
-      itemsInCart={[{ id: '2' }]}
+      itemsInCart={[{ id: '2', title: 'Things Still Fall Apart', price: '5' }]}
       addToCart={vi.fn}
       removeFromCart={vi.fn}
     />

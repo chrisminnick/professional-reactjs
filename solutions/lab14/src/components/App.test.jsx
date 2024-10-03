@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
-import App from './App.js';
+import App from './App';
 
 const mockResponse = [
   {
@@ -19,7 +19,7 @@ const mockResponse = [
 ];
 
 beforeEach(() => {
-  vi.spyOn(global, 'fetch').mockResolvedValue({
+  vi.spyOn(window, 'fetch').mockResolvedValue({
     json: vi.fn().mockResolvedValue(mockResponse),
   });
 });
