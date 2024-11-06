@@ -9,7 +9,7 @@ function Pet(props) {
           padding: '5px',
           top: props.position?.y,
           left: props.position?.x,
-          position: 'relative',
+          position: 'absolute',
         }}
       >
         🐈
