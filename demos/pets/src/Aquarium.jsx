@@ -8,6 +8,7 @@ function Aquarium(props) {
         height: '500px',
         border: '1px solid black',
         padding: '10px',
+        position: 'relative',
         overflow: 'hidden',
       }}
     >

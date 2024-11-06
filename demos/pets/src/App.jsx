@@ -40,7 +40,7 @@ function App() {
       id: uuidv4(),
       name: e.target[0].value,
       type: e.target[1].value,
-      position: { x: getRandomInt(0, 50), y: getRandomInt(0, 50) },
+      position: { x: getRandomInt(0, 500), y: getRandomInt(0, 500) },
     };
     const newPetList = [...pets, newPet];
     setPets(newPetList);
