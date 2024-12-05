@@ -39,6 +39,7 @@ function Product(props: ProductProps) {
           className={styles.thumbnail}
           src={image ? 'images/' + image : 'images/default.jpg'}
           alt={title}
+          data-testid="thumb"
         />
       </div>
       <div>
@@ -46,6 +47,7 @@ function Product(props: ProductProps) {
         <p>
           Your rating:{' '}
           <select
+            data-testid="selectRating"
             value={rating}
             onChange={(e) => setRating(parseInt(e.target.value))}
           >
@@ -74,7 +76,7 @@ function Product(props: ProductProps) {
           <br />
           <a href={url}>link</a>
         </p>
-        <p>rating: {avgRating || rating}</p>
+        <p>{rating ? `your rating: ${rating}` : `avg rating: ${avgRating}`}</p>
         <button onClick={handleClick}>
           {inCart ? 'Remove from Cart' : 'Add to Cart'}
         </button>

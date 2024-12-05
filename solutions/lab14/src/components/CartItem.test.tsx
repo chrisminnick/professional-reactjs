@@ -7,7 +7,7 @@ import CartItem from './CartItem.js';
 describe('CartItem Component', () => {
   it('Renders', () => {
     render(<CartItem title="The Selfish Gene" price="15" />);
-    let element = screen.getByText(/\$/i);
+    let element = screen.getByText(/The Selfish Gene/i);
     expect(element).toBeInTheDocument();
   });
 });
