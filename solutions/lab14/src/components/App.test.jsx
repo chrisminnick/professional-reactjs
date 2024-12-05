@@ -45,6 +45,15 @@ describe('App Component', () => {
     });
     screen.debug();
   });
+  it('displays an error message when api errors', async () => {
+    vi.spyOn(window, 'fetch').mockImplementation(() => {
+      throw new Error('bad network');
+    });
+    render(<App />);
+    await waitFor(() => {
+      expect(screen.getByText(/error/i)).toBeInTheDocument();
+    });
+  });
   it('clicking the button toggles button messages', () => {
     render(<App />);
     let buttonText;

@@ -10,6 +10,7 @@ function App() {
   const [itemsInCart, setItemsInCart] = useState<Array<Book>>([]);
   const [products, setProducts] = useState<Array<Book>>([]);
   const [isLoading, setIsLoading] = useState<Boolean>(false);
+  const [fetchError, setFetchError] = useState<Boolean>(false);
   useEffect(() => {
     async function fetchData() {
       try {
@@ -23,6 +24,7 @@ function App() {
         setIsLoading(false);
       } catch (e) {
         console.error(e);
+        setFetchError(true);
       }
     }
     fetchData();
@@ -46,8 +48,10 @@ function App() {
     return array;
   }
 
-  if (isLoading) {
-    return 'Loading....';
+  if (fetchError) {
+    return '<p>There has been an error.</p>';
+  } else if (isLoading) {
+    return '<p>Loading....</p>';
   } else {
     return (
       <div className="container">

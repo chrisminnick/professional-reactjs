@@ -2,6 +2,6 @@
 
 exports[`App Component > renders as expected 1`] = `
 <div>
-  Loading....
+  &lt;p&gt;Loading....&lt;/p&gt;
 </div>
 `;
