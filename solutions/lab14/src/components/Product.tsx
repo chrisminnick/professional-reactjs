@@ -1,12 +1,15 @@
+import useRating from '../hooks/useRating';
 import styles from './Product.module.css';
 import Book from './Book';
 
 type ProductProps = Book & {
+  avgRating?: string;
   inCart: boolean;
   addToCart: (product: Book) => void;
   removeFromCart: (id: string) => void;
 };
 function Product(props: ProductProps) {
+  const { rating, stars, setRating } = useRating();
   const {
     id,
     title,
@@ -18,6 +21,7 @@ function Product(props: ProductProps) {
     image,
     url,
     price,
+    avgRating,
     inCart,
   } = props;
   function handleClick() {
@@ -40,6 +44,20 @@ function Product(props: ProductProps) {
       <div>
         <h2>{title}</h2>
         <p>
+          Your rating:{' '}
+          <select
+            value={rating}
+            onChange={(e) => setRating(parseInt(e.target.value))}
+          >
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </p>
+        <p>
           by: {author}
           <br />
           published: {published}, {country}
@@ -56,6 +74,7 @@ function Product(props: ProductProps) {
           <br />
           <a href={url}>link</a>
         </p>
+        <p>rating: {avgRating || rating}</p>
         <button onClick={handleClick}>
           {inCart ? 'Remove from Cart' : 'Add to Cart'}
         </button>

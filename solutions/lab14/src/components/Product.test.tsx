@@ -1,4 +1,3 @@
-import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
@@ -20,6 +19,7 @@ describe('Product Component', () => {
     image: 'Image URL',
     url: 'Link URL',
     inCart: false,
+    avgRating: '5',
     addToCart: addToCart,
     removeFromCart: removeFromCart,
   };
@@ -34,5 +34,12 @@ describe('Product Component', () => {
     fireEvent.click(button);
 
     expect(addToCart).toHaveBeenCalled();
+  });
+
+  it('Correctly displays star rating', () => {
+    render(<Product {...book} />);
+
+    let element = screen.getByText(/rating: 5/i);
+    expect(element).toBeInTheDocument();
   });
 });
