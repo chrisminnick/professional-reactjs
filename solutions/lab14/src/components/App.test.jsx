@@ -1,5 +1,11 @@
 import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest';
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import {
+  render,
+  screen,
+  waitFor,
+  fireEvent,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import App from './App';
 
@@ -34,10 +40,14 @@ describe('App Component', () => {
     let element = screen.getByText(/Loading/i);
     expect(element).toBeInTheDocument();
   });
-  it('renders as expected', () => {
+
+  // snapshot test
+  it('renders as expected', async () => {
     const { container } = render(<App />);
+    await waitForElementToBeRemoved(screen.getByText('Loading....'));
     expect(container).toMatchSnapshot();
   });
+
   it('returns data from the api', async () => {
     render(<App />);
     await waitFor(() => {
@@ -54,15 +64,15 @@ describe('App Component', () => {
       expect(screen.getByText(/error/i)).toBeInTheDocument();
     });
   });
+
   it('clicking the button toggles button messages', () => {
     render(<App />);
     let buttonText;
-
     setTimeout(() => {
       const buttons = screen.getAllByText(/Add to Cart/i);
       fireEvent.click(buttons[0]);
-      buttonText = screen.getByText(/Remove from Cart/i);
-      expect(buttonText).toBeInTheDocument();
+      buttonText = screen.getAllByText(/Remove from Cart/i);
+      expect(buttonText[0]).toBeInTheDocument();
     }, 2000);
   });
 });
