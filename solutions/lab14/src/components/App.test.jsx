@@ -12,7 +12,7 @@ import App from './App';
 const mockResponse = [
   {
     id: '1',
-    title: 'Buy This Book Now',
+    title: 'Buy This Book Now!',
     author: 'Chris Minnick',
     published: '2023',
     country: 'USA',
