@@ -3,7 +3,7 @@ export function cart(state = { items: [] }, action = {}) {
     case 'CART_ADD':
       return {
         ...state,
-        items: [...state.items, action.payload.productId],
+        items: [...state.items, action.payload.product],
       };
 
     case 'CART_REMOVE':
