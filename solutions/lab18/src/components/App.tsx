@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import * as actionCreators from '../actions';
+import * as actionCreators from '../actions/index.js';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Header from './Header.tsx';
 import ProductList from './ProductList.tsx';
-import Cart from './Cart.jsx';
-import Footer from './Footer.jsx';
+import Cart from './Cart.js';
+import Footer from './Footer.js';
 import './App.css';
-import Book from './Book';
+import Book from './Book.tsx';
 
 function App(props: any) {
   const [isLoading, setIsLoading] = useState<Boolean>(false);
@@ -47,31 +46,21 @@ function App(props: any) {
   } else {
     return (
       <div className="container">
-        <Header itemsInCart={props.itemsInCart} />
+        <Header />
         <div className="row">
-          <div className="col-md-12">
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <ProductList
-                    addToCart={props.addToCart}
-                    removeFromCart={props.removeFromCart}
-                    itemsInCart={props.itemsInCart}
-                    products={props.products}
-                  />
-                }
-              />
-              <Route
-                path="/cart"
-                element={
-                  <Cart
-                    itemsInCart={props.itemsInCart}
-                    submitCart={props.submitCart}
-                  />
-                }
-              />
-            </Routes>
+          <div className="col-md-8">
+            <ProductList
+              addToCart={props.addToCart}
+              removeFromCart={props.removeFromCart}
+              itemsInCart={props.itemsInCart}
+              products={props.products}
+            />
+          </div>
+          <div className="col-md-4">
+            <Cart
+              itemsInCart={props.itemsInCart}
+              submitCart={props.submitCart}
+            />
           </div>
         </div>
         <Footer />

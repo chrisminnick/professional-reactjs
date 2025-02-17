@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { ThemeContext } from '../context/ThemeContext.jsx';
 import Header from './Header.jsx';
 import ProductList from './ProductList.jsx';
 import Cart from './Cart.jsx';
@@ -6,6 +7,7 @@ import Footer from './Footer.jsx';
 import './App.css';
 
 function App() {
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const [itemsInCart, setItemsInCart] = useState([]);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -46,13 +48,18 @@ function App() {
   }
 
   if (isLoading) {
-    return 'Loading...';
+    return <p>Loading...</p>;
   } else {
     return (
-      <div className="container">
+      <div className={`${theme} container`}>
         <Header />
         <div className="row">
           <div className="col-md-8">
+            <div className={theme}>
+              <p>The current theme is {theme}</p>
+              <button onClick={toggleTheme}>Toggle Theme</button>
+            </div>
+
             <ProductList
               addToCart={addToCart}
               removeFromCart={removeFromCart}

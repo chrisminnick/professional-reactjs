@@ -1,34 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import Header from './Header.tsx';
-import ProductList from './ProductList.tsx';
-import Cart from './Cart.jsx';
-import Footer from './Footer.jsx';
+import { useState } from 'react';
+import Header from './Header.js';
+import ProductList from './ProductList.js';
+import Cart from './Cart.js';
+import Footer from './Footer.js';
 import './App.css';
-import Book from './Book';
+import Book from './Book.js';
+import { useBooks } from '../hooks/useBooks.js';
 
 function App() {
   const [itemsInCart, setItemsInCart] = useState<Array<Book>>([]);
-  const [products, setProducts] = useState<Array<Book>>([]);
-  const [isLoading, setIsLoading] = useState<Boolean>(false);
-  const [fetchError, setFetchError] = useState<Boolean>(false);
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        setIsLoading(true);
-        const response = await fetch(
-          'http://localhost:5173/data/products.json'
-        );
-        const json = await response.json();
-        const shuffledArray = shuffleArray(json);
-        setProducts(shuffledArray);
-        setIsLoading(false);
-      } catch (e) {
-        console.error(e);
-        setFetchError(true);
-      }
-    }
-    fetchData();
-  }, []);
+
+  const { books, isLoading, serverError } = useBooks();
 
   function addToCart(product: Book) {
     let newItems = [...itemsInCart, product];
@@ -38,20 +20,11 @@ function App() {
     let newItems = itemsInCart.filter((item) => item.id !== idToRemove);
     setItemsInCart(newItems);
   }
-  function shuffleArray(array: Book[]) {
-    for (let i = array.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
-      let temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-    }
-    return array;
-  }
 
-  if (fetchError) {
-    return '<p>There has been an error.</p>';
-  } else if (isLoading) {
-    return '<p>Loading....</p>';
+  if (isLoading) {
+    return 'Loading...';
+  } else if (serverError) {
+    return <p>{serverError}</p>;
   } else {
     return (
       <div className="container">
@@ -62,7 +35,7 @@ function App() {
               addToCart={addToCart}
               removeFromCart={removeFromCart}
               itemsInCart={itemsInCart}
-              products={products}
+              products={books}
             />
           </div>
           <div className="col-md-4">

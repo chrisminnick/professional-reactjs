@@ -5,7 +5,7 @@ import Header from './Header.js';
 
 describe('Header Component', () => {
   it('Renders', () => {
-    render(<Header itemsInCart={[{ id: '1', title: 'test', price: '15' }]} />);
+    render(<Header />);
     let element = screen.getByText(/Bookstore/i);
     expect(element).toBeInTheDocument();
   });

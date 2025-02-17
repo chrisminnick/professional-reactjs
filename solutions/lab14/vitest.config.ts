@@ -11,13 +11,7 @@ export default defineConfig({
     coverage: {
       enabled: true,
       include: ['src/**/*.{js,jsx,ts,tsx}'], // specify files to include
-      exclude: [
-        'src/generated/**/*.ts',
-        'src/components/Book.tsx',
-        'src/hooks/*.js',
-        'src/Globals.d.ts',
-        'src/main.tsx',
-      ], // specify files to exclude
+      exclude: ['src/generated/**/*.ts'], // specify files to exclude
       reporter: ['text', 'html'], // customize reporters.
     },
   },

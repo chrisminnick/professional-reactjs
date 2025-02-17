@@ -9,18 +9,14 @@ export function cart(state = { items: [] }, action = {}) {
     case 'CART_REMOVE':
       return {
         ...state,
-        items: action.payload || [],
+        items: state.items.filter(
+          (item) => item.id !== action.payload.productId
+        ),
       };
     case 'CHECKOUT/fulfilled':
-      localStorage.clear();
       return {
         ...state,
         items: [],
-      };
-    case 'READ_CART_FROM_LOCAL_STORAGE':
-      return {
-        ...state,
-        items: action.payload || [],
       };
 
     default:

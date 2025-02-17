@@ -55,10 +55,7 @@ function App(props: any) {
             />
           </div>
           <div className="col-md-4">
-            <Cart
-              itemsInCart={props.itemsInCart}
-              submitCart={props.submitCart}
-            />
+            <Cart itemsInCart={props.itemsInCart} />
           </div>
         </div>
         <Footer />

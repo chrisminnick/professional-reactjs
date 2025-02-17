@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import { cart, products } from './reducers';
+import { cart, products } from './reducers/index.js';
 import App from './components/App.tsx';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
   products: products,
 });
 
-export const store = configureStore({ reducer: rootReducer });
+const store = configureStore({ reducer: rootReducer });
 
 const element = document.getElementById('root');
 if (element !== null) {

@@ -1,11 +1,11 @@
-import Product from './Product.jsx';
+import Product from './Product.js';
 import styles from './ProductList.module.css';
-import Book from './Book';
+import Book from './Book.js';
 
 interface Props {
   itemsInCart: Book[] | [];
   addToCart: (product: Book) => void;
-  removeFromCart: (id: string) => void;
+  removeFromCart: (idToRemove: string) => void;
   products: Book[] | [];
 }
 

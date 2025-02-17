@@ -1,5 +1,5 @@
-import CartItem from './CartItem.jsx';
-import Book from './Book';
+import CartItem from './CartItem.js';
+import Book from './Book.js';
 
 function Cart(props: {
   itemsInCart: Book[];

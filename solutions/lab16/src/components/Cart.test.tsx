@@ -5,7 +5,7 @@ import Cart from './Cart.js';
 
 describe('Cart Component', () => {
   it('Renders', () => {
-    render(<Cart submitCart={() => {}} itemsInCart={[]} />);
+    render(<Cart itemsInCart={[]} />);
     let element = screen.getByText(/cart/i);
     expect(element).toBeInTheDocument();
   });

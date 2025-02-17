@@ -1,17 +1,16 @@
 import { useState, useEffect } from 'react';
-import * as actionCreators from '../actions';
+import * as actionCreators from '../actions/index.js';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Header from './Header.tsx';
 import ProductList from './ProductList.tsx';
-import Cart from './Cart.jsx';
-import Footer from './Footer.jsx';
+import Cart from './Cart.js';
+import Footer from './Footer.js';
 import './App.css';
-import Book from './Book';
+import Book from './Book.tsx';
 
 function App(props: any) {
   const [isLoading, setIsLoading] = useState<Boolean>(false);
-
   useEffect(() => {
     async function fetchData() {
       try {
@@ -28,7 +27,6 @@ function App(props: any) {
       }
     }
     fetchData();
-    props.readCartFromLocalStorage();
   }, []);
 
   function shuffleArray(array: Book[]) {

@@ -1,22 +1,13 @@
-import { Link } from 'react-router-dom';
-import CartLink from './CartLink';
-import Book from './Book';
-interface HeaderProps {
-  itemsInCart: Book[];
-}
-function Header(props: HeaderProps) {
+function Header() {
   return (
-    <header className="container">
-      <div className="row p-4">
-        <div className="col-md-9">
-          <h1>Welcome to React Bookstore!!!</h1>
-          <Link to="/">Home</Link>
-        </div>
-        <div className="col-md-3">
-          <CartLink itemsInCart={props.itemsInCart} />
-        </div>
-      </div>
-    </header>
+    <div>
+      <h1>Welcome to React Bookstore</h1>
+      <p>
+        We have several books. Feel free to browse for as long as you like.
+        Click on a cover image to see details, or click the Add to Cart button
+        to add a book to your shopping cart.
+      </p>
+    </div>
   );
 }
 

@@ -20,7 +20,6 @@ function Product(props: ProductProps) {
     price,
     inCart,
   } = props;
-
   function handleClick() {
     if (inCart) {
       props.removeFromCart(id);
