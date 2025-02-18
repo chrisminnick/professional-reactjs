@@ -1,6 +1,7 @@
 import styles from './Product.module.css';
+import { ProductProps } from '../../types/product';
 
-function Product(props) {
+function Product(props: ProductProps) {
   const {
     id,
     title,

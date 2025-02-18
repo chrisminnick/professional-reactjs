@@ -4,17 +4,18 @@ import ProductList from '../components/ProductList.jsx';
 import Cart from '../components/Cart.jsx';
 import Footer from '../components/Footer.jsx';
 import './App.css';
-import useBooks from '../hooks/useBooks';
+import useBooks from '../hooks/useBooks.js';
+import { Book } from '../../types/book';
 
 function App() {
-  const [itemsInCart, setItemsInCart] = useState([]);
+  const [itemsInCart, setItemsInCart] = useState<Array<Book>>([]);
   const [products, isLoading] = useBooks();
 
-  function addToCart(product) {
+  function addToCart(product: Book) {
     let newItems = [...itemsInCart, product];
     setItemsInCart(newItems);
   }
-  function removeFromCart(idToRemove) {
+  function removeFromCart(idToRemove: string) {
     let newItems = itemsInCart.filter((item) => item.id !== idToRemove);
     setItemsInCart(newItems);
   }

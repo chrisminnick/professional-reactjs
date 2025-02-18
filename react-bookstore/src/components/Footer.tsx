@@ -1,8 +1,9 @@
 import { useTheme } from '../contexts/ThemeContext';
+import { CSSProperties } from 'react';
 
 function Footer() {
   const { theme, toggleTheme } = useTheme();
-  const footerStyle = {
+  const footerStyle: CSSProperties = {
     backgroundColor: theme === 'light' ? 'white' : 'black',
     color: theme === 'light' ? 'black' : 'white',
     padding: '10px',
