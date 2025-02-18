@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import Header from '../components/Header.jsx';
-import ProductList from '../components/ProductList.jsx';
-import Cart from '../components/Cart.jsx';
-import Footer from '../components/Footer.jsx';
+import Header from './Header.jsx';
+import ProductList from './ProductList.jsx';
+import Cart from './Cart.jsx';
+import Footer from './Footer.jsx';
 import './App.css';
 import productsData from '../data/products.json';
 
@@ -14,6 +14,7 @@ function App() {
       price: '5',
     },
   ]);
+
   return (
     <div className="container">
       <Header />

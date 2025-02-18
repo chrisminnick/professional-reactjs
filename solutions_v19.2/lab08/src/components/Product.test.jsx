@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
-import ProductList from './ProductList.jsx';
+import Product from './Product.jsx';
 
-describe('ProductList Component', () => {
+describe('Product Component', () => {
   const book = {
     id: '1',
     title: 'Fake Title',
@@ -18,16 +18,10 @@ describe('ProductList Component', () => {
     inCart: false,
     avgRating: '5',
   };
-  const itemsInCart = [
-    {
-      id: '1',
-      title: 'Fake Book',
-      price: '10',
-    },
-  ];
+
   it('Renders', () => {
-    render(<ProductList itemsInCart={itemsInCart} products={[book]} />);
-    let element = screen.getAllByText(/Fake Title/i);
-    expect(element[0]).toBeInTheDocument();
+    render(<Product {...book} />);
+    let element = screen.getByText(/Fake Title/i);
+    expect(element).toBeInTheDocument();
   });
 });
