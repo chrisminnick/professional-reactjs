@@ -5,11 +5,12 @@ import Cart from '../components/Cart.jsx';
 import Footer from '../components/Footer.jsx';
 import './App.css';
 import useBooks from '../hooks/useBooks.js';
-import { Book } from '../../types/book';
+import { Book } from '../../types/book.js';
 
 function App() {
   const [itemsInCart, setItemsInCart] = useState<Array<Book>>([]);
-  const [products, isLoading] = useBooks();
+
+  const [products, isLoading, serverError] = useBooks();
 
   function addToCart(product: Book) {
     let newItems = [...itemsInCart, product];
@@ -20,8 +21,10 @@ function App() {
     setItemsInCart(newItems);
   }
 
-  if (isLoading) {
-    return 'Loading...';
+  if (serverError) {
+    return <p>There has been an error.</p>;
+  } else if (isLoading) {
+    return <p>Loading....</p>;
   } else {
     return (
       <div className="container">

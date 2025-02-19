@@ -1,9 +1,14 @@
 import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import {
+  render,
+  screen,
+  waitFor,
+  fireEvent,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import App from './App';
 import { ThemeProvider } from '../contexts/ThemeContext';
-
 const mockResponse = [
   {
     id: '1',
@@ -30,6 +35,27 @@ afterEach(() => {
 });
 
 describe('App Component', () => {
+  it('Renders', () => {
+    render(
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    );
+    let element = screen.getByText(/Loading/i);
+    expect(element).toBeInTheDocument();
+  });
+
+  // snapshot test
+  it('renders as expected', async () => {
+    const { container } = render(
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    );
+    await waitForElementToBeRemoved(screen.getByText('Loading....'));
+    expect(container).toMatchSnapshot();
+  });
+
   it('returns data from the api', async () => {
     render(
       <ThemeProvider>
@@ -40,5 +66,33 @@ describe('App Component', () => {
       expect(screen.getByText(/buy this book now/i)).toBeInTheDocument();
     });
     screen.debug();
+  });
+  it('displays an error message when api errors', async () => {
+    vi.spyOn(window, 'fetch').mockImplementation(() => {
+      throw new Error('bad network');
+    });
+    render(
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    );
+    await waitFor(() => {
+      expect(screen.getByText(/error/i)).toBeInTheDocument();
+    });
+  });
+
+  it('clicking the button toggles button messages', () => {
+    render(
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    );
+    let buttonText;
+    setTimeout(() => {
+      const buttons = screen.getAllByText(/Add to Cart/i);
+      fireEvent.click(buttons[0]);
+      buttonText = screen.getAllByText(/Remove from Cart/i);
+      expect(buttonText[0]).toBeInTheDocument();
+    }, 2000);
   });
 });

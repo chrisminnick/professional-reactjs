@@ -1,7 +1,7 @@
 import Product from './Product.jsx';
 import styles from './ProductList.module.css';
-
-function ProductList(props) {
+import { ProductListProps } from '../../types/productList.js';
+function ProductList(props: ProductListProps) {
   let itemIds = props.itemsInCart.map((item) => item.id);
 
   return (

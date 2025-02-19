@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
+import { Book } from '../../types/book';
+function useBooks(): [Book[] | [], boolean, boolean] {
+  const [books, setBooks] = useState<Book[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [fetchError, setFetchError] = useState<boolean>(false);
 
-function useProducts() {
-  const [books, setBooks] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  function shuffleArray(array) {
+  function shuffleArray(array: Book[]): Book[] {
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       let temp = array[i];
@@ -24,14 +25,17 @@ function useProducts() {
         const shuffledArray = shuffleArray(json);
         setBooks(shuffledArray);
         setIsLoading(false);
+        setFetchError(false);
       } catch (e) {
         console.error(e);
+        setFetchError(true);
+        setIsLoading(false);
       }
     }
     fetchData();
   }, []);
 
-  return [books, isLoading];
+  return [books, isLoading, fetchError];
 }
 
-export default useProducts;
+export default useBooks;
