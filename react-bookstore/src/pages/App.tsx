@@ -30,7 +30,11 @@ function App(props: AppProps) {
             />
           </div>
           <div className="col-md-4">
-            <Cart itemsInCart={props.itemsInCart} />
+            <Cart
+              removeFromCart={props.removeFromCart}
+              submitCart={props.submitCart}
+              itemsInCart={props.itemsInCart}
+            />
           </div>
         </div>
         <Footer />

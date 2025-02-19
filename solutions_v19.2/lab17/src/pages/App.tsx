@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import Header from '../components/Header.js';
-import ProductList from '../components/ProductList.js';
-import Cart from '../components/Cart.js';
-import Footer from '../components/Footer.js';
+import Header from '../components/Header.jsx';
+import ProductList from '../components/ProductList.jsx';
+import Cart from '../components/Cart.jsx';
+import Footer from '../components/Footer.jsx';
 import './App.css';
 import useBooks from '../hooks/useBooks.js';
 import * as actionCreators from '../actions/index.js';
@@ -30,7 +30,11 @@ function App(props: AppProps) {
             />
           </div>
           <div className="col-md-4">
-            <Cart itemsInCart={props.itemsInCart} />
+            <Cart
+              removeFromCart={props.removeFromCart}
+              submitCart={props.submitCart}
+              itemsInCart={props.itemsInCart}
+            />
           </div>
         </div>
         <Footer />
