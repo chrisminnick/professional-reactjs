@@ -1,7 +1,7 @@
-import Header from '../components/Header.jsx';
-import ProductList from '../components/ProductList.jsx';
-import Cart from '../components/Cart.jsx';
-import Footer from '../components/Footer.jsx';
+import Header from '../components/Header.js';
+import ProductList from '../components/ProductList.js';
+import Cart from '../components/Cart.js';
+import Footer from '../components/Footer.js';
 import './App.css';
 import useBooks from '../hooks/useBooks.js';
 import * as actionCreators from '../actions/index.js';
