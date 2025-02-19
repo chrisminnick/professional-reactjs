@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Book } from '../../types/book';
+import { Book } from '../types/book';
 function useBooks(): [Book[] | [], boolean, boolean] {
   const [books, setBooks] = useState<Book[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);

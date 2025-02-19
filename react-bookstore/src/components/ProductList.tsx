@@ -1,12 +1,14 @@
 import Product from './Product.jsx';
 import styles from './ProductList.module.css';
-import { ProductListProps } from '../../types/productList.js';
+import { ProductListProps } from '../types/productList.js';
+import { Book } from '../types/book.js';
+
 function ProductList(props: ProductListProps) {
-  let itemIds = props.itemsInCart.map((item) => item.id);
+  let itemIds = props.itemsInCart.map((item: Book) => item.id);
 
   return (
     <ul className={styles.productList}>
-      {props.products.map((product) => (
+      {props.products.map((product: Book) => (
         <li key={product.id} className={styles.productListItem}>
           <Product
             {...product}

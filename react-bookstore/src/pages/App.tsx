@@ -5,21 +5,12 @@ import Cart from '../components/Cart.jsx';
 import Footer from '../components/Footer.jsx';
 import './App.css';
 import useBooks from '../hooks/useBooks.js';
-import { Book } from '../../types/book.js';
-
-function App() {
-  const [itemsInCart, setItemsInCart] = useState<Array<Book>>([]);
-
+import * as actionCreators from '../actions/index.js';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { AppProps } from '../types/app.js';
+function App(props: AppProps) {
   const [products, isLoading, serverError] = useBooks();
-
-  function addToCart(product: Book) {
-    let newItems = [...itemsInCart, product];
-    setItemsInCart(newItems);
-  }
-  function removeFromCart(idToRemove: string) {
-    let newItems = itemsInCart.filter((item) => item.id !== idToRemove);
-    setItemsInCart(newItems);
-  }
 
   if (serverError) {
     return <p>There has been an error.</p>;
@@ -32,14 +23,14 @@ function App() {
         <div className="row">
           <div className="col-md-8">
             <ProductList
-              addToCart={addToCart}
-              removeFromCart={removeFromCart}
-              itemsInCart={itemsInCart}
+              addToCart={props.addToCart}
+              removeFromCart={props.removeFromCart}
+              itemsInCart={props.itemsInCart}
               products={products}
             />
           </div>
           <div className="col-md-4">
-            <Cart itemsInCart={itemsInCart} />
+            <Cart itemsInCart={props.itemsInCart} />
           </div>
         </div>
         <Footer />
@@ -47,5 +38,15 @@ function App() {
     );
   }
 }
+const mapStateToProps = (state: any, props: any) => {
+  return {
+    itemsInCart: state.cart.items,
+    products: state.products.products,
+  };
+};
 
-export default App;
+const mapDispatchToProps = (dispatch: any, props: any) => {
+  return bindActionCreators(actionCreators, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

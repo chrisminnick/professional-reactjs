@@ -3,7 +3,7 @@ import { describe, expect, beforeEach, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import ProductList from './ProductList';
-import { Book } from '../../types/book';
+import { Book } from '../types/book';
 
 const mockAddToCart = vi.fn((product: Book) => {});
 const mockRemoveFromCart = vi.fn((idToRemove: string) => {});
