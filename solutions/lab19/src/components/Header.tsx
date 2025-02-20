@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import CartLink from './CartLink';
-import Book from './Book';
+import { Book } from '../types/book';
 interface HeaderProps {
   itemsInCart: Book[];
 }

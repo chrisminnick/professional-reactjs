@@ -1,7 +1,0 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
-
-exports[`App Component > renders as expected 1`] = `
-<div>
-  &lt;p&gt;Loading....&lt;/p&gt;
-</div>
-`;

@@ -1,20 +1,14 @@
-import Product from './Product.jsx';
+import Product from './Product.js';
 import styles from './ProductList.module.css';
-import Book from './Book';
+import { ProductListProps } from '../types/productList.js';
+import { Book } from '../types/book.js';
 
-interface Props {
-  itemsInCart: Book[] | [];
-  addToCart: (product: Book) => void;
-  removeFromCart: (idToRemove: string) => void;
-  products: Book[] | [];
-}
-
-function ProductList(props: Props) {
-  let itemIds = props.itemsInCart.map((item) => item.id);
+function ProductList(props: ProductListProps) {
+  let itemIds = props.itemsInCart.map((item: Book) => item.id);
 
   return (
     <ul className={styles.productList}>
-      {props.products.map((product) => (
+      {props.products.map((product: Book) => (
         <li key={product.id} className={styles.productListItem}>
           <Product
             {...product}

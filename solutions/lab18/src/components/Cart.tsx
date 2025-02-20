@@ -1,10 +1,7 @@
 import CartItem from './CartItem.js';
-import Book from './Book.js';
+import { CartProps } from '../types/cart.js';
 
-function Cart(props: {
-  itemsInCart: Book[];
-  submitCart: (itemsInCart: Book[]) => void;
-}) {
+function Cart(props: CartProps) {
   return (
     <div>
       <h2>Cart</h2>

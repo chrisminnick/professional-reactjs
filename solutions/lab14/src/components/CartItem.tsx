@@ -1,8 +1,5 @@
-type cartItemProps = {
-  title: string;
-  price: string;
-};
-function CartItem(props: cartItemProps) {
+import { CartItemProps } from '../../types/cart.js';
+function CartItem(props: CartItemProps) {
   return (
     <p>
       {props.title}:${props.price}
