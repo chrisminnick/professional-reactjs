@@ -2,12 +2,13 @@ import useRating from '../hooks/useRating';
 import styles from './Product.module.css';
 import Book from './Book';
 
-type ProductProps = Book & {
+interface ProductProps extends Book {
   avgRating?: string;
   inCart: boolean;
   addToCart: (product: Book) => void;
   removeFromCart: (id: string) => void;
-};
+}
+
 function Product(props: ProductProps) {
   const { rating, stars, setRating } = useRating();
   const {
