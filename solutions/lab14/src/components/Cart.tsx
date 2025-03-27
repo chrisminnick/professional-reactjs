@@ -1,7 +1,8 @@
+import React from 'react';
 import CartItem from './CartItem.jsx';
-import { CartProps } from '../../types/cart.js';
+import Book from './Book';
 
-function Cart(props: CartProps) {
+function Cart(props: { itemsInCart: Book[] }) {
   return (
     <div>
       <h2>Cart</h2>

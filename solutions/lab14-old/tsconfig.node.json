@@ -2,10 +2,9 @@
   "compilerOptions": {
     "composite": true,
     "module": "ESNext",
-    "lib": ["ESNext", "DOM"],
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src/**/*.ts"],
+  "include": ["types/**/*.ts"],
   "exclude": ["node_modules"]
 }

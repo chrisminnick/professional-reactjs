@@ -3,10 +3,6 @@ import { describe, expect, beforeEach, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import ProductList from './ProductList';
-import { Book } from '../../types/book';
-
-const mockAddToCart = vi.fn((product: Book) => {});
-const mockRemoveFromCart = vi.fn((idToRemove: string) => {});
 
 beforeEach(() => {
   render(
@@ -38,8 +34,8 @@ beforeEach(() => {
         },
       ]}
       itemsInCart={[{ id: '2', title: 'Things Still Fall Apart', price: '5' }]}
-      addToCart={mockAddToCart}
-      removeFromCart={mockRemoveFromCart}
+      addToCart={vi.fn}
+      removeFromCart={vi.fn}
     />
   );
 });
