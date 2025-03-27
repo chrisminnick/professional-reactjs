@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
-import Header from '../components/Header.jsx';
-import ProductList from '../components/ProductList.jsx';
-import Cart from '../components/Cart.jsx';
-import Footer from '../components/Footer.jsx';
+import Header from '../components/Header.tsx';
+import ProductList from '../components/ProductList.tsx';
+import Cart from '../components/Cart.tsx';
+import Footer from '../components/Footer.tsx';
 import './App.css';
-import useBooks from '../hooks/useBooks.js';
-import { Book } from '../../types/book.js';
-
+import useBooks from '../hooks/useBooks.ts';
+import { Book } from '../../types/book.ts';
+import { useTheme } from '../contexts/ThemeContext.jsx';
 function App() {
+  const { theme, toggleTheme } = useTheme();
+
   const [itemsInCart, setItemsInCart] = useState<Array<Book>>([]);
 
   const [products, isLoading, serverError] = useBooks();
@@ -27,7 +29,7 @@ function App() {
     return <p>Loading....</p>;
   } else {
     return (
-      <div className="container">
+      <div className={`${theme} + " container"`}>
         <Header />
         <div className="row">
           <div className="col-md-8">

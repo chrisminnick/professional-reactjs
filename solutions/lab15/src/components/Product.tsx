@@ -1,5 +1,5 @@
 import styles from './Product.module.css';
-import { ProductProps } from '../../types/product';
+import { ProductProps } from '../../types/product.ts';
 
 function Product(props: ProductProps) {
   const {

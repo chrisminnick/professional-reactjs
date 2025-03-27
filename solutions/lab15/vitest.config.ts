@@ -11,7 +11,13 @@ export default defineConfig({
     coverage: {
       enabled: true,
       include: ['src/**/*.{js,jsx,ts,tsx}'],
-      exclude: ['src/generated/**/*.ts'],
+      exclude: [
+        'src/generated/**/*.ts',
+        'src/hooks/*.tsx',
+        'src/hooks/*.ts',
+        'src/main.jsx',
+        'src/Globals.d.ts',
+      ],
       reporter: ['text', 'html'],
     },
   },

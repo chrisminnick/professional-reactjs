@@ -1,4 +1,4 @@
-import { CartItemProps } from '../../types/cart.js';
+import { CartItemProps } from '../../types/cart.tsx';
 function CartItem(props: CartItemProps) {
   return (
     <p>

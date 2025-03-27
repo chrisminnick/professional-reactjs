@@ -1,5 +1,5 @@
 import CartItem from './CartItem.jsx';
-import { CartProps } from '../../types/cart.js';
+import { CartProps } from '../../types/cart.ts';
 
 function Cart(props: CartProps) {
   return (
