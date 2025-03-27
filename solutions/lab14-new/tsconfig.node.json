@@ -6,11 +6,6 @@
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true
   },
-  "include": [
-    "src/**/*.ts",
-    "src/components/Book.tsx",
-    "src/hooks/useProducts.tsx",
-    "src/hooks/useCart.tsx"
-  ],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
 }
