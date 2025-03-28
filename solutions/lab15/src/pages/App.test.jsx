@@ -95,4 +95,34 @@ describe('App Component', () => {
       expect(buttonText[0]).toBeInTheDocument();
     }, 2000);
   });
+
+  it('clicking the button adds a product to the cart', () => {
+    render(
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    );
+    let buttonText;
+    setTimeout(() => {
+      const buttons = screen.getAllByText(/Add to Cart/i);
+      fireEvent.click(buttons[0]);
+      cartItem = screen.getByText(/Buy This Book Now! : \$5/i);
+      expect(cartItem).toBeInTheDocument();
+    }, 2000);
+  });
+  it('clicking twice removes from the cart', () => {
+    render(
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    );
+    let buttonText;
+    setTimeout(() => {
+      const buttons = screen.getAllByText(/Add to Cart/i);
+      fireEvent.click(buttons[0]);
+      fireEvent.click(buttons[0]);
+      cartItem = screen.getByText(/Buy This Book Now! : \$5/i);
+      expect(cartItem).not.toBeInTheDocument();
+    }, 2000);
+  });
 });
