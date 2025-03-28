@@ -16,7 +16,8 @@ const store = configureStore({ reducer: rootReducer });
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
-  createRoot(rootElement).render(
+  const root = createRoot(rootElement);
+  root.render(
     <StrictMode>
       <ThemeProvider>
         <Provider store={store}>
