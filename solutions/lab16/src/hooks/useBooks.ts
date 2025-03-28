@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Book } from '../types/book';
+import { loadProducts } from '../actions/index';
 function useBooks(): [Book[] | [], boolean, boolean] {
   const [books, setBooks] = useState<Book[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -24,6 +25,7 @@ function useBooks(): [Book[] | [], boolean, boolean] {
         const json = await response.json();
         const shuffledArray = shuffleArray(json);
         setBooks(shuffledArray);
+        loadProducts(shuffledArray);
         setIsLoading(false);
         setFetchError(false);
       } catch (e) {

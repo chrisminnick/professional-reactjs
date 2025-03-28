@@ -4,4 +4,5 @@ export interface AppProps {
   products: Book[];
   addToCart: (book: Book) => void;
   removeFromCart: (idToRemove: string) => void;
+  loadProducts: (products: Book[]) => void;
 }
