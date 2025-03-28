@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Header from '../components/Header.jsx';
 import ProductList from '../components/ProductList.jsx';
 import Cart from '../components/Cart.jsx';
@@ -11,6 +11,10 @@ import { connect } from 'react-redux';
 import { AppProps } from '../types/app.js';
 function App(props: AppProps) {
   const [products, isLoading, serverError] = useBooks();
+
+  useEffect(() => {
+    props.loadProducts(products);
+  }, [products]);
 
   if (serverError) {
     return <p>There has been an error.</p>;
@@ -26,7 +30,7 @@ function App(props: AppProps) {
               addToCart={props.addToCart}
               removeFromCart={props.removeFromCart}
               itemsInCart={props.itemsInCart}
-              products={products}
+              products={props.products}
             />
           </div>
           <div className="col-md-4">
