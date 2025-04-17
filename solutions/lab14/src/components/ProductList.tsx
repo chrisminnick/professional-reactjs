@@ -1,7 +1,7 @@
 import React from 'react';
 import Product from './Product.jsx';
 import styles from './ProductList.module.css';
-import Book from './Book';
+import Book from '../types/Book';
 
 interface Props {
   itemsInCart: Book[] | [];

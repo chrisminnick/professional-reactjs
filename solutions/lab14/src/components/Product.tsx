@@ -1,6 +1,6 @@
 import useRating from '../hooks/useRating';
 import styles from './Product.module.css';
-import Book from './Book';
+import Book from '../types/Book';
 
 interface ProductProps extends Book {
   avgRating?: string;

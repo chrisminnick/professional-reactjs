@@ -1,23 +1,14 @@
-import { useState } from 'react';
 import Header from '../components/Header.jsx';
 import ProductList from '../components/ProductList.jsx';
 import Cart from '../components/Cart.jsx';
 import Footer from '../components/Footer.jsx';
 import './App.css';
 import useBooks from '../hooks/useBooks.js';
+import useCart from '../hooks/useCart.jsx';
 
 function App() {
-  const [itemsInCart, setItemsInCart] = useState([]);
   const [products, isLoading] = useBooks();
-
-  function addToCart(product) {
-    let newItems = [...itemsInCart, product];
-    setItemsInCart(newItems);
-  }
-  function removeFromCart(idToRemove) {
-    let newItems = itemsInCart.filter((item) => item.id !== idToRemove);
-    setItemsInCart(newItems);
-  }
+  const [itemsInCart, addToCart, removeFromCart] = useCart();
 
   if (isLoading) {
     return 'Loading...';
