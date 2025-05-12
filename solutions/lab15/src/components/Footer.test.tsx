@@ -23,9 +23,10 @@ describe('Footer Component', () => {
     );
     const button = screen.getByText(/Toggle Theme/i);
     fireEvent.click(button);
-    const toggleButton = screen.getByText(/This is the footer./i);
-    expect(toggleButton).toHaveClass('dark');
+    const footerText = screen.getByText(/This is the footer./i);
+    expect(footerText).toHaveClass('dark');
   });
+
   it('toggles back to dark mode', () => {
     render(
       <ThemeProvider>

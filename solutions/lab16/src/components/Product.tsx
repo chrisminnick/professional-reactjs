@@ -20,6 +20,7 @@ function Product(props: ProductProps) {
       props.removeFromCart(id);
     } else {
       props.addToCart({ id: id, title: title, price: price });
+
     }
   }
 

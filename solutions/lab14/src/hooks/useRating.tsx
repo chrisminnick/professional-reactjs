@@ -4,7 +4,7 @@ function useRating() {
   const [rating, setRating] = useState(0);
   const [stars, setStars] = useState('no rating');
   useEffect(() => {
-    function calculateRating(rating) {
+    function calculateRating(rating: number | string) {
       switch (rating) {
         case '0':
           return '';

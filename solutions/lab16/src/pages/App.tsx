@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Header from '../components/Header.js';
 import ProductList from '../components/ProductList.js';
 import Cart from '../components/Cart.js';

@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Book } from '../types/book.js';
 
-export const submitCart = createAsyncThunk('CHECKOUT', async (data) => {
+export const submitCart = createAsyncThunk('CHECKOUT', async (data: Book[]) => {
   const res = await axios.post('http://localhost:8080/checkout', data);
   return res.data;
 });

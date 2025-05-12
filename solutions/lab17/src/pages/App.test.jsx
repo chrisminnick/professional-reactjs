@@ -10,8 +10,9 @@ import '@testing-library/jest-dom/vitest';
 import App from './App';
 import { ThemeProvider } from '../contexts/ThemeContext';
 import { Provider } from 'react-redux';
-import configureStore from 'redux-mock-store';
-const mockStore = configureStore([]);
+import configureMockStore from 'redux-mock-store';
+
+const mockStore = configureMockStore([]);
 
 const mockResponse = [
   {

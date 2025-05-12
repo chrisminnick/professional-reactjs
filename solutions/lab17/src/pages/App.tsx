@@ -10,7 +10,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { AppProps } from '../types/app.js';
 function App(props: AppProps) {
-  const [products, isLoading, serverError] = useBooks();
+  const [products, isLoading, serverError] = useBooks(); //fetches products
 
   useEffect(() => {
     props.loadProducts(products);

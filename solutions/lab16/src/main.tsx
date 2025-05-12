@@ -8,6 +8,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { cart, products } from './reducers';
+
 const rootReducer = combineReducers({
   cart: cart,
   products: products,

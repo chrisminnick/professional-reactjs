@@ -18,9 +18,7 @@ function useBooks(): [Book[] | [], boolean, boolean] {
     async function fetchData() {
       try {
         setIsLoading(true);
-        const response = await fetch(
-          'http://localhost:5173/data/products.json'
-        );
+        const response = await fetch('/data/products.json');
         const json = await response.json();
         const shuffledArray = shuffleArray(json);
         setBooks(shuffledArray);
