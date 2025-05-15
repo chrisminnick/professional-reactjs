@@ -18,6 +18,6 @@
     "jsx": "react-jsx",
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
-  "include": ["src"]
+  "include": ["env.d.ts", "src"]
   // "references": [{ "path": "./tsconfig.node.json" }]
 }
