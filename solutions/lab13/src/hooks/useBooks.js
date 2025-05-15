@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function useProducts() {
+function useBooks() {
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -34,4 +34,4 @@ function useProducts() {
   return [books, isLoading];
 }
 
-export default useProducts;
+export default useBooks;
