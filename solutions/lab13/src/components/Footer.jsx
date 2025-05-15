@@ -11,7 +11,7 @@ function Footer() {
     width: '100%',
   };
   return (
-    <p style={footerStyle} className={theme}>
+    <p style={footerStyle} className={theme === 'light' ? 'dark' : 'light'}>
       This is the footer.
       <button onClick={toggleTheme}>Toggle Theme</button>
     </p>
