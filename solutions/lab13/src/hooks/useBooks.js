@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 function useBooks() {
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [serverError, setServerError] = useState('');
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -17,21 +18,20 @@ function useBooks() {
     async function fetchData() {
       try {
         setIsLoading(true);
-        const response = await fetch(
-          'http://localhost:5173/data/products.json'
-        );
+        const response = await fetch('/data/products3.json');
         const json = await response.json();
         const shuffledArray = shuffleArray(json);
         setBooks(shuffledArray);
         setIsLoading(false);
       } catch (e) {
-        console.error(e);
+        setIsLoading(false);
+        setServerError(e);
       }
     }
     fetchData();
   }, []);
 
-  return [books, isLoading];
+  return [books, isLoading, serverError];
 }
 
 export default useBooks;

@@ -11,23 +11,36 @@ import useCart from '../hooks/useCart.jsx';
 function App() {
   const { theme } = useTheme();
 
-  const [products, isLoading] = useBooks();
+  const [products, isLoading, serverError] = useBooks();
   const [itemsInCart, addToCart, removeFromCart] = useCart();
 
   if (isLoading) {
-    return 'Loading...';
+    return <p>Loading...</p>;
   } else {
     return (
       <div className={`container-fluid ${theme}`}>
         <Header />
         <div className="row">
           <div className="col-md-8">
-            <ProductList
-              addToCart={addToCart}
-              removeFromCart={removeFromCart}
-              itemsInCart={itemsInCart}
-              products={products}
-            />
+            {serverError ? (
+              <>
+                <p>
+                  There was an error loading the products, please try again.
+                </p>
+                <p>
+                  <code>
+                    {serverError.name}: {serverError.message}
+                  </code>
+                </p>
+              </>
+            ) : (
+              <ProductList
+                addToCart={addToCart}
+                removeFromCart={removeFromCart}
+                itemsInCart={itemsInCart}
+                products={products}
+              />
+            )}
           </div>
           <div className="col-md-4">
             <Cart itemsInCart={itemsInCart} />
