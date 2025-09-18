@@ -18,9 +18,7 @@ function useProducts(): [Book[] | [], boolean] {
     async function fetchData() {
       try {
         setIsLoading(true);
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/data/products.json`
-        );
+        const response = await fetch(`/data/products.json`);
         const json = await response.json();
         const shuffledArray = shuffleArray(json);
         setProducts(shuffledArray);

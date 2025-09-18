@@ -1,7 +1,7 @@
-import Header from './Header.tsx';
-import ProductList from './ProductList.tsx';
-import Cart from './Cart.jsx';
-import Footer from './Footer.jsx';
+import Header from '../components/Header.tsx';
+import ProductList from '../components/ProductList.tsx';
+import Cart from '../components/Cart.jsx';
+import Footer from '../components/Footer.jsx';
 import './App.css';
 import Book from '../types/Book';
 import useProducts from '../hooks/useProducts.tsx';
