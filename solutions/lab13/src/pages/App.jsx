@@ -2,7 +2,7 @@ import Header from '../components/Header.jsx';
 import ProductList from '../components/ProductList.jsx';
 import Cart from '../components/Cart.jsx';
 import Footer from '../components/Footer.jsx';
-import { useTheme } from '../contexts/ThemeContext';
+import { useTheme } from '../hooks/useTheme';
 
 import './App.css';
 import useBooks from '../hooks/useBooks.js';

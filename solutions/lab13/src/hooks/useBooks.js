@@ -18,7 +18,7 @@ function useBooks() {
     async function fetchData() {
       try {
         setIsLoading(true);
-        const response = await fetch('/data/products3.json');
+        const response = await fetch('/data/products.json');
         const json = await response.json();
         const shuffledArray = shuffleArray(json);
         setBooks(shuffledArray);
