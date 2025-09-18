@@ -6,9 +6,11 @@ import './App.css';
 import Book from '../types/Book';
 import useProducts from '../hooks/useProducts.tsx';
 import useCart from '../hooks/useCart.tsx';
+import { useTheme } from '../hooks/useTheme';
 
 function App() {
   const [products, isLoading]: [Book[] | [], boolean] = useProducts();
+  const { theme } = useTheme();
   const [itemsInCart, addToCart, removeFromCart]: [
     Book[],
     (product: Book) => void,
@@ -19,7 +21,7 @@ function App() {
     return <p>Loading....</p>;
   } else {
     return (
-      <div className="container">
+      <div className={theme}>
         <Header />
         <div className="row">
           <div className="col-md-8">

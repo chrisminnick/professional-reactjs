@@ -18,7 +18,7 @@ const mockResponse = [
     country: 'USA',
     lang: 'English',
     pages: '1000',
-    image: 'defult.jpg',
+    image: 'default.jpg',
     url: '',
     price: '5',
   },
