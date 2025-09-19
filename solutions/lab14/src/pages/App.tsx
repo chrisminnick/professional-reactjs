@@ -10,7 +10,7 @@ import { useTheme } from '../hooks/useTheme';
 
 function App() {
   const [products, isLoading]: [Book[] | [], boolean] = useProducts();
-  const { theme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
   const [itemsInCart, addToCart, removeFromCart]: [
     Book[],
     (product: Book) => void,
@@ -21,7 +21,7 @@ function App() {
     return <p>Loading....</p>;
   } else {
     return (
-      <div className={theme}>
+      <div className={`container-fluid ${theme}`}>
         <Header />
         <div className="row">
           <div className="col-md-8">
@@ -36,7 +36,7 @@ function App() {
             <Cart itemsInCart={itemsInCart} />
           </div>
         </div>
-        <Footer />
+        <Footer toggleTheme={toggleTheme} />
       </div>
     );
   }

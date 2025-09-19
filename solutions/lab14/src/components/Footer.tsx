@@ -1,8 +1,8 @@
 import { CSSProperties } from 'react';
 import { useTheme } from '../hooks/useTheme';
 
-function Footer() {
-  const { theme, toggleTheme } = useTheme();
+function Footer(props: { toggleTheme: () => void }) {
+  const { toggleTheme } = useTheme();
   const footerStyle: CSSProperties = {
     backgroundColor: 'black',
     color: 'white',
@@ -14,9 +14,9 @@ function Footer() {
   };
 
   return (
-    <p style={footerStyle} className={theme === 'light' ? 'dark' : 'light'}>
+    <p style={footerStyle}>
       This is the footer.
-      <button onClick={toggleTheme}>Toggle Theme</button>
+      <button onClick={props.toggleTheme}>Toggle Theme</button>
     </p>
   );
 }
