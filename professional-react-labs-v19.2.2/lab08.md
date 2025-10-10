@@ -52,4 +52,12 @@ export default App;
 
 4. Run your application and verify that the counter works correctly.
 
+You should see the counter component with functioning buttons:
+
+![Counter component showing initial state](images/lab08f001.png)
+
+After clicking the increment button a few times, you should see the state updating:
+
+![Counter component showing updated state after incrementing](images/lab08f002.png)
+
 5. Experiment with adding more state variables to the `Counter` component, such as a `step` variable to control the increment/decrement amount.

@@ -61,4 +61,8 @@ export default App;
 
 5. Run your application and verify that the list of books is displayed correctly.
 
+Your application should now display the book list with props being passed correctly:
+
+![Book list component showing props in action](images/lab07f001.png)
+
 6. Experiment with adding more books to the `books` array in `BookList.jsx`.

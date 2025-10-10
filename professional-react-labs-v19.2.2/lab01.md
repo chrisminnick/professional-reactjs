@@ -32,7 +32,7 @@ After a moment, you’ll see a URL in the terminal. Ctrl-Click the URL to open i
 
 If the app was successfully created, you should see the following page:
 
-![A screenshot of a computer Description automatically generated](media/image3.png)
+![A screenshot of a computer Description automatically generated](images/lab01f001.png)
 
 6. Find **App.jsx** inside the **src** directory and open it for editing.
 
@@ -81,4 +81,4 @@ If it doesn’t refresh, click the browser refresh button, or return to your Ter
 
 If you get an error, make sure that all your opening tags have matching tags.
 
-![A screenshot of a computer Description automatically generated](media/image4.png)
+![A screenshot of a computer Description automatically generated](images/lab01f002.png)

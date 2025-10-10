@@ -1,6 +1,8 @@
 # Lab 02: Your First Component
 
-React components let you divide your user interface into independent and reusable pieces. The simplest components simply output some piece of HTML, given some input. All that’s required is a simple JavaScript function.
+React com5. Start the app (if it's not already running) and view it in your browser.
+
+![Footer example](images/lab02f001.png)ents let you divide your user interface into independent and reusable pieces. The simplest components simply output some piece of HTML, given some input. All that’s required is a simple JavaScript function.
 
 In this lab, you’ll create a functional component to hold the contents of the page footer.
 

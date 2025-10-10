@@ -62,4 +62,8 @@ In this first part, you’ll write a JavaScript application to make a call to NA
    Asteroid.getAsteroids();
    ```
 
+   You should see the asteroid data returned from NASA's API:
+
+   ![NASA API response showing asteroid data](images/lab05f001.png)
+
 10. Continue building the application by parsing the JSON data and creating instances of the `Asteroid` class for each object in the response.

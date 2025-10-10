@@ -55,4 +55,4 @@ The first step in creating a React UI is to create a static version. In this lab
 
 10. Run `npm run dev` to verify that your code builds. Your UI should now look something like this:
 
-![Graphical user interface Description automatically generated with low confidence](media/image6.png)
+![Graphical user interface Description automatically generated with low confidence](images/lab04f001.png)

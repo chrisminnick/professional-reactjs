@@ -63,4 +63,8 @@ https://testing-library.com/docs/react-testing-library/cheatsheet
 
 7. When all your tests pass, you'll see a coverage report in the terminal, and you can access a coverage report in Vitest UI.
 
+The Vitest UI should display your test results and coverage information:
+
+![Vitest UI showing test results and coverage report](images/lab15f001.png)
+
 8. Write more tests, refine your existing tests, and increase your test coverage %. See the solution for more ideas of tests to write and how to write them.

@@ -39,6 +39,10 @@ button:hover {
 import './styles.css';
 ```
 
+Your application should now show the updated styling:
+
+![Application with basic CSS styling applied](images/lab06f001.png)
+
 5. Add inline styles to one of your components. For example, modify the `Footer.jsx` component to include inline styles:
 
 ```javascript
@@ -61,5 +65,9 @@ export default Footer;
 ```
 
 6. Run your application and verify that the styles are applied correctly.
+
+Your footer should now appear styled with the inline styles:
+
+![Footer component with inline styles applied](images/lab06f002.png)
 
 7. Experiment with adding more styles to your components and CSS file.
