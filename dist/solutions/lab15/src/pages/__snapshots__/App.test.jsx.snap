@@ -1,0 +1,105 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`App Component > renders as expected 1`] = `
+<div>
+  <div
+    class="light + " container""
+  >
+    <div
+      class="light"
+    >
+      <h1>
+        Welcome to React Bookstore!
+      </h1>
+      <p>
+        We have several books. Feel free to browse for as long as you like. Click on a cover image to see details, or click the Add to Cart button to add a book to your shopping cart.
+      </p>
+      <button>
+        Toggle Theme
+      </button>
+    </div>
+    <div
+      class="row"
+    >
+      <div
+        class="col-md-8"
+      >
+        <ul
+          class="_productList_6f0a2f"
+        >
+          <li
+            class="_productListItem_6f0a2f"
+          >
+            <div
+              class="_product_eee97d"
+            >
+              <div>
+                <img
+                  alt="Buy This Book Now!"
+                  class="_thumbnail_eee97d"
+                  src="images/defult.jpg"
+                />
+              </div>
+              <div>
+                <h2>
+                  Buy This Book Now!
+                </h2>
+                <p>
+                  by: 
+                  Chris Minnick
+                  <br />
+                  published: 
+                  2023
+                  , 
+                  USA
+                  <br />
+                  language: 
+                  English
+                  <br />
+                  pages: 
+                  1000
+                  <br />
+                  price:
+                   
+                  $5.00
+                  <br />
+                  <a
+                    href=""
+                  >
+                    link
+                  </a>
+                </p>
+                <button>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div
+        class="col-md-4"
+      >
+        <div>
+          <h2>
+            Cart
+          </h2>
+          Total: $
+          0
+           
+          USD
+        </div>
+      </div>
+    </div>
+    <p
+      class="light"
+      style="padding: 10px; position: fixed; left: 0px; bottom: 0px; margin: 0px; width: 100%;"
+    >
+      This is the footer.
+      <button>
+        Toggle Theme
+      </button>
+    </p>
+  </div>
+</div>
+`;

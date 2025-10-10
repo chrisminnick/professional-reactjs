@@ -1,0 +1,29 @@
+{
+  "name": "professional-reactjs-admin",
+  "version": "19.2.2",
+  "description": "Private admin repository containing source materials and generation scripts for the Professional ReactJS course.",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisminnick/professional-reactjs-admin.git"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "javascript",
+    "frontend",
+    "course",
+    "education",
+    "professional"
+  ],
+  "author": "Chris Minnick",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/chrisminnick/professional-reactjs-admin/issues"
+  },
+  "homepage": "https://github.com/chrisminnick/professional-reactjs-admin#readme"
+}

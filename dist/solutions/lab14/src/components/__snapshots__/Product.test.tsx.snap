@@ -1,0 +1,80 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Product Component > renders as expected 1`] = `
+<div>
+  <div
+    class="_product_eee97d"
+  >
+    <div>
+      <img
+        alt="Title"
+        class="_thumbnail_eee97d"
+        data-testid="thumb"
+        src="images/image.jpg"
+      />
+    </div>
+    <div>
+      <h2>
+        Title
+      </h2>
+      <p>
+        Your rating:
+         
+        <select
+          data-testid="selectRating"
+        >
+          <option>
+            0
+          </option>
+          <option>
+            1
+          </option>
+          <option>
+            2
+          </option>
+          <option>
+            3
+          </option>
+          <option>
+            4
+          </option>
+          <option>
+            5
+          </option>
+        </select>
+      </p>
+      <p>
+        by: 
+        Author
+        <br />
+        published: 
+        Published Date
+        , 
+        Country
+        <br />
+        language: 
+        Language
+        <br />
+        pages: 
+        200
+        <br />
+        price:
+         
+        $10.00
+        <br />
+        <a
+          href="Link URL"
+        >
+          link
+        </a>
+      </p>
+      <p>
+        avg rating: 5
+      </p>
+      <button>
+        Add to Cart
+      </button>
+    </div>
+  </div>
+</div>
+`;

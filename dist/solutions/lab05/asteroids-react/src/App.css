@@ -1,0 +1,55 @@
+body {
+  background-color: black;
+}
+
+.solar-system {
+  background-color: black;
+}
+
+#earth {
+  float: left;
+  width: 300px;
+  height: auto;
+}
+
+.asteroid {
+  position: absolute;
+  margin-top: 150px;
+  margin-left: 0px;
+  color: yellow;
+  font-size: 10px;
+}
+
+.hazardous {
+  color: red;
+}
+
+.size-small {
+  font-size: 20px;
+}
+
+.size-medium {
+  font-size: 50px;
+}
+
+.size-large {
+  font-size: 80px;
+}
+
+.speed-low {
+  text-shadow: 0px 0px 10px cyan, 3px 5px 15px cyan;
+}
+
+.speed-medium {
+  text-shadow: 0px 0px 10px cyan, 1px 5px 15px cyan, 2px 10px 20px cyan;
+}
+
+.speed-high {
+  text-shadow: 0px 0px 10px cyan, 1px 5px 15px cyan, 2px 10px 20px cyan,
+    3px 15px 20px cyan, 3px 20px 20px cyan, 3px 25px 20px cyan;
+}
+
+.boom {
+  z-index: -1;
+  position: absolute;
+}
