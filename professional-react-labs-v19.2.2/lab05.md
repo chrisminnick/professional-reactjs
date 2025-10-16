@@ -1,69 +1,345 @@
-# Lab 05: DOM Manipulation and Modern JavaScript
+# Lab 05: Node.js Command Line Program for Data Management
 
-## PART I. Working with an API
+In this lab, you'll create a Node.js command-line program that demonstrates modern JavaScript techniques while managing book data for your React bookstore project. This program will allow you to add new books to the `products.json` file using ES6 classes, async/await, destructuring, template literals, and other modern JavaScript features.
 
-In this first part, you’ll write a JavaScript application to make a call to NASA's API to get data on the near-Earth asteroids based on their closest approach date to Earth. All the data is from the NASA JPL Asteroid team (<http://neo.jpl.nasa.gov/>). We are looking for data regarding the asteroids' distance from the Earth, speed, size, and whether each asteroid is potentially hazardous.
+### Prerequisites
 
-1. In your code editor, create a new folder (outside of your other project folder) named `asteroids`.
+Before starting this lab, ensure you've completed Lab 04 and have the `data` folder with `products.json` in your `react-bookstore/src` directory.
 
-2. Create a new file in the `asteroids` folder and name it `asteroids.js`.
+### Instructions
 
-3. Open `asteroids.js` and create a variable called `today` and set it to a string containing the current date.
+1. Navigate to your `react-bookstore` project directory and create a new folder called `tools`:
 
-   ```javascript
-   const today = new Date().toISOString().slice(0, 10);
+   ```bash
+   cd react-bookstore
+   mkdir tools
+   cd tools
    ```
 
-4. Navigate to <https://api.nasa.gov/index.html#apply-for-an-api-key>.
+2. Create a new file called `book-manager.js` in the `tools` directory:
 
-5. Enter your information and check your email for the API key. Congratulations, you have a developer's API key from NASA!
-
-6. Create a variable called `key` and set it equal to the API key from NASA.
-
-   ```javascript
-   const key = 'your-very-own-and-very-long-key';
+   ```bash
+   touch book-manager.js
    ```
 
-7. Create the variable called `url`.
+3. Open `book-manager.js` and start by importing the required Node.js modules using ES6 import syntax. Add the following at the top of your file:
 
    ```javascript
-   const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${today}&api_key=${key}`;
+   import fs from 'fs/promises';
+   import path from 'path';
+   import readline from 'readline';
+   import { fileURLToPath } from 'url';
    ```
 
-8. Create a new class named `Asteroid`, and give it a constructor.
+4. Set up the file path configuration using modern JavaScript techniques:
 
    ```javascript
-   class Asteroid {
-     constructor(isHazardous, distance, speed, size) {
-       this.isHazardous = isHazardous;
-       this.distance = distance;
-       this.speed = speed;
-       this.size = size;
+   // Get current directory path for ES modules
+   const __filename = fileURLToPath(import.meta.url);
+   const __dirname = path.dirname(__filename);
+
+   // Path to the products.json file
+   const PRODUCTS_FILE = path.join(
+     __dirname,
+     '..',
+     'src',
+     'data',
+     'products.json'
+   );
+   ```
+
+5. Create a `Book` class that represents a book entity with modern class syntax and methods:
+
+   ```javascript
+   class Book {
+     constructor({
+       title,
+       author,
+       country,
+       language,
+       pages,
+       published,
+       price,
+       image = '',
+       url = '',
+     }) {
+       this.id = this.generateId();
+       this.title = title;
+       this.author = author;
+       this.country = country || 'Unknown';
+       this.language = language || 'English';
+       this.pages = pages;
+       this.published = published;
+       this.price = price;
+       this.image = image;
+       this.url = url;
      }
 
-     static async getAsteroids() {
+     generateId() {
+       return `book_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+     }
+
+     // Method to validate book data
+     validate() {
+       const required = ['title', 'author', 'pages', 'published', 'price'];
+       const missing = required.filter((field) => !this[field]);
+
+       if (missing.length > 0) {
+         throw new Error(`Missing required fields: ${missing.join(', ')}`);
+       }
+
+       if (isNaN(this.pages) || this.pages <= 0) {
+         throw new Error('Pages must be a positive number');
+       }
+
+       if (isNaN(this.price) || this.price <= 0) {
+         throw new Error('Price must be a positive number');
+       }
+     }
+
+     // Method to format book for display
+     toString() {
+       return `"${this.title}" by ${this.author} (${this.published}) - $${this.price}`;
+     }
+   }
+   ```
+
+6. Create a `BookManager` class that handles file operations using async/await:
+
+   ```javascript
+   class BookManager {
+     constructor(filePath) {
+       this.filePath = filePath;
+     }
+
+     // Read existing books from JSON file
+     async loadBooks() {
        try {
-         const response = await fetch(url);
-         if (!response.ok) {
-           throw new Error('Network response was not ok');
-         }
-         const data = await response.json();
-         console.log(data);
+         const data = await fs.readFile(this.filePath, 'utf8');
+         return JSON.parse(data);
        } catch (error) {
-         console.log(error);
+         if (error.code === 'ENOENT') {
+           console.log('Products file not found. Creating new file...');
+           return [];
+         }
+         throw new Error(`Error reading books file: ${error.message}`);
+       }
+     }
+
+     // Save books to JSON file
+     async saveBooks(books) {
+       try {
+         const jsonData = JSON.stringify(books, null, 2);
+         await fs.writeFile(this.filePath, jsonData, 'utf8');
+         console.log(
+           `✅ Successfully saved ${books.length} books to ${this.filePath}`
+         );
+       } catch (error) {
+         throw new Error(`Error saving books: ${error.message}`);
+       }
+     }
+
+     // Add a new book to the collection
+     async addBook(bookData) {
+       try {
+         const book = new Book(bookData);
+         book.validate();
+
+         const books = await this.loadBooks();
+         books.push(book);
+
+         await this.saveBooks(books);
+         console.log(`📚 Added new book: ${book.toString()}`);
+         return book;
+       } catch (error) {
+         throw new Error(`Failed to add book: ${error.message}`);
+       }
+     }
+
+     // Display all books
+     async listBooks() {
+       try {
+         const books = await this.loadBooks();
+
+         if (books.length === 0) {
+           console.log('No books found in the collection.');
+           return;
+         }
+
+         console.log('\n📖 Current Book Collection:');
+         console.log('='.repeat(50));
+
+         books.forEach((book, index) => {
+           console.log(`${index + 1}. ${book.title}`);
+           console.log(`   Author: ${book.author}`);
+           console.log(
+             `   Published: ${book.published} | Pages: ${book.pages} | Price: $${book.price}`
+           );
+           console.log('');
+         });
+
+         console.log(`Total books: ${books.length}`);
+       } catch (error) {
+         console.error(`Error listing books: ${error.message}`);
        }
      }
    }
    ```
 
-9. Test your `getAsteroids` method by calling it in the browser console:
+7. Create a user interface class using readline for interactive input:
 
    ```javascript
-   Asteroid.getAsteroids();
+   class BookCLI {
+     constructor() {
+       this.rl = readline.createInterface({
+         input: process.stdin,
+         output: process.stdout,
+       });
+       this.manager = new BookManager(PRODUCTS_FILE);
+     }
+
+     // Promisify readline question
+     question(prompt) {
+       return new Promise((resolve) => {
+         this.rl.question(prompt, resolve);
+       });
+     }
+
+     // Main menu
+     async showMenu() {
+       console.log('\n📚 Book Manager CLI');
+       console.log('==================');
+       console.log('1. Add a new book');
+       console.log('2. List all books');
+       console.log('3. Exit');
+
+       const choice = await this.question('\nEnter your choice (1-3): ');
+       return choice.trim();
+     }
+
+     // Get book information from user
+     async getBookInfo() {
+       console.log('\n📖 Enter book information:');
+
+       const title = await this.question('Title: ');
+       const author = await this.question('Author: ');
+       const country = await this.question('Country (optional): ');
+       const language = await this.question('Language (default: English): ');
+       const pages = await this.question('Number of pages: ');
+       const published = await this.question('Publication year: ');
+       const price = await this.question('Price ($): ');
+       const imageUrl = await this.question('Image URL (optional): ');
+       const bookUrl = await this.question('Book URL (optional): ');
+
+       return {
+         title: title.trim(),
+         author: author.trim(),
+         country: country.trim(),
+         language: language.trim() || 'English',
+         pages: parseInt(pages),
+         published: parseInt(published),
+         price: parseFloat(price),
+         image: imageUrl.trim(),
+         url: bookUrl.trim(),
+       };
+     }
+
+     // Main application loop
+     async run() {
+       console.log('🚀 Welcome to the Book Manager CLI!');
+
+       try {
+         while (true) {
+           const choice = await this.showMenu();
+
+           switch (choice) {
+             case '1':
+               try {
+                 const bookData = await this.getBookInfo();
+                 await this.manager.addBook(bookData);
+               } catch (error) {
+                 console.error(`❌ Error: ${error.message}`);
+               }
+               break;
+
+             case '2':
+               await this.manager.listBooks();
+               break;
+
+             case '3':
+               console.log('👋 Goodbye!');
+               this.rl.close();
+               return;
+
+             default:
+               console.log('❌ Invalid choice. Please try again.');
+           }
+         }
+       } catch (error) {
+         console.error(`❌ Application error: ${error.message}`);
+       } finally {
+         this.rl.close();
+       }
+     }
+   }
    ```
 
-   You should see the asteroid data returned from NASA's API:
+8. Add the main execution code using modern JavaScript patterns:
 
-   ![NASA API response showing asteroid data](images/lab05f001.png)
+   ```javascript
+   // Main execution with error handling
+   async function main() {
+     try {
+       const cli = new BookCLI();
+       await cli.run();
+     } catch (error) {
+       console.error(`❌ Fatal error: ${error.message}`);
+       process.exit(1);
+     }
+   }
 
-10. Continue building the application by parsing the JSON data and creating instances of the `Asteroid` class for each object in the response.
+   // Execute only if this file is run directly
+   if (import.meta.url === `file://${process.argv[1]}`) {
+     main();
+   }
+
+   // Export classes for potential reuse
+   export { Book, BookManager, BookCLI };
+   ```
+
+9. Test your command-line program by running it:
+
+   ```bash
+   node tools/book-manager.js
+   ```
+
+   The program should display a menu and allow you to add books or list existing ones.
+
+   ![Command line interface showing the book manager menu](images/lab05f001.png)
+
+### Modern JavaScript Features Demonstrated
+
+This lab demonstrates several modern JavaScript features:
+
+- **ES6 Classes**: `Book`, `BookManager`, and `BookCLI` classes with constructor and methods
+- **Async/Await**: File operations and user input handling
+- **Destructuring Assignment**: In the `Book` constructor
+- **Template Literals**: String interpolation throughout the code
+- **Arrow Functions**: Used in array methods and promises
+- **Default Parameters**: In the `Book` constructor
+- **ES6 Modules**: Import/export syntax
+- **Promises**: Promisifying readline and file operations
+- **Error Handling**: Try/catch blocks with async functions
+- **Array Methods**: `filter()`, `forEach()`, `join()`
+
+### Challenge Exercises
+
+1. Add a search feature to find books by title or author
+2. Implement a delete book functionality
+3. Add data validation for duplicate books
+4. Export the book list to different formats (CSV, XML)
+5. Add book categories and filtering options
+
+### Next Steps
+
+The books you add using this command-line tool will be available in your React application when you continue with the remaining labs!

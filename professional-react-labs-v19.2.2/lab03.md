@@ -2,7 +2,7 @@
 
 In this lab, you’ll make your React application more modular by turning the main parts of the view into components, then you’ll create simple tests for your new components.
 
-## Part 1: Making new components
+### Part 1: Making new components
 
 1. Using what you learned from creating **Footer.jsx**, make **Header.jsx** and **ClickCounter.jsx** to replace code in **App.jsx**.
 
@@ -22,7 +22,7 @@ return (
 
 Note: For the ClickCounter component to continue working, you’ll need to move the `useState` import and the initialization of the `count` and `setCount` variables to **ClickCounter.jsx**.
 
-## Part 2: Writing tests
+### Part 2: Writing tests
 
 To get started with testing, you’ll need to install several dependencies, add a testing configuration to the Vite config file, and create a new test script in `package.json`. Follow these steps:
 
