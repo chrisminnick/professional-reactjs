@@ -5,8 +5,8 @@
 **📚 Course Repository:**
 [https://github.com/chrisminnick/modern-frontend-web-dev](https://github.com/chrisminnick/modern-frontend-web-dev)
 
-**Version:** 3.0.0
-**Date:** September 2025
+**Version:** 19.2.2
+**Date:** October 2025
 **Author:** Chris Minnick
 
 **Copyright © 2025 WatzThis, Inc.**
