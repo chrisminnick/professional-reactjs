@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>professional-react-slides-v19.2.0</title>
+    <style>
+      @page {
+        size: A4;
+        margin: 1in 0.75in;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        line-height: 1.6;
+        color: #2c3e50;
+        margin: 0;
+        padding: 0;
+        font-size: 11pt;
+        background: white;
+      }
+
+      .page-break {
+        page-break-before: always;
+      }
+
+      .title-page {
+        text-align: center;
+        padding: 2in 0;
+      }
+
+      .title-page h1 {
+        font-size: 2.5em;
+        color: #34495e;
+        margin-bottom: 0.5em;
+        font-weight: 300;
+      }
+
+      .title-page .subtitle {
+        font-size: 1.2em;
+        color: #7f8c8d;
+        margin-bottom: 2em;
+      }
+
+      .title-page .author {
+        font-size: 1.1em;
+        color: #34495e;
+      }
+
+      .slide-title {
+        page-break-before: always;
+      }
+
+      .main-title {
+        page-break-before: always;
+      }
+
+      p {
+        margin-bottom: 1em;
+        text-align: justify;
+      }
+
+      h1 {
+        font-size: 1.8em;
+        margin-top: 1.5em;
+        margin-bottom: 0.8em;
+        color: #2c3e50;
+        font-weight: 600;
+      }
+
+      h2 {
+        font-size: 1.5em;
+        margin-top: 1.3em;
+        margin-bottom: 0.7em;
+        color: #34495e;
+        font-weight: 500;
+      }
+
+      h3 {
+        font-size: 1.3em;
+        margin-top: 1.2em;
+        margin-bottom: 0.6em;
+        color: #34495e;
+        font-weight: 500;
+      }
+
+      h4 {
+        font-size: 1.1em;
+        margin-top: 1em;
+        margin-bottom: 0.5em;
+        color: #34495e;
+        font-weight: 500;
+      }
+
+      ul,
+      ol {
+        margin-bottom: 1em;
+        padding-left: 1.5em;
+      }
+
+      li {
+        margin-bottom: 0.3em;
+      }
+
+      .toc {
+        padding: 1em 0;
+      }
+
+      .toc h2 {
+        text-align: center;
+        margin-bottom: 1.5em;
+        color: #34495e;
+      }
+
+      .toc ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .toc > ul > li {
+        margin-bottom: 0.5em;
+      }
+
+      .toc ul ul {
+        padding-left: 1.5em;
+        margin-top: 0.3em;
+      }
+
+      .toc ul ul li {
+        margin-bottom: 0.3em;
+      }
+
+      .toc a {
+        text-decoration: none;
+        color: #34495e;
+        font-weight: 500;
+      }
+
+      .toc a:hover {
+        color: #3498db;
+      }
+
+      .toc-level-1 {
+        font-size: 1.1em;
+        font-weight: 600;
+        color: #2c3e50;
+        border-bottom: 1px dotted #bdc3c7;
+        padding-bottom: 0.2em;
+      }
+
+      .toc-level-2 {
+        font-size: 1em;
+        font-weight: 400;
+        color: #34495e;
+        margin-left: 0.5em;
+      }
+
+      .toc-level-2:before {
+        content: '→ ';
+        color: #7f8c8d;
+      }
+
+      pre {
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 4px;
+        padding: 2em;
+        margin: 1em 0;
+        overflow-x: auto;
+        font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas,
+          'Courier New', monospace;
+        font-size: 0.9em;
+        line-height: 0;
+      }
+
+      code {
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 3px;
+        padding: 0.2em 0.4em 0.4em 0.4em;
+        font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas,
+          'Courier New', monospace;
+        font-size: 0.85em;
+      }
+
+      pre code {
+        background-color: transparent;
+        border: none;
+        padding: 0;
+      }
+
+      blockquote {
+        border-left: 4px solid #3498db;
+        margin: 1em 0;
+        padding: 0.5em 0 0.5em 1em;
+        background-color: #f8f9fa;
+        font-style: italic;
+        color: #555;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1em 0;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+      }
+
+      .note {
+        background-color: #e8f4f8;
+        border-left: 4px solid #3498db;
+        padding: 1em;
+        margin: 1em 0;
+      }
+
+      .warning {
+        background-color: #fdf2e9;
+        border-left: 4px solid #e67e22;
+        padding: 1em;
+        margin: 1em 0;
+      }
+
+      .error {
+        background-color: #fdeaea;
+        border-left: 4px solid #e74c3c;
+        padding: 1em;
+        margin: 1em 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="professional-react-developmeent---slides" class="main-title">Professional React Developmeent - Slides</h1>
+
+<h3 id="modern-patterns-performance-and-best-practices">Modern patterns, performance, and best practices</h3>
+
+<p><strong>📚 Course Repository:</strong></p>
+<p><a href="https://github.com/chrisminnick/modern-frontend-web-dev">https://github.com/chrisminnick/modern-frontend-web-dev</a></p>
+
+<p><strong>Version:</strong> 19.2.2</p>
+<p><strong>Date:</strong> October 2025</p>
+<p><strong>Author:</strong> Chris Minnick</p>
+
+<p><strong>Copyright © 2025 WatzThis, Inc.</strong></p>
+<p>All rights reserved.</p>
+
+<p><strong>Website:</strong> <a href="https://www.watzthis.com">https://www.watzthis.com</a></p>
+
+<p>Modern patterns, performance, and best practices</p><div class="toc page-break">
+<h2>Table of Contents</h2>
+<ul>
+<li class="toc-level-1"><a href="#introduction">Introduction</a></li>
+<li class="toc-level-1"><a href="#react-fundamentals">React Fundamentals</a></li>
+<li class="toc-level-1"><a href="#advanced-topics">Advanced Topics</a></li>
+<li class="toc-level-1"><a href="#deployment">Deployment</a></li>
+</ul>
+</div><h1 id="introduction" class="main-title">Introduction</h1>
+
+<ul>
+<li>Course overview</li>
+<li>Environment setup</li>
+<li>What you'll build</li>
+
+</ul>
+<h1 id="react-fundamentals" class="main-title">React Fundamentals</h1>
+
+<ul>
+<li>Components, props, and state</li>
+<li>Hooks basics</li>
+<li>JSX and rendering</li>
+
+</ul>
+<h1 id="advanced-topics" class="main-title">Advanced Topics</h1>
+
+<ul>
+<li>Performance optimization</li>
+<li>Suspense and streaming</li>
+<li>State management patterns</li>
+
+</ul>
+<h1 id="deployment" class="main-title">Deployment</h1>
+
+<ul>
+<li>Build pipelines</li>
+<li>CI/CD overview</li>
+
+
+</ul>
+  </body>
+</html>
