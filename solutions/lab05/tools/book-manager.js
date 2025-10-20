@@ -248,10 +248,7 @@ async function main() {
   }
 }
 
-// Execute only if this file is run directly
-if (import.meta.url === `file://${process.argv[1]}`) {
-  main();
-}
+main();
 
 // Export classes for potential reuse
 export { Book, BookManager, BookCLI };
