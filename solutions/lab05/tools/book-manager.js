@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import readline from 'readline';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 
 // Get current directory path for ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -248,7 +248,10 @@ async function main() {
   }
 }
 
-main();
+// Execute only if this file is run directly
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main();
+}
 
 // Export classes for potential reuse
 export { Book, BookManager, BookCLI };
