@@ -143,6 +143,61 @@ class BookManager {
       console.error(`Error listing books: ${error.message}`);
     }
   }
+
+  // Delete a book by ID
+  async deleteBook(bookId) {
+    try {
+      const books = await this.loadBooks();
+
+      if (books.length === 0) {
+        throw new Error('No books found in the collection.');
+      }
+
+      const bookIndex = books.findIndex((book) => book.id === bookId);
+
+      if (bookIndex === -1) {
+        throw new Error(`Book with ID "${bookId}" not found.`);
+      }
+
+      const deletedBook = books[bookIndex];
+      books.splice(bookIndex, 1);
+
+      await this.saveBooks(books);
+      console.log(`🗑️ Deleted book: ${deletedBook.toString()}`);
+      return deletedBook;
+    } catch (error) {
+      throw new Error(`Failed to delete book: ${error.message}`);
+    }
+  }
+
+  // Display all books with their IDs for selection
+  async listBooksWithIds() {
+    try {
+      const books = await this.loadBooks();
+
+      if (books.length === 0) {
+        console.log('No books found in the collection.');
+        return [];
+      }
+
+      console.log('\n📖 Books Available for Deletion:');
+      console.log('='.repeat(50));
+
+      books.forEach((book, index) => {
+        console.log(`${index + 1}. ${book.title} by ${book.author}`);
+        console.log(`   ID: ${book.id}`);
+        console.log(
+          `   Published: ${book.published} | Pages: ${book.pages} | Price: $${book.price}`
+        );
+        console.log('');
+      });
+
+      return books;
+    } catch (error) {
+      console.error(`Error listing books: ${error.message}`);
+      return [];
+    }
+  }
 }
 class BookCLI {
   constructor() {
@@ -166,9 +221,10 @@ class BookCLI {
     console.log('==================');
     console.log('1. Add a new book');
     console.log('2. List all books');
-    console.log('3. Exit');
+    console.log('3. Delete a book');
+    console.log('4. Exit');
 
-    const choice = await this.question('\nEnter your choice (1-3): ');
+    const choice = await this.question('\nEnter your choice (1-4): ');
     return choice.trim();
   }
 
@@ -199,6 +255,20 @@ class BookCLI {
     };
   }
 
+  // Get book ID for deletion
+  async getBookIdForDeletion() {
+    const books = await this.manager.listBooksWithIds();
+
+    if (books.length === 0) {
+      return null;
+    }
+
+    const bookId = await this.question(
+      '\nEnter the ID of the book to delete: '
+    );
+    return bookId.trim();
+  }
+
   // Main application loop
   async run() {
     console.log('🚀 Welcome to the Book Manager CLI!');
@@ -222,6 +292,17 @@ class BookCLI {
             break;
 
           case '3':
+            try {
+              const bookId = await this.getBookIdForDeletion();
+              if (bookId) {
+                await this.manager.deleteBook(bookId);
+              }
+            } catch (error) {
+              console.error(`❌ Error: ${error.message}`);
+            }
+            break;
+
+          case '4':
             console.log('👋 Goodbye!');
             this.rl.close();
             return;

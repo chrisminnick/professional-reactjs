@@ -1,5 +1,5 @@
 function CartItem() {
-  return <p>Item:$Price</p>;
+  return <p style={{ fontWeight: 'bold' }}>Item:$Price</p>;
 }
 
 export default CartItem;

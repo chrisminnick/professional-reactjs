@@ -1200,18 +1200,6 @@
     "price": "5"
   },
   {
-    "id": "101",
-    "title": "Beginning ReactJS Foundations",
-    "author": "Chris Minnick",
-    "published": "2022",
-    "country": "United States",
-    "lang": "English",
-    "pages": "512",
-    "image": "reactjs-foundations.jpg",
-    "url": "https://www.reactjsfoundations.com/",
-    "price": "32.99"
-  },
-  {
     "id": "book_1760640809457_hk8x0sraa",
     "title": "JavaScript All-in-One For Dummies",
     "author": "Chris Minnick",
@@ -1220,6 +1208,18 @@
     "pages": 800,
     "published": 2024,
     "price": 20,
+    "image": "",
+    "url": ""
+  },
+  {
+    "id": "book_1761062166126_59szw0sgb",
+    "title": "Test Book",
+    "author": "Chris",
+    "country": "Unknown",
+    "language": "English",
+    "pages": 33,
+    "published": 2000,
+    "price": 33,
     "image": "",
     "url": ""
   }
