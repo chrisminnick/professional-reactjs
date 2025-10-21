@@ -299,7 +299,7 @@ Before starting this lab, ensure you've completed Lab 04 and have the `data` fol
    }
 
    // Execute only if this file is run directly
-   if (import.meta.url === `file://${process.argv[1]}`) {
+   if (import.meta.url === pathToFileURL(process.argv[1]).href) {
      main();
    }
 
