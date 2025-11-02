@@ -33,6 +33,10 @@ const PUBLIC_ROOT = fs.existsSync(SIBLING_PUBLIC)
   ? SIBLING_PUBLIC
   : DEFAULT_DIST;
 
+// Create separate directories for student and instructor materials
+const STUDENT_ROOT = path.join(PUBLIC_ROOT, 'dist-student');
+const INSTRUCTOR_ROOT = path.join(PUBLIC_ROOT, 'dist-instructor');
+
 // Resolve PDF generator path (prefer shared root-level generator, fallback to legacy local path)
 function getPdfGeneratorPath() {
   const SHARED = path.resolve(
@@ -96,6 +100,82 @@ function executeCommand(command, description) {
 }
 
 /**
+ * Generate PDF from markdown directory
+ */
+function generatePdf(inputDir, outputName, hasInstructorNotes = true) {
+  if (!fs.existsSync(inputDir)) {
+    console.log(
+      `⚠️  Directory not found: ${path.basename(
+        inputDir
+      )}, skipping PDF generation`
+    );
+    return;
+  }
+
+  const pdfGeneratorPath = getPdfGeneratorPath();
+
+  if (hasInstructorNotes) {
+    // Generate both student and instructor versions
+    console.log(`📄 Generating Student PDF: ${outputName}.pdf`);
+    const studentOutputPath = path.join(STUDENT_ROOT, `${outputName}.pdf`);
+    const studentCmd = `python3 "${pdfGeneratorPath}" "${inputDir}" -o "${studentOutputPath}"`;
+
+    try {
+      execSync(studentCmd, { stdio: 'inherit' });
+      console.log(`   ✅ Generated student version: ${outputName}.pdf`);
+    } catch (error) {
+      console.error(
+        `❌ Student PDF generation failed for ${outputName}:`,
+        error.message
+      );
+      process.exit(1);
+    }
+
+    console.log(`📄 Generating Instructor PDF: ${outputName}.pdf`);
+    const instructorOutputPath = path.join(
+      INSTRUCTOR_ROOT,
+      `${outputName}.pdf`
+    );
+    const instructorCmd = `python3 "${pdfGeneratorPath}" "${inputDir}" -o "${instructorOutputPath}" --instructor`;
+
+    try {
+      execSync(instructorCmd, { stdio: 'inherit' });
+      console.log(`   ✅ Generated instructor version: ${outputName}.pdf`);
+    } catch (error) {
+      console.error(
+        `❌ Instructor PDF generation failed for ${outputName}:`,
+        error.message
+      );
+      process.exit(1);
+    }
+  } else {
+    // Generate single version (copy to both directories since no instructor notes)
+    console.log(`📄 Generating PDF: ${outputName}.pdf`);
+    const studentOutputPath = path.join(STUDENT_ROOT, `${outputName}.pdf`);
+    const cmd = `python3 "${pdfGeneratorPath}" "${inputDir}" -o "${studentOutputPath}"`;
+
+    try {
+      execSync(cmd, { stdio: 'inherit' });
+      console.log(`   ✅ Generated ${outputName}.pdf`);
+
+      // Copy to instructor directory as well
+      const instructorOutputPath = path.join(
+        INSTRUCTOR_ROOT,
+        `${outputName}.pdf`
+      );
+      fs.copyFileSync(studentOutputPath, instructorOutputPath);
+      console.log(`   📋 Copied to instructor directory`);
+    } catch (error) {
+      console.error(
+        `❌ PDF generation failed for ${outputName}:`,
+        error.message
+      );
+      process.exit(1);
+    }
+  }
+}
+
+/**
  * Main build process
  */
 function main() {
@@ -124,6 +204,10 @@ function main() {
     console.log('📁 Creating fresh dist/ directory');
     fs.mkdirSync(PUBLIC_ROOT, { recursive: true });
 
+    // Create separate directories for student and instructor materials
+    fs.mkdirSync(STUDENT_ROOT, { recursive: true });
+    fs.mkdirSync(INSTRUCTOR_ROOT, { recursive: true });
+
     console.log('');
 
     // Step 2: Generate PDFs
@@ -144,48 +228,17 @@ function main() {
       ? 'setup-and-outline'
       : null;
 
-    // Configure templates for different document types (only include if found)
-    const pdfConfigurations = [];
     if (slidesDir) {
-      pdfConfigurations.push({
-        dir: slidesDir,
-        template: 'default', // template for slides
-        description: 'Course slides with modern styling',
-      });
-    }
-    if (labsDir) {
-      pdfConfigurations.push({
-        dir: labsDir,
-        template: 'default', // template for labs
-        description: 'Lab instructions with professional styling',
-      });
-    }
-    if (setupDir) {
-      pdfConfigurations.push({
-        dir: setupDir,
-        template: 'minimal', // minimal template for setup
-        description: 'Setup guide with clean academic styling',
-        noToc: true, // no table of contents for setup guides
-      });
+      generatePdf(path.join(ADMIN_ROOT, slidesDir), slidesDir, true);
     }
 
-    const generatorPath = getPdfGeneratorPath();
-    pdfConfigurations.forEach((config) => {
-      const dirPath = path.join(ADMIN_ROOT, config.dir);
-      if (fs.existsSync(dirPath)) {
-        console.log(
-          `📄 Generating PDF for: ${config.dir} (${config.template} template)`
-        );
-        console.log(`   ${config.description}`);
-        const noTocFlag = config.noToc ? ' --no-toc' : '';
-        executeCommand(
-          `python3 "${generatorPath}" "${config.dir}/" --dist-dir "${PUBLIC_ROOT}" --template ${config.template}${noTocFlag}`,
-          `Processing ${config.dir} with ${config.template} template`
-        );
-      } else {
-        console.log(`⚠️  Directory not found: ${config.dir}`);
-      }
-    });
+    if (labsDir) {
+      generatePdf(path.join(ADMIN_ROOT, labsDir), labsDir, true);
+    }
+
+    if (setupDir) {
+      generatePdf(path.join(ADMIN_ROOT, setupDir), 'setup-and-outline', false);
+    }
 
     console.log('');
 
@@ -311,14 +364,28 @@ See the course lab instructions PDF for detailed instructions.
       .map((cfg) => `${cfg}.pdf`);
 
     expectedPdfs.forEach((pdfName) => {
-      const pdfPath = path.join(PUBLIC_ROOT, pdfName);
-      if (fs.existsSync(pdfPath)) {
-        const pdfSize = (fs.statSync(pdfPath).size / (1024 * 1024)).toFixed(1);
-        const displayName = pdfName.replace('.pdf', '').replace(/-/g, ' ');
-        console.log(`✅ ${displayName}: ${pdfSize}M`);
+      const studentPdfPath = path.join(STUDENT_ROOT, pdfName);
+      const instructorPdfPath = path.join(INSTRUCTOR_ROOT, pdfName);
+      const displayName = pdfName.replace('.pdf', '').replace(/-/g, ' ');
+
+      if (fs.existsSync(studentPdfPath)) {
+        const pdfSize = (
+          fs.statSync(studentPdfPath).size /
+          (1024 * 1024)
+        ).toFixed(1);
+        console.log(`✅ ${displayName} (student): ${pdfSize}M`);
       } else {
-        const displayName = pdfName.replace('.pdf', '').replace(/-/g, ' ');
-        console.log(`❌ ${displayName}: Not found`);
+        console.log(`❌ ${displayName} (student): Not found`);
+      }
+
+      if (fs.existsSync(instructorPdfPath)) {
+        const pdfSize = (
+          fs.statSync(instructorPdfPath).size /
+          (1024 * 1024)
+        ).toFixed(1);
+        console.log(`✅ ${displayName} (instructor): ${pdfSize}M`);
+      } else {
+        console.log(`❌ ${displayName} (instructor): Not found`);
       }
     });
 
@@ -345,6 +412,11 @@ See the course lab instructions PDF for detailed instructions.
     console.log('🎉 BUILD COMPLETE!');
     console.log('==================');
     console.log(`📁 Public repository ready at: ${PUBLIC_ROOT}`);
+    console.log('📁 Student materials: /dist-student/');
+    console.log('📁 Instructor materials: /dist-instructor/');
+    console.log('');
+    console.log('💡 Instructor materials include all instructor notes');
+    console.log('💡 Student materials have instructor notes filtered out');
     console.log('');
     console.log('Next steps:');
     console.log('1. Review the generated files');
